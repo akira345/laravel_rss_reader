@@ -3,7 +3,7 @@
 namespace App\Logging;
 
 use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
+use Monolog\Handler\RotatingFileHandler;
 use Monolog\Handler\FingersCrossedHandler;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Processor\WebProcessor;
@@ -21,11 +21,14 @@ class AuthLog extends LogDriverAbstract
     {
         // StreamHandler を生成
         $handler = $this->prepareHandler(
-            new StreamHandler($config['path'], $this->level($config))
+            new RotatingFileHandler(
+                $config['path'], $config['days'] ?? 7, $this->level($config),
+                $config['bubble'] ?? true, $config['permission'] ?? null, $config['locking'] ?? false
+            )
         );
 
         // ログに出力するフォーマット
-        $format = '[%datetime% %channel%.%level_name%] %message% [%context%] [ip:%extra.ip% agent:%extra.agent%]';
+        $format = '[%datetime% %channel%.%level_name%] %message% [%context%] [ip:%extra.ip% agent:%extra.agent%]' . PHP_EOL;
 
         // StreamHandler にフォーマッタをセット
         $handler->setFormatter(
