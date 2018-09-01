@@ -3,13 +3,18 @@
 namespace App\Logging;
 
 use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Monolog\Handler\FingersCrossedHandler;
+use Monolog\Formatter\LineFormatter;
+use Monolog\Processor\WebProcessor;
+use Monolog\Processor\IntrospectionProcessor;
 
-class LoginLog extends LogDriverAbstract
+class AuthLog extends LogDriverAbstract
 {
     /**
      * Create a custom Monolog instance.
      *
-     * @param  array  $config config/logging.php で指定した fingers 以下のものを取得できる
+     * @param  array  $config config/logging.php で指定した authlog 以下のものを取得できる
      * @return \Monolog\Logger
      */
     public function __invoke(array $config)
@@ -20,14 +25,19 @@ class LoginLog extends LogDriverAbstract
         );
 
         // ログに出力するフォーマット
-        $format = '[%datetime% %channel%.%level_name%] %message% [%context%] [%extra%]';
+        $format = '[%datetime% %channel%.%level_name%] %message% [%context%] [ip:%extra.ip% agent:%extra.agent%]';
 
         // StreamHandler にフォーマッタをセット
         $handler->setFormatter(
             tap(new LineFormatter($format, null, true, true), function ($formatter) {
-                $formatter->includeStacktraces();
             })
         );
+        //extraフィールドにIPアドレスとユーザエージェントを追加
+        $ip = new WebProcessor();
+        //ユーザエージェントをextraフィールドに項目追加
+        $ip->addExtraField("agent","HTTP_USER_AGENT");
+        // 各ログハンドラにフォーマッタとプロセッサを設定
+        $handler->pushProcessor($ip);
 
         // Monolog のインスタンスを生成して返す
         return new Logger($this->parseChannel($config), [

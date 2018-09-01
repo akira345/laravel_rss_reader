@@ -77,10 +77,10 @@ return [
             'level' => 'debug',
         ],
 
-        'loginlog' => [
+        'authlog' => [
             'driver' => 'custom',
-            'via' => App\Logging\LoginLog::class,
-            'path' => storage_path('logs/login.log'),
+            'via' => \App\Logging\AuthLog::class,
+            'path' => storage_path('logs/auth.log'),
             'level'      => 'debug', // 指定したハンドラで出力するログレベル
             'activation' => 'error', // このログレベル以上で指定したハンドラで出力するレベルのログを出力する
             'pass'       => 'info', // このログレベル以上は常に出力する
