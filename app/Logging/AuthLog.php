@@ -28,7 +28,7 @@ class AuthLog extends LogDriverAbstract
         );
 
         // ログに出力するフォーマット
-        $format = '[%datetime% %channel%.%level_name%] %message% [%context%] [ip:%extra.ip% agent:%extra.agent%]' . PHP_EOL;
+        $format = '[%datetime% %channel%.%level_name%] %message% [%context%] [ip:%extra.ip% agent:%extra.agent% hostname:%extra.hostname%]' . PHP_EOL;
 
         // StreamHandler にフォーマッタをセット
         $handler->setFormatter(
@@ -41,6 +41,11 @@ class AuthLog extends LogDriverAbstract
         $ip->addExtraField("agent","HTTP_USER_AGENT");
         // 各ログハンドラにフォーマッタとプロセッサを設定
         $handler->pushProcessor($ip);
+        //ホスト名をセット
+        $handler->pushProcessor(function ($record){
+            $record['extra']['hostname'] = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+            return $record;
+        });
 
         // Monolog のインスタンスを生成して返す
         return new Logger($this->parseChannel($config), [
