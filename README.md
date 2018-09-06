@@ -1,0 +1,2 @@
+# laravel_rss_reader
+10年以上前に作ったmobile_rss_readerをlaravel勉強がてら移植中
