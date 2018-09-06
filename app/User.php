@@ -26,4 +26,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    /**
+     * ログイン履歴を取得
+     */
+    public function login_histories()
+    {
+        return $this->hasMany('App\Models\LoginHistory','user_id');
+    }
+    /**
+     * RSSデータを取得
+     */
+    public function rss_data()
+    {
+        return $this->hasMany('App\Models\RssData','user_id');
+    }
+
 }
