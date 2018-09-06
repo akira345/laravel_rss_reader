@@ -46,11 +46,11 @@ class GetRss extends Command
         $users = DB::table('users')
             ->orderBy('id')
             ->get();
-        foreach($users as $user) {
+        foreach ($users as $user) {
             //配信対象RSSデータ取得
             $rss_datas = DB::table('rss_datas')
                 ->join('rss_delivery_attributes', 'rss_datas.id', '=', 'rss_delivery_attributes.rss_id')
-                ->select('rss_datas.id','rss_datas.rss_url', 'rss_datas.keywords','rss_datas.ad_deny_flg', 'rss_datas.comment','rss_delivery_attributes.repeat_deliv_deny_flg')
+                ->select('rss_datas.id', 'rss_datas.rss_url', 'rss_datas.keywords', 'rss_datas.ad_deny_flg', 'rss_datas.comment', 'rss_delivery_attributes.repeat_deliv_deny_flg')
                 ->where('rss_delivery_attributes.deliv_flg', True)
                 ->where('rss_datas.user_id', $user->id)
                 ->orderBy('rss_datas.user_id')
@@ -88,7 +88,7 @@ class GetRss extends Command
                     $ad_words = array("[PR]", "【PR】", "AD:", "［PR］", "AD：", "広告：", "PR:", "PR：", "Info:");
 
                     //タイトルにNGワードがあったらスキップ
-                    If (($rss->ad_deny_flg == True) && ($this->array_strpos($title, $ad_words) == True)) {
+                    if (($rss->ad_deny_flg == True) && ($this->array_strpos($title, $ad_words) == True)) {
                         continue;    //以下の処理スキップ
                     }
 
@@ -99,17 +99,17 @@ class GetRss extends Command
                         ->where('title', $title);
 
                     //再配信拒否チェック
-                    If ($rss->repeat_deliv_deny_flg != True) {
+                    if ($rss->repeat_deliv_deny_flg != True) {
                         //同じRSS,同じタイトルで配信する猶予期間は１週間
                         $limit_time = date("Ymd", strtotime("-1 week"));
                         $send_rss_count = $send_rss_count->where('updated_at', '>=', $limit_time);
                     }
                     $send_rss_count = $send_rss_count->count();
 
-                    If ($send_rss_count == 0) {
+                    if ($send_rss_count == 0) {
                         //記事の中にキーワードにマッチしたものがあるか？
                         foreach ($uniq_keyword as $key) {
-                            If (stripos(mb_convert_kana($title . $summary, 'rnaskh', 'UTF-8'), $key) === FALSE) {
+                            if (stripos(mb_convert_kana($title . $summary, 'rnaskh', 'UTF-8'), $key) === FALSE) {
                                 //不一致はなにもしない
                             } else {
                                 //一致したキーワードをセット
@@ -120,7 +120,7 @@ class GetRss extends Command
                             }
                         }
                     }
-                    If (($match_keywords) != '') {
+                    if (($match_keywords) != '') {
                         //マッチしたキーワードがあった
                         //再送の場合はタイトルに(再)をつける
                         $send_rss_count = DB::table('wk_send_rss_datas')
@@ -129,7 +129,7 @@ class GetRss extends Command
                             ->where('title', $title)
                             ->count();
 
-                        If ($send_rss_count != 0) {
+                        if ($send_rss_count != 0) {
                             $resend_flg = 1;
                         } else {
                             $resend_flg = 0;
@@ -142,7 +142,7 @@ class GetRss extends Command
 
                         $send_rss_data->save();
 
-                        If ($resend_flg != 0) {
+                        if ($resend_flg != 0) {
                             $title = "(再)" . $title;
                         }
                         //メール用文面構築
@@ -152,19 +152,19 @@ class GetRss extends Command
                         $wk_body .= $summary . "\n";    //本文
                         $wk_body .= "link:" . $wk_url . "\n";
                         $wk_body .= "--------------------------------------------------------------------" . "\n\n";
-                    }else{
+                    } else {
                         //キーワードアンマッチ
                         null;
                     }
                 }
-                If (($wk_body) != '') {
+                if (($wk_body) != '') {
                     //RSS単位
                     $wk_body2 .= "RSS:「" . $comment . "」" . "\n\n";
                     $wk_body2 .= $wk_body;
                 }
             }
             //メール送信
-            If (($wk_body2) != '') {
+            if (($wk_body2) != '') {
                 echo "メール送信！！";
                 mb_language("Ja");
                 mb_internal_encoding("UTF-8");
@@ -172,18 +172,16 @@ class GetRss extends Command
                 $subject = "RSSマッチングレポート(" . date('Ymd') . ")";
                 $content = "キーワードにマッチングした記事を送信いたします。" . "\n\n" . $wk_body2;
                 $mailfrom = "info@exsample.com";
-                dump($content);
-                try{
+                //dump($content);
+                try {
                     Mail::to($mailto)->send(new SendRssMail($subject, $content, $mailfrom));
-                }catch (Swift_RfcComplianceException $e){
+                } catch (Swift_RfcComplianceException $e) {
                     dump("RFC違反のメールです。:" . $mailto);
                 }
-                //mb_send_mail($mailto, $subject, $content, $mailfrom);
             }
         }
         return;
     }
-
 
 
     /**
@@ -194,40 +192,43 @@ class GetRss extends Command
      * @param String $encoding
      * @return array|string
      */
-    private function mb_convert_kana_variables( $value,String $option, String $encoding){
+    private function mb_convert_kana_variables($value, String $option, String $encoding)
+    {
         //http://soft.fpso.jp/develop/php/entry_1891.htmlを参考に作成してみた
-        If (is_array($value)){
+        if (is_array($value)) {
             //配列なら
-            foreach ($value as $key => $val){
+            foreach ($value as $key => $val) {
                 //配列を展開する
-                If (is_array($val)){
+                if (is_array($val)) {
                     //展開した値が配列だった
                     //再帰的に呼び出す
-                    $val = $this->mb_convert_kana_variables($value[$key],$option, $encoding);
-                }else{
-                    $val = mb_convert_kana($val,$option, $encoding);
+                    $val = $this->mb_convert_kana_variables($value[$key], $option, $encoding);
+                } else {
+                    $val = mb_convert_kana($val, $option, $encoding);
                 }
                 //展開した配列を元に戻す
                 $value[$key] = $val;
             }
             return $value;
-        }else{
+        } else {
             //配列ではない
-            return mb_convert_kana($value,$option, $encoding);
+            return mb_convert_kana($value, $option, $encoding);
         }
     }
+
     /**
      * 配列に格納されたキーワードが存在したかどうかを判定する関数定義
      * @param string $in_str 検索対象文字列
      * @param array $in_array_keyword キーワードの入った連想配列
      * @return bool|int キーワード存在あり（True)なし（False）
      */
-    private function array_strpos(string $in_str,array $in_array_keyword){
-        $ret = FALSE;
-        foreach ($in_array_keyword as $key){
-            $ret = stripos($in_str,$key);
-            If ($ret !== FALSE){
-                $ret = TRUE;
+    private function array_strpos(string $in_str, array $in_array_keyword)
+    {
+        $ret = False;
+        foreach ($in_array_keyword as $key) {
+            $ret = stripos($in_str, $key);
+            if ($ret !== False) {
+                $ret = True;
                 break;
             }
         }
