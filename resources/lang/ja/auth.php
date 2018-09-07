@@ -18,5 +18,4 @@ return [
 
     'failed' => '認証に失敗しました',
     'throttle' => ':seconds 秒以上開けて再度お試しください',
-
 ];

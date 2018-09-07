@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        Logs('authlog')->info('test');
+
 
         return view('home');
     }

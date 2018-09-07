@@ -59,13 +59,18 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        ログアウト
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                    <a class="dropdown-item" href="#">最終ログイン:{{ Auth::user()->last_login_at }}</a>
+
+                                    <a class="dropdown-item" href="{{ route('show_history') }}">
+                                        ログイン履歴
+                                    </a>
+
+                                    <h6 class="dropdown-item">最終ログイン:{{ Auth::user()->last_login_at }}</h6>
                                 </div>
                             </li>
                         @endguest
