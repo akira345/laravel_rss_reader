@@ -28,7 +28,15 @@
                                 <tr>
                                     <td>{{{ $data->updated_at }}}</td>
                                     <td>{{{ $data->memo }}}</td>
-                                    <td>{{{ $data->ipaddr }}}</td>
+                                    <td>{{{ $data->ipaddr }}}
+                                        @php
+                                        //ホスト名が引けたら表示
+                                        $host = gethostbyaddr($data->ipaddr);
+                                        @endphp
+                                        @if($data->ipaddr <> $host)
+                                        <BR>({{  $host }})
+                                        @endif
+                                    </td>
                                     <td>{{{ $data->user_agent }}}</td>
                                 </tr>
                             @endforeach

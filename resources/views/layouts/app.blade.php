@@ -28,6 +28,16 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    RSS登録・変更
+                </a>
+
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    カテゴリ登録・変更
+                </a>
+
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -67,10 +77,18 @@
                                     </form>
 
                                     <a class="dropdown-item" href="{{ route('show_history') }}">
+                                        アカウント情報変更
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('show_history') }}">
                                         ログイン履歴
                                     </a>
 
                                     <h6 class="dropdown-item">最終ログイン:{{ Auth::user()->last_login_at }}</h6>
+
+                                    <a class="dropdown-item" href="{{ route('show_history') }}">
+                                        アカウント削除
+                                    </a>
                                 </div>
                             </li>
                         @endguest
