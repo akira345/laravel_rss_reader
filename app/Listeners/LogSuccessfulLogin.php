@@ -7,6 +7,8 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 class LogSuccessfulLogin
@@ -34,5 +36,9 @@ class LogSuccessfulLogin
         Logs('authlog')->info('ログイン',['user:' . $user->id]);
         $login_his_db = new LoginHistory();
         $login_his_db->record($user->id, $this->request,"ログイン");
+
+        $user = Auth::user();
+        $user->last_login_at = Carbon::now();
+        $user->save();
     }
 }
