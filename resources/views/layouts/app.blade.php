@@ -25,10 +25,11 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
+                @guest
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-
+                @else
                 <a class="navbar-brand" href="{{ url('/') }}">
                     RSS登録・変更
                 </a>
@@ -36,7 +37,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     カテゴリ登録・変更
                 </a>
-
+                @endguest
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -66,6 +67,17 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
+                                        アカウント情報変更
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('show_history') }}">
+                                        ログイン履歴
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('show_history') }}">
+                                        アカウント削除
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -75,21 +87,11 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-
-                                    <a class="dropdown-item" href="{{ route('show_history') }}">
-                                        アカウント情報変更
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('show_history') }}">
-                                        ログイン履歴
-                                    </a>
-
-                                    <h6 class="dropdown-item">最終ログイン:{{ Auth::user()->last_login_at }}</h6>
-
-                                    <a class="dropdown-item" href="{{ route('show_history') }}">
-                                        アカウント削除
-                                    </a>
                                 </div>
+                            </li>
+                            <li class="nav-item">
+                                最終ログイン:{{ Auth::user()->last_login_at }}
+
                             </li>
                         @endguest
                     </ul>

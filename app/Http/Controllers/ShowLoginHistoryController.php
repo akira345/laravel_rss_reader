@@ -30,7 +30,7 @@ class ShowLoginHistoryController extends Controller
         $datas = LoginHistory::query()
             ->where('user_id',$user->id)
             ->orderBy('updated_at','desc')
-            ->paginate(3);
+            ->paginate(25);
 
         // ビューを返す
         return view('show_history', ['datas' => $datas]);
