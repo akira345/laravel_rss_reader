@@ -45,7 +45,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\ModifyUser'=>[
             'App\Listeners\LogModifyUser'
-        ]
+        ],
+        'App\Events\DeleteUser'=>[
+            'App\Listeners\LogDeleteUser'
+        ],
     ];
 
     /**

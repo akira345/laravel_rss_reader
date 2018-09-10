@@ -75,7 +75,7 @@
                                         ログイン履歴
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ route('show_history') }}">
+                                    <a class="dropdown-item" href="{{ route('delete_user_from') }}">
                                         アカウント削除
                                     </a>
 
