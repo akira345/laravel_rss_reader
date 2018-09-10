@@ -43,6 +43,9 @@ class EventServiceProvider extends ServiceProvider
         'Illuminate\Auth\Events\PasswordReset' => [
             'App\Listeners\LogPasswordReset',
         ],
+        'App\Events\ModifyUser'=>[
+            'App\Listeners\LogModifyUser'
+        ]
     ];
 
     /**
