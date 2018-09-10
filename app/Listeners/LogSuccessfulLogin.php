@@ -33,7 +33,7 @@ class LogSuccessfulLogin
     public function handle(Login $event)
     {
         $user = $event->user;
-        Logs('authlog')->info('ログイン',['user:' . $user->id]);
+        Logs('authlog')->info('ログイン',['user:' . $user->id,'user_id:' . $user->name,'email:' . $user->email]);
         $login_his_db = new LoginHistory();
         $login_his_db->record($user->id, $this->request,"ログイン");
 
