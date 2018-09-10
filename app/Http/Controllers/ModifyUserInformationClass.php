@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
-class ModifyUserInformation extends Controller
+class ModifyUserInformationClass extends Controller
 {
     /**
      * ユーザ情報変更画面初期表示
@@ -26,7 +26,7 @@ class ModifyUserInformation extends Controller
     }
 
     /**
-     * ModifyUserInformation constructor.
+     * ModifyUserInformationClass constructor.
      */
     public function __construct()
     {
