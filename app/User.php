@@ -36,9 +36,15 @@ class User extends Authenticatable
     /**
      * RSSデータを取得
      */
-    public function rss_data()
+    public function rss_datas()
     {
         return $this->hasMany('App\Models\RssData','user_id');
     }
-
+    /**
+     * RSSカテゴリを取得
+     */
+    public function category_datas()
+    {
+        return $this->hasMany('App\Models\Category','user_id');
+    }
 }

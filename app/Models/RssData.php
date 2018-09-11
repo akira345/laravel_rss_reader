@@ -11,7 +11,7 @@ class RssData extends Model
      */
     public function category()
     {
-        return $this->belongsTo('App\Models\Category','category_id')->withDefault();;
+        return $this->belongsTo('App\Models\Category','category_id')->withDefault();
     }
     /**
      * RSSに対する表示属性を取得
