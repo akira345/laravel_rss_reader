@@ -31,3 +31,21 @@ Route::post('/user/modify','ModifyUserInformationController@modifyUserInformatio
 
 Route::get('/user/delete','DeleteUserController@showDeleteUserFrom')->name('delete_user_from');
 Route::post('/user/delete','DeleteUserController@deleteUser')->name('delete_user');
+
+Route::get('/category','CategoryController@index')->name('category.index');
+Route::get('/category/create','CategoryController@create')->name('category.create');
+Route::post('/category','CategoryController@store')->name('category.store');
+Route::get('/category/{id}','CategoryController@show')->name('category.show');
+Route::get('/category/{id}/edit','CategoryController@edit')->name('category.edit');
+Route::put('/category/{id}','CategoryController@update')->name('category.update');
+Route::delete('/category/{id}','CategoryController@destroy')->name('category.destroy');
+
+Route::get('/rss','RssDataController@index')->name('rss_data.index');
+Route::get('/rss/create','RssDataController@create')->name('rss_data.create');
+Route::post('/rss','RssDataController@store')->name('rss_data.store');
+Route::get('/rss/{id}','RssDataController@show')->name('rss_data.show');
+Route::get('/rss/{id}/edit','RssDataController@edit')->name('rss_data.edit');
+Route::put('/rss/{id}','RssDataController@update')->name('rss_data.update');
+Route::delete('/rss/{id}','RssDataController@destroy')->name('rss_data.destroy');
+
+
