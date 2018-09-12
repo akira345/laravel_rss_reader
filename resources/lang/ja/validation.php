@@ -129,6 +129,9 @@ return [
       |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'email' => 'メールアドレス',
+        'category' => 'カテゴリ名',
+    ],
 
 ];

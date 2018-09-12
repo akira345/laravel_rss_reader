@@ -12,6 +12,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                        @if (session('alert'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('alert') }}
+                            </div>
+                        @endif
 
                         <h1 class="d-flex mb-3">
 
@@ -30,13 +35,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($datas as $data)
+                            @foreach($categories as $category)
                                 <tr>
-                                    <td scope="row"><a href="{{ route('category.store',['id' => $data->id]) }}">{{{ $data->category }}}</a></td>
+                                    <td scope="row"><a href="{{ route('category.show',['category' => $category]) }}">{{{ $category->category }}}</a></td>
                                     <td class="text-right">
                                         <div class="btn-group" role="group">
-                                            <a class="btn btn-sm btn-warning" href="{{ route('category.edit',['id' => $data->id]) }}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="material-icons d-block">編集</i></a>
-                                            <form method="POST" action="{{ route('category.destroy',['id' => $data->id]) }}" accept-charset="UTF-8" style="display: inline;" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">
+                                            <a class="btn btn-sm btn-warning" href="{{ route('category.edit',['category' => $category]) }}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="material-icons d-block">編集</i></a>
+                                            <form method="POST" action="{{ route('category.destroy',['$category' => $category]) }}" accept-charset="UTF-8" style="display: inline;" onsubmit="if(confirm('削除してよいですか?')) { return true } else {return false };">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 @csrf
                                                 <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="material-icons d-block">削除</i></button>
@@ -47,7 +52,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        {{ $datas->links() }}
+                        {{ $categories->links() }}
                 </div>
             </div>
         </div>

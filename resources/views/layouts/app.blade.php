@@ -34,8 +34,8 @@
                     RSS登録・変更
                 </a>
 
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    カテゴリ登録・変更
+                <a class="navbar-brand" href="{{ route('category.index') }}">
+                    カテゴリ登録/削除
                 </a>
                 @endguest
 

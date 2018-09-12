@@ -35,10 +35,10 @@ Route::post('/user/delete','DeleteUserController@deleteUser')->name('delete_user
 Route::get('/category','CategoryController@index')->name('category.index');
 Route::get('/category/create','CategoryController@create')->name('category.create');
 Route::post('/category','CategoryController@store')->name('category.store');
-Route::get('/category/{id}','CategoryController@show')->name('category.show');
-Route::get('/category/{id}/edit','CategoryController@edit')->name('category.edit');
-Route::put('/category/{id}','CategoryController@update')->name('category.update');
-Route::delete('/category/{id}','CategoryController@destroy')->name('category.destroy');
+Route::get('/category/{category}','CategoryController@show')->name('category.show');
+Route::get('/category/{category}/edit','CategoryController@edit')->name('category.edit');
+Route::put('/category/{category}','CategoryController@update')->name('category.update');
+Route::delete('/category/{category}','CategoryController@destroy')->name('category.destroy');
 
 Route::get('/rss','RssDataController@index')->name('rss_data.index');
 Route::get('/rss/create','RssDataController@create')->name('rss_data.create');

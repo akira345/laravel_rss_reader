@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\RssData;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,7 @@ class CategoryController extends Controller
         $categories = Category::query()
             ->orderBy('id')
             ->paginate(25);
-        return view('category.index',['datas'=>$datas]);
+        return view('category.index',['categories'=>$categories]);
     }
 
     /**
@@ -61,17 +62,18 @@ class CategoryController extends Controller
                                 'string',
                                 'max:255',
                                 Rule::unique('categories')->where(function($query){
-                $query->where('user_id',Auth::user()->id);
+                return $query->where('user_id',Auth::user()->id);
             })],
         ])->validate();
+
 
         //保存
         $category = Category::create([
             'category' =>$request->category,
             'user_id' => $user->id,
-        ]);
+        ])->save();
         //
-        return redirect('category.show' , $category->id)->with('status', __('カテゴリを追加しました。'));
+        return redirect()->route('category.index')->with('status','カテゴリ名['.$request->category.']を追加しました');
     }
 
     /**
@@ -82,7 +84,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('category.show',['category'=>$category]);
     }
 
     /**
@@ -93,7 +95,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('category.edit',['category'=>$category]);
     }
 
     /**
@@ -105,7 +107,29 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $user = Auth::user();
+        if($request->category <> $category->category) {
+            //バリデーションチェック
+            //ユーザID単位でユニークにする。
+            Validator::make($request->all(), [
+                'category' => [
+                    'required',
+                    'string',
+                    'max:255',
+                    Rule::unique('categories')->where(function ($query) {
+                        return $query->where('user_id', Auth::user()->id);
+                    })],
+            ])->validate();
+            $category_old = $category->category;
+            $categorl_new = $request->category;
+            //保存
+            $category->category = $request->category;
+            $category->save();
+
+            return redirect()->route('category.index')->with('status','カテゴリ名[' . $category_old . ']を['.$categorl_new.']に変更しました');
+        }else{
+            return redirect()->route('category.index')->with('status','カテゴリ名に変更はありませんでした。');
+        }
     }
 
     /**
@@ -116,6 +140,14 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        //削除前に参照がないかチェック
+        if (RssData::query()->where('category_id', $category->id)->exists()) {
+            return redirect()->route('category.index')->with('alert', 'カテゴリ[' . $category->category . ']はRSSより参照されています。削除できません。');
+        } else {
+           //削除
+            $category->delete();
+            //リダイレクト
+            return redirect()->route('category.index')->with('status', 'カテゴリ名[' . $category->category . ']を削除しました。');
+        }
     }
 }
