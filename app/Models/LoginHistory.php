@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\AuthUserScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -19,5 +20,16 @@ class LoginHistory extends Model
         $login_his_db->ipaddr = $request->ip();
         $login_his_db->user_agent = $request->userAgent();
         $login_his_db->save();
+    }
+    /**
+     * モデルの「初期起動」メソッド
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new AuthUserScope());
     }
 }

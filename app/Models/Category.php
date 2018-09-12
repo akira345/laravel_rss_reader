@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\AuthUserScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
@@ -14,5 +15,16 @@ class Category extends Model
     public function rss_datas()
     {
         return $this->hasMany('App\Models\RssData','category_ids');
+    }
+    /**
+     * モデルの「初期起動」メソッド
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new AuthUserScope());
     }
 }

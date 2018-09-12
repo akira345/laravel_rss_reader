@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Scopes\AuthUserScope;
 
 class RssViewAttribute extends Model
 {
@@ -12,5 +13,16 @@ class RssViewAttribute extends Model
     public function rss_data()
     {
         return $this->belongsTo('App\Models\RssData','rss_id');
+    }
+    /**
+     * モデルの「初期起動」メソッド
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new AuthUserScope());
     }
 }
