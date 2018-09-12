@@ -26,7 +26,7 @@ class DeleteUserController extends Controller
         //TOPへ飛ばす
         if ($request->get('action') === 'back') {
             //
-            return Redirect::to('login');
+            return redirect()->route('login');
         }
         //ユーザ削除
 
@@ -37,7 +37,7 @@ class DeleteUserController extends Controller
 
         //ログアウトさせ、ログイン画面表示
         Auth::logout();
-        return Redirect::to('login');
+        return redirect()->route('login');
     }
 
 }
