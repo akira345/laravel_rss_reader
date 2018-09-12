@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,8 +28,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $datas = Category::query()
-            ->where('user_id',Auth::user()->id)
+        $categories = Category::query()
             ->orderBy('id')
             ->paginate(25);
         return view('category.index',['datas'=>$datas]);

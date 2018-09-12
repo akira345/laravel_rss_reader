@@ -25,10 +25,7 @@ class ShowLoginHistoryController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-
         $datas = LoginHistory::query()
-            ->where('user_id',$user->id)
             ->orderBy('updated_at','desc')
             ->paginate(25);
 
