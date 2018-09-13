@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
  *
  *
  */
-class RssUtilFacade extends Facade
+class RssUtil extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -16,6 +16,6 @@ class RssUtilFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'RssUtil';
+        return 'rssutil';
     }
 }

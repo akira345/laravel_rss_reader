@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.38 on 2018-09-12 20:31:49.
+ * Generated for Laravel 5.6.38 on 2018-09-14 04:25:09.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -13447,105 +13447,16 @@ namespace App\Facades {
      * 
      *
      */ 
-    class RssUtilFacade {
+    class RssUtil {
         
         /**
-         * Convert the facade into a Mockery spy.
+         * 
          *
-         * @return \Mockery\MockInterface 
          * @static 
          */ 
-        public static function spy()
+        public static function RssProsessing($user)
         {
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            return \App\Facades\RssUtilFacade::spy();
-        }
-        
-        /**
-         * Initiate a mock expectation on the facade.
-         *
-         * @return \Mockery\Expectation 
-         * @static 
-         */ 
-        public static function shouldReceive()
-        {
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            return \App\Facades\RssUtilFacade::shouldReceive();
-        }
-        
-        /**
-         * Hotswap the underlying instance behind the facade.
-         *
-         * @param mixed $instance
-         * @return void 
-         * @static 
-         */ 
-        public static function swap($instance)
-        {
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            \App\Facades\RssUtilFacade::swap($instance);
-        }
-        
-        /**
-         * Get the root object behind the facade.
-         *
-         * @return mixed 
-         * @static 
-         */ 
-        public static function getFacadeRoot()
-        {
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            return \App\Facades\RssUtilFacade::getFacadeRoot();
-        }
-        
-        /**
-         * Clear a resolved facade instance.
-         *
-         * @param string $name
-         * @return void 
-         * @static 
-         */ 
-        public static function clearResolvedInstance($name)
-        {
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            \App\Facades\RssUtilFacade::clearResolvedInstance($name);
-        }
-        
-        /**
-         * Clear all of the resolved instances.
-         *
-         * @return void 
-         * @static 
-         */ 
-        public static function clearResolvedInstances()
-        {
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            \App\Facades\RssUtilFacade::clearResolvedInstances();
-        }
-        
-        /**
-         * Get the application instance behind the facade.
-         *
-         * @return \Illuminate\Contracts\Foundation\Application 
-         * @static 
-         */ 
-        public static function getFacadeApplication()
-        {
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            return \App\Facades\RssUtilFacade::getFacadeApplication();
-        }
-        
-        /**
-         * Set the application instance.
-         *
-         * @param \Illuminate\Contracts\Foundation\Application $app
-         * @return void 
-         * @static 
-         */ 
-        public static function setFacadeApplication($app)
-        {
-            //Method inherited from \Illuminate\Support\Facades\Facade            
-            \App\Facades\RssUtilFacade::setFacadeApplication($app);
+            return \App\Services\RssUtilService::RssProsessing($user);
         }
          
     }
@@ -15922,7 +15833,7 @@ namespace  {
 
     class View extends \Illuminate\Support\Facades\View {}
 
-    class RssUtil extends \App\Facades\RssUtilFacade {}
+    class RssUtil extends \App\Facades\RssUtil {}
 
     class Feeds extends \willvincent\Feeds\Facades\FeedsFacade {}
  

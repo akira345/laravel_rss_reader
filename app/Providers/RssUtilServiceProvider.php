@@ -3,10 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Application;
+
 use Illuminate\Support\ServiceProvider;
 use App\Services\RssUtilService;
 
-class RssUtilProvider extends ServiceProvider
+class RssUtilServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap services.
@@ -25,7 +26,7 @@ class RssUtilProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('RssUtilUtil', function(Application $app){
+        $this->app->bind('rssutil', function(Application $app){
             return new RssUtilService();
         });
     }
