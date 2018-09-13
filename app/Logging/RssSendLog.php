@@ -28,7 +28,7 @@ class RssSendLog extends LogDriverAbstract
         );
 
         // ログに出力するフォーマット
-        $format = '[%datetime% %channel%.%level_name%] %message% [%context%]' . PHP_EOL;
+        $format = '[%datetime% %channel%.%level_name%] %message% [%context%] [%extra.class%::%extra.function%(%extra.line%)]' . PHP_EOL;
 
         // StreamHandler にフォーマッタをセット
         $handler->setFormatter(
@@ -37,6 +37,8 @@ class RssSendLog extends LogDriverAbstract
             })
         );
 
+        $ip = new IntrospectionProcessor(Logger::DEBUG, ['Illuminate\\']);
+        $handler->pushProcessor($ip);
         // Monolog のインスタンスを生成して返す
         return new Logger($this->parseChannel($config), [
             new FingersCrossedHandler(

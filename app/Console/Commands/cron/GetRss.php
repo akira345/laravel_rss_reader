@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands\cron;
 
+use App\Facades\RssUtil;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use App\Mail\SendRssMail;
 use Illuminate\Support\Facades\Mail;
-use RssUtil;
 use Swift_RfcComplianceException;
 
 
@@ -49,7 +49,7 @@ class GetRss extends Command
         foreach ($users as $user) {
             //配信対象RSSデータ取得
             $send_rss_data_contents = RssUtil::RssProsessing($user);
-
+//dump($send_rss_data_contents);
             //メール送信
             if (count($send_rss_data_contents) > 0) {
                 echo "メール送信！！";
