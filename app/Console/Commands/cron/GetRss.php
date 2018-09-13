@@ -49,9 +49,9 @@ class GetRss extends Command
         foreach ($users as $user) {
             //配信対象RSSデータ取得
             $send_rss_data_contents = RssUtil::RssProsessing($user);
-//dump($send_rss_data_contents);
             //メール送信
             if (count($send_rss_data_contents) > 0) {
+                Logs('rss_send_log')->info('メール送信',['user_id:'=>$user->id,'user_email:' => $user->email ]);
                 echo "メール送信！！";
                 $mailto = $user->email;
                 $subject = "RSSマッチングレポート(" . date('Ymd') . ")";
@@ -62,6 +62,7 @@ class GetRss extends Command
                     Mail::to($mailto)->send(new SendRssMail($subject, $contents, $mailfrom));
                 } catch (Swift_RfcComplianceException $e) {
                     dump("RFC違反のメールです。:" . $mailto);
+                    Logs('rss_send_log')->warning('メール送信失敗。RFC違反のメールです。',['user_id:'=>$user->id,'user_email:' => $user->email ]);
                 }
             }
         }

@@ -32,8 +32,10 @@ class RssUtilService
         return $rss_datas;
     }
 
-    public function RssProsessing(\App\User $user){
+    public function RssProsessing(\stdClass $user){
         $this->user = $user;
+        Logs('rss_send_log')->info('RSS取得開始',['user_id:' => $this->user->id ]);
+
         $rss_datas = $this->getRssDb();
         foreach ($rss_datas as $rss_data) {
             $rss_id = $rss_data->id;
@@ -43,27 +45,30 @@ class RssUtilService
             $rss_url = $rss_data->rss_url;
             $comment = $rss_data->comment;
             //RSSのパーズ
+            Logs('rss_send_log')->info('RSSパース',['rss_url:' => $rss_url ]);
             $feed = \Feeds::make($rss_url);
             $rss_contents = [];
             foreach ($feed->get_items() as $item) {
                 $rss_feed = new RssFeedUtil($this->user->id, $rss_id, $ad_deny_flg, $repeat_deliv_deny_flg, $keywords, $item);
-                if (is_null($rss_feed->getSendRssFeedTitle()) !== False) {
-                    $rss_contents .= [
-                        "title" => $rss_feed->getSendRssFeedTitle(),
-                        "time" => $rss_feed->getSendRssFeedTime(),
-                        "match_keywords" => $rss_feed->getSendRssFeedMatchKeywords(),
-                        "description" => $rss_feed->getSendRssFeedDescription(),
-                        "link" => $rss_feed->getSendRssFeedLink(),
-                    ];
+                $rss_feed->feedProsessing();
+                if (is_null($rss_feed->getSendRssFeedTitle()) !== True) {
+                    array_push($rss_contents , [
+                        'title' => $rss_feed->getSendRssFeedTitle(),
+                        'time' => $rss_feed->getSendRssFeedTime(),
+                        'match_keywords' => $rss_feed->getSendRssFeedMatchKeywords(),
+                        'description' => $rss_feed->getSendRssFeedDescription(),
+                        'link' => $rss_feed->getSendRssFeedLink(),
+                    ]);
                 }
             }
             if (count($rss_contents) > 0) {
-                $this->send_rss_data_contents .= [
-                    "rss_comments" => $comment,
-                    "rss_contents" => $rss_contents,
-                ];
+                array_push($this->send_rss_data_contents , [
+                    'rss_comments' => $comment,
+                    'rss_contents' => $rss_contents,
+                ]);
             }
         }
+        Logs('rss_send_log')->info('RSS取得終了',['user_id:' => $this->user->id ]);
         return $this->send_rss_data_contents;
     }
 

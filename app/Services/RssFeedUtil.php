@@ -42,7 +42,7 @@ class RssFeedUtil
      * @param int $rss_id RSS ID
      * @param bool $ad_deny_flg
      * @param bool $repeat_deliv_deny_flg
-     * @param array $keywords
+     * @param string $keywords
      * @param \SimplePie_Item $item RSSフィード
      */
     public function __construct(
@@ -50,7 +50,7 @@ class RssFeedUtil
         int $rss_id,
         bool $ad_deny_flg,
         bool $repeat_deliv_deny_flg,
-        array $keywords,
+        string $keywords,
         \SimplePie_Item $item)
     {
         $this->item = $item;
@@ -58,8 +58,7 @@ class RssFeedUtil
         $this->rss_id=$rss_id;
         $this->ad_deny_flg=$ad_deny_flg;
         $this->repeat_deliv_deny_flg=$repeat_deliv_deny_flg;
-        $this->
-        //念のため改行コードをそろえておく
+        //改行をデリミタとして配列化。念のため改行コードをそろえておく
         $this->keywords=explode("\n", str_replace(array("\r\n", "\n", "\r"), "\n", $keywords));
         //キーワード文字の正規化を行う(すべて半角化)
         $this->normalization_keywords = $this->mb_convert_kana_variables($this->keywords, 'rnaskh', 'UTF-8');
@@ -71,7 +70,6 @@ class RssFeedUtil
         $this->send_rss_feed_match_keywords = null;
         $this->send_rss_feed_description = null;
         $this->send_rss_feed_link = null;
-
     }
 
     /**
@@ -95,10 +93,9 @@ class RssFeedUtil
      */
     private function isSendRss(string $title,bool $repeat_deliv_deny_flg){
         $send_rss_count = DB::table('wk_send_rss_datas')
-            ->where('user_id', $this->rss_id)
+            ->where('user_id', $this->user_id)
             ->where('rss_id', $this->rss_id)
             ->where('title', $title);
-
         //再配信拒否チェック
         if ($repeat_deliv_deny_flg !== True) {
             //同じRSS,同じタイトルで配信する猶予期間は１週間
@@ -118,10 +115,7 @@ class RssFeedUtil
         //記事の中にキーワードにマッチしたものがあるか？
         $match_keywords = null;
         foreach ($this->uniq_keywords as $uniq_keyword) {
-            if (stripos(mb_convert_kana($title . $description, 'rnaskh', 'UTF-8'), $uniq_keyword) === FALSE) {
-                //不一致はなにもしない
-                return null;
-            } else {
+            if (stripos(mb_convert_kana($title . $description, 'rnaskh', 'UTF-8'), $uniq_keyword)) {
                 //一致したキーワードをセット
                 //まずは正規化したキーワードの配列キー取得
                 $match_key = array_search($uniq_keyword, $this->normalization_keywords);
@@ -150,7 +144,7 @@ class RssFeedUtil
             return True;
         }catch (\PDOException $e){
             DB::rollBack();
-            Logs('rss_send_log')->error('RSS配信テーブル書き込みエラー',['user:' . $this->user_id . ' rss_id:' . $this->rss_id . ' title:' . $title ]);
+            Logs('rss_send_log')->error('RSS配信テーブル書き込みエラー',['user:' => $this->user_id , 'rss_id:' => $this->rss_id , ' title:' => $title,'exception'=>$e->getMessage() ]);
             return False;
         }
     }
@@ -158,27 +152,28 @@ class RssFeedUtil
      *
      */
     public function feedProsessing(){
+        Logs('rss_send_log')->debug('RSSフィード取得開始',['title:' => $this->feed_title() ]);
         $title = $this->feed_title();
         $description = $this->feed_description();
         $feed_link = $this->feed_link();
         $feed_time = $this->feed_time();
-
         $match_keywords = null;
         //タイトルに広告が入っているか？
         if($this->isAd($title)){
+            Logs('rss_send_log')->debug('広告フィードにつき配信拒否',['title:' => $this->feed_title() ]);
             return;
         }
         //すでに配信済みの記事か？
-        if($this->isSendRss($title,$this->repeat_deliv_deny_flg) !==False){
+        if($this->isSendRss($title,$this->repeat_deliv_deny_flg) !==True){
             //未配信ならキーワードマッチングチェック
             $match_keywords = $this->getMatchKeywords($title,$description);
+            Logs('rss_send_log')->debug('未配信記事につきキーワードマッチ',['match_keywords:' => $match_keywords ]);
         }
-        if(is_null($match_keywords) !==False){
+        if(is_null($match_keywords) !==True){
             //キーワードにマッチ
-
             //再送信記事かチェック
-            $repeat_deliv_flg = $this->isSendRss($title,False);
-
+            $repeat_deliv_flg = $this->isSendRss($title,True);
+            Logs('rss_send_log')->debug('配信DB記録',['title:' => $title]);
             //配信DBに記録
             $this->recordSendRssData($title);
             //プロパティセット
@@ -193,6 +188,7 @@ class RssFeedUtil
             $this->send_rss_feed_description=$description;
             $this->send_rss_feed_link=$feed_link;
         }
+        Logs('rss_send_log')->debug('フィード処理終了',['title:' => $title]);
         return;
     }
     /**
