@@ -83,7 +83,8 @@ class CategoryController extends Controller
             Log::error('カテゴリ追加時にエラー',['user:'=> $user->id ,'category:'=> $request->category ,'exception'=> $e->getMessage()]);
             return redirect()->route('category.index')->with('alert','カテゴリ名['.$request->category.']の追加に失敗しました。');
         }
-        //
+        //二重投稿防止
+        $request->session()->regenerateToken();
         return redirect()->route('category.index')->with('status','カテゴリ名['.$request->category.']を追加しました');
     }
 
@@ -144,7 +145,8 @@ class CategoryController extends Controller
                 Log::error('カテゴリ変更時にエラー',['user:' => $user->id , 'category:' => $request->category,'exception'=> $e->getMessage()]);
                 return redirect()->route('category.index')->with('alert','カテゴリ名[' . $category_old . ']を['.$categorl_new.']に変更失敗しました。');
             }
-            //
+            //二重投稿防止
+            $request->session()->regenerateToken();
             return redirect()->route('category.index')->with('status','カテゴリ名[' . $category_old . ']を['.$categorl_new.']に変更しました');
         }else{
             return redirect()->route('category.index')->with('status','カテゴリ名に変更はありませんでした。');

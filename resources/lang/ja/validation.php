@@ -132,6 +132,10 @@ return [
     'attributes' => [
         'email' => 'メールアドレス',
         'category' => 'カテゴリ名',
+        'rss_url' => 'RSSフィードURL',
+        'comment' => 'コメント',
+        'keywords' => '配信キーワード',
+        'rss_contents_list_cnt' => 'RSS記事表示数',
     ],
 
 ];

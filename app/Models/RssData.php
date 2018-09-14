@@ -7,6 +7,7 @@ use App\Scopes\AuthUserScope;
 
 class RssData extends Model
 {
+    protected $fillable= ['user_id','rss_url','comment','category_id','keywords','ad_deny_flg'];
     /**
      * RSSに対するカテゴリを取得
      */
@@ -19,14 +20,14 @@ class RssData extends Model
      */
     public function rss_view_attribute()
     {
-        return $this->hasOne('App\Models\RssViewAttribute','rss_id');
+        return $this->hasOne('App\Models\RssViewAttribute','rss_id')->withoutGlobalScopes();
     }
     /**
      * RSSに対するメール配信属性を取得
      */
     public function rss_delivery_attribute()
     {
-        return $this->hasOne('App\Models\RssDeliveryAttribute','rss_id');
+        return $this->hasOne('App\Models\RssDeliveryAttribute','rss_id')->withoutGlobalScopes();
     }
     /**
      * モデルの「初期起動」メソッド

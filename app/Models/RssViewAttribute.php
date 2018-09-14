@@ -7,12 +7,13 @@ use App\Scopes\AuthUserScope;
 
 class RssViewAttribute extends Model
 {
+    protected $fillable= ['rss_id','rss_contents_list_cnt','hidden_flg'];
     /**
      * 表示対象RSSからRSS情報を取得
      */
     public function rss_data()
     {
-        return $this->belongsTo('App\Models\RssData','rss_id');
+        return $this->belongsTo('App\Models\RssData','rss_id')->withoutGlobalScopes();
     }
     /**
      * モデルの「初期起動」メソッド

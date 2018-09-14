@@ -30,7 +30,7 @@
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 @else
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ route('rss_data.index') }}">
                     RSS登録・変更
                 </a>
 
