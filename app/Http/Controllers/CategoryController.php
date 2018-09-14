@@ -76,8 +76,10 @@ class CategoryController extends Controller
             $category = Category::create([
                 'category' => $request->category,
                 'user_id' => $user->id,
-            ])->save();
+            ]);
+            DB::commit();
         }catch (\PDOException $e){
+            DB::rollBack();
             Log::error('カテゴリ追加時にエラー',['user:'=> $user->id ,'category:'=> $request->category ,'exception'=> $e->getMessage()]);
             return redirect()->route('category.index')->with('alert','カテゴリ名['.$request->category.']の追加に失敗しました。');
         }
@@ -136,6 +138,7 @@ class CategoryController extends Controller
             try {
                 $category->category = $request->category;
                 $category->save();
+                DB::commit();
             }catch (\PDOException $e){
                 DB::rollBack();
                 Log::error('カテゴリ変更時にエラー',['user:' => $user->id , 'category:' => $request->category,'exception'=> $e->getMessage()]);
@@ -165,6 +168,7 @@ class CategoryController extends Controller
             DB::beginTransaction();
             try {
                 $category->delete();
+                DB::commit();
             }catch (\PDOException $e){
                 DB::rollBack();
                 Log::error('カテゴリ削除時にエラー',['user:'=> Auth::user()->id , 'category_id:'=>$category->id ,'exception'=> $e->getMessage()]);

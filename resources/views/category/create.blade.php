@@ -22,9 +22,9 @@
                                     @csrf
 
                                     <div class="form-group">
-                                        <label for="name-field">カテゴリ名</label>
+                                        <label for="category-field">カテゴリ名</label>
 
-                                        <input id="category" type="text" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}"  name="category" value="{{ old('category') }}" required autofocus>
+                                        <input id="category-field" type="text" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}"  name="category" value="{{ old('category') }}" required autofocus>
 
                                         @if ($errors->has('category'))
                                             <span class="invalid-feedback" role="alert">

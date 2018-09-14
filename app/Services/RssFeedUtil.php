@@ -134,12 +134,11 @@ class RssFeedUtil
     private function recordSendRssData(string $title){
         DB::beginTransaction();
         try {
-            $send_rss_data = new WkSendRssData();
-            $send_rss_data->user_id = $this->user_id;
-            $send_rss_data->rss_id = $this->rss_id;
-            $send_rss_data->title = $title;
-
-            $send_rss_data->save();
+            WkSendRssData::create([
+            'user_id' => $this->user_id,
+            'rss_id' => $this->rss_id,
+            'title' => $title,
+            ]);
             DB::commit();
             return True;
         }catch (\PDOException $e){
