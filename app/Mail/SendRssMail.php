@@ -11,16 +11,16 @@ class SendRssMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $mailto, $subject, $content, $mailfrom;
+    public $mailto, $subject, $contents, $mailfrom;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct( $subject, $content, $mailfrom)
+    public function __construct( $subject, $contents, $mailfrom)
     {
         $this->subject = $subject;
-        $this->content = $content;
+        $this->contents = $contents;
         $this->mailfrom = $mailfrom;
     }
 
@@ -35,7 +35,7 @@ class SendRssMail extends Mailable
                     ->subject($this->subject)
                     ->text('emails.sendrss')
                     ->with([
-                        'content' => $this->content,
+                        'contents' => $this->contents,
                     ]);
     }
 }

@@ -6,7 +6,8 @@ use App\Events\ModifyUser;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
@@ -78,7 +79,7 @@ class ModifyUserInformationController extends Controller
 
         //ログアウトさせ、ログイン画面表示
         Auth::logout();
-        return Redirect::to('login');
+        return redirect()->route('login');
     }
 
     /**
@@ -86,12 +87,20 @@ class ModifyUserInformationController extends Controller
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
     protected function updateUser(Array $data){
-        User::where('id',Auth::user()->id)
-            ->update([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => $data['hash_password'],
-            ]);
+        DB::beginTransaction();
+        try {
+            User::where('id', Auth::user()->id)
+                ->update([
+                    'name' => $data['name'],
+                    'email' => $data['email'],
+                    'password' => $data['hash_password'],
+                ]);
+            DB::commit();
+        }catch (\PDOException $e){
+            DB::rollBack();
+            Log::error('ユーザ変更時にエラー',['user:'=> Auth::user()->id , 'exception'=> $e->getMessage()]);
+            return redirect()->route('modify_user_information_from')->with('alert','ユーザ変更に失敗しました。');
+        }
         //イベントへ渡すためにUserを返す
         return Auth::user();
     }

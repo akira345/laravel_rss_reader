@@ -7,6 +7,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Events\DeleteUser;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
 class DeleteUserController extends Controller
@@ -26,18 +28,25 @@ class DeleteUserController extends Controller
         //TOPへ飛ばす
         if ($request->get('action') === 'back') {
             //
-            return Redirect::to('login');
+            return redirect()->route('login');
         }
         //ユーザ削除
 
 
         event(new DeleteUser(Auth::user()));
-        User::where('id',Auth::user()->id)
-            ->delete();
-
+        DB::beginTransaction();
+        try {
+            User::where('id',Auth::user()->id)
+                ->delete();
+            DB::commit();
+        }catch (\PDOException $e){
+            DB::rollBack();
+            Log::error('ユーザ削除時にエラー',['user:'=> Auth::user()->id , 'exception'=> $e->getMessage()]);
+            return redirect()->route('delete_user_from')->with('alert','ユーザ削除に失敗しました。');
+        }
         //ログアウトさせ、ログイン画面表示
         Auth::logout();
-        return Redirect::to('login');
+        return redirect()->route('login');
     }
 
 }

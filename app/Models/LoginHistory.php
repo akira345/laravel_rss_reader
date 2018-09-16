@@ -5,21 +5,31 @@ namespace App\Models;
 use App\Scopes\AuthUserScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class LoginHistory extends Model
 {
+    protected $fillable= ['user_id','memo','ipaddr','user_agent'];
     /**
      * @param Int $user_id
      * @param Request $request
      * @param String $memo
      */
     public function record(int $user_id,Request $request,string $memo){
-        $login_his_db = new LoginHistory();
-        $login_his_db->user_id = $user_id;
-        $login_his_db->memo = $memo;
-        $login_his_db->ipaddr = $request->ip();
-        $login_his_db->user_agent = $request->userAgent();
-        $login_his_db->save();
+        DB::beginTransaction();
+        try {
+             LoginHistory::create([
+                'user_id' => $user_id,
+                'memo' => $memo,
+                'ipaddr' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+            ]);
+            DB::commit();
+        }catch (\PDOException $e){
+            DB::rollBack();
+            Log::error('ログインログ記録エラー',['user:'=> $user_id,'exception'=> $e->getMessage()]);
+        }
     }
     /**
      * モデルの「初期起動」メソッド

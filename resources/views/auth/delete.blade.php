@@ -8,7 +8,11 @@
                 <div class="card-header">{{ __('Delete User') }}</div>
 
                 <div class="card-body">
-
+                    @if (session('alert'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('alert') }}
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('delete_user') }}" aria-label="{{ __('Delete User') }}">
                         @csrf
 

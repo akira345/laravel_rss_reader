@@ -8,6 +8,11 @@
                 <div class="card-header">{{ __('Modify') }}</div>
 
                 <div class="card-body">
+                    @if (session('alert'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('alert') }}
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('modify_user_information') }}" aria-label="{{ __('Modify') }}">
                         @csrf
 

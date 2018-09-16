@@ -85,6 +85,15 @@ return [
             'activation' => 'error', // このログレベル以上で指定したハンドラで出力するレベルのログを出力する
             'pass'       => 'info', // このログレベル以上は常に出力する
             'days' => 30,  //保存日数
+        ],
+        'rss_send_log' => [
+            'driver' => 'custom',
+            'via' => \App\Logging\RssSendLog::class,
+            'path' => storage_path('logs/rss_send_log.log'),
+            'level'      => 'debug', // 指定したハンドラで出力するログレベル
+            'activation' => 'error', // このログレベル以上で指定したハンドラで出力するレベルのログを出力する
+            'pass'       => 'info', // このログレベル以上は常に出力する
+            'days' => 30,  //保存日数
         ]
     ],
 

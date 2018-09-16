@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\RssData;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -68,11 +71,20 @@ class CategoryController extends Controller
 
 
         //保存
-        $category = Category::create([
-            'category' =>$request->category,
-            'user_id' => $user->id,
-        ])->save();
-        //
+        DB::beginTransaction();
+        try {
+            $category = Category::create([
+                'category' => $request->category,
+                'user_id' => $user->id,
+            ]);
+            DB::commit();
+        }catch (\PDOException $e){
+            DB::rollBack();
+            Log::error('カテゴリ追加時にエラー',['user:'=> $user->id ,'category:'=> $request->category ,'exception'=> $e->getMessage()]);
+            return redirect()->route('category.index')->with('alert','カテゴリ名['.$request->category.']の追加に失敗しました。');
+        }
+        //二重投稿防止
+        $request->session()->regenerateToken();
         return redirect()->route('category.index')->with('status','カテゴリ名['.$request->category.']を追加しました');
     }
 
@@ -123,9 +135,18 @@ class CategoryController extends Controller
             $category_old = $category->category;
             $categorl_new = $request->category;
             //保存
-            $category->category = $request->category;
-            $category->save();
-
+            DB::beginTransaction();
+            try {
+                $category->category = $request->category;
+                $category->save();
+                DB::commit();
+            }catch (\PDOException $e){
+                DB::rollBack();
+                Log::error('カテゴリ変更時にエラー',['user:' => $user->id , 'category:' => $request->category,'exception'=> $e->getMessage()]);
+                return redirect()->route('category.index')->with('alert','カテゴリ名[' . $category_old . ']を['.$categorl_new.']に変更失敗しました。');
+            }
+            //二重投稿防止
+            $request->session()->regenerateToken();
             return redirect()->route('category.index')->with('status','カテゴリ名[' . $category_old . ']を['.$categorl_new.']に変更しました');
         }else{
             return redirect()->route('category.index')->with('status','カテゴリ名に変更はありませんでした。');
@@ -141,11 +162,20 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //削除前に参照がないかチェック
+        //本当はForeignKey制約でチェックしたいけど、MySQLとPostgreSQLで返すコードが違うのでやむなく・・・
         if (RssData::query()->where('category_id', $category->id)->exists()) {
             return redirect()->route('category.index')->with('alert', 'カテゴリ[' . $category->category . ']はRSSより参照されています。削除できません。');
         } else {
            //削除
-            $category->delete();
+            DB::beginTransaction();
+            try {
+                $category->delete();
+                DB::commit();
+            }catch (\PDOException $e){
+                DB::rollBack();
+                Log::error('カテゴリ削除時にエラー',['user:'=> Auth::user()->id , 'category_id:'=>$category->id ,'exception'=> $e->getMessage()]);
+                return redirect()->route('category.index')->with('alert','カテゴリ['. $category->category . ']の削除に失敗しました。');
+            }
             //リダイレクト
             return redirect()->route('category.index')->with('status', 'カテゴリ名[' . $category->category . ']を削除しました。');
         }

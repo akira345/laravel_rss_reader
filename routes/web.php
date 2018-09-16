@@ -23,6 +23,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/read/{rss_data}','HomeController@read')->name('home.read');
 
 Route::get('/user/history','ShowLoginHistoryController@index')->name('show_history');
 
@@ -43,9 +44,9 @@ Route::delete('/category/{category}','CategoryController@destroy')->name('catego
 Route::get('/rss','RssDataController@index')->name('rss_data.index');
 Route::get('/rss/create','RssDataController@create')->name('rss_data.create');
 Route::post('/rss','RssDataController@store')->name('rss_data.store');
-Route::get('/rss/{id}','RssDataController@show')->name('rss_data.show');
-Route::get('/rss/{id}/edit','RssDataController@edit')->name('rss_data.edit');
-Route::put('/rss/{id}','RssDataController@update')->name('rss_data.update');
-Route::delete('/rss/{id}','RssDataController@destroy')->name('rss_data.destroy');
+Route::get('/rss/{rss_data}','RssDataController@show')->name('rss_data.show');
+Route::get('/rss/{rss_data}/edit','RssDataController@edit')->name('rss_data.edit');
+Route::put('/rss/{rss_data}','RssDataController@update')->name('rss_data.update');
+Route::delete('/rss/{rss_data}','RssDataController@destroy')->name('rss_data.destroy');
 
 
