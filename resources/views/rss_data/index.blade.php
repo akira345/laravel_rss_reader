@@ -48,7 +48,7 @@
                                         <input type="checkbox" name="rss_view_attribute" value="1" {{ $rss_data->rss_view_attribute->hidden_flg ? 'checked="checked"' : '' }} disabled>
                                     </td>
                                     <td scope="row">
-                                        <input type="checkbox" name="rss_view_attribute" value="1" {{ $rss_data->rss_delivery_attribute->repeat_deliv_deny_flg ? 'checked="checked"' : '' }} disabled>
+                                        <input type="checkbox" name="rss_view_attribute" value="1" {{ $rss_data->rss_delivery_attribute->deliv_flg ? 'checked="checked"' : '' }} disabled>
                                     </td>
                                     <td class="text-right">
                                         <div class="btn-group" role="group">
