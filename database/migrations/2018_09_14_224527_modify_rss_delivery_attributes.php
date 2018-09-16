@@ -26,7 +26,7 @@ class ModifyRssDeliveryAttributes extends Migration
     public function down()
     {
         Schema::table('rss_delivery_attributes', function (Blueprint $table) {
-            $table->dropUnique('rss_id');
+            $table->dropUnique('rss_delivery_attributes_rss_id_unique');
         });
     }
 }
