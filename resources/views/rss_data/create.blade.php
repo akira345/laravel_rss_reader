@@ -85,7 +85,7 @@
                                         @endif
                                     </div>
                                     <div class="checkbox">
-                                        <label for="repeat_deliv_deny_flg-field">前県表示<br>
+                                        <label for="repeat_deliv_deny_flg-field">全件表示<br>
                                         有効にすると、同じタイトルの記事を一週間再送しません。
                                         </label>
                                         {{Form::checkbox('repeat_deliv_deny_flg', '1')}}
