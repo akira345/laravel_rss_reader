@@ -113,7 +113,6 @@ class RssDataController extends Controller
                 'keywords' => $request->keywords,
                 'ad_deny_flg' => $this->isCheck($request->ad_deny_flg),
             ]);
-            dump($rss_data);
             RssDeliveryAttribute::create([
                 'rss_id' => $rss_data->id,
                 'deliv_flg' => $this->isCheck($request->deliv_flg),
@@ -268,7 +267,7 @@ class RssDataController extends Controller
             }
             //リダイレクト
             return redirect()->route('rss_data.index')->with('status', 'RSS[' . $rssData->comment . ']を削除しました。');
-        
+
     }
     private function isCheck($checkbox_value){
         return (isset($checkbox_value) == '1' ? '1' : '0');
