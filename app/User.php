@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\CustomPasswordReset;
 
 class User extends Authenticatable
 {
@@ -46,5 +47,15 @@ class User extends Authenticatable
     public function category_datas()
     {
         return $this->hasMany('App\Models\Category','user_id');
+    }
+    /**
+     * パスワードリセット通知の送信
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CustomPasswordReset($token));
     }
 }

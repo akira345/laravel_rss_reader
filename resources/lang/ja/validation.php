@@ -136,6 +136,7 @@ return [
         'comment' => 'コメント',
         'keywords' => '配信キーワード',
         'rss_contents_list_cnt' => 'RSS記事表示数',
+        'password' => 'パスワード'
     ],
 
 ];
