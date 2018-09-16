@@ -25,10 +25,11 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                @guest
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                @guest
+
                 @else
                 <a class="navbar-brand" href="{{ route('rss_data.index') }}">
                     RSS登録・変更

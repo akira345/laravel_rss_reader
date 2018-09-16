@@ -23,6 +23,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/read/{rss_data}','HomeController@read')->name('home.read');
 
 Route::get('/user/history','ShowLoginHistoryController@index')->name('show_history');
 

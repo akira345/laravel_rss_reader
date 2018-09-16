@@ -147,10 +147,25 @@ class RssFeedUtil
             return False;
         }
     }
+    public function feedProsessingList(){
+        $title = $this->feed_title();
+        $description = $this->feed_description();
+        $feed_link = $this->feed_link();
+        $feed_time = $this->feed_time();
+        //タイトルに広告が入っているか？
+        if($this->isAd($title)){
+            Logs('rss_send_log')->debug('広告フィードにつき配信拒否',['title:' => $this->feed_title() ]);
+            return;
+        }
+        $this->send_rss_feed_title=$title;
+        $this->send_rss_feed_time = $feed_time;
+        $this->send_rss_feed_description=$description;
+        $this->send_rss_feed_link=$feed_link;
+    }
     /**
      *
      */
-    public function feedProsessing(){
+    public function feedProsessingDelivery(){
         Logs('rss_send_log')->debug('RSSフィード取得開始',['title:' => $this->feed_title() ]);
         $title = $this->feed_title();
         $description = $this->feed_description();

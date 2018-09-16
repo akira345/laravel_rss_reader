@@ -50,7 +50,7 @@ class RssUtilService
             $rss_contents = [];
             foreach ($feed->get_items() as $item) {
                 $rss_feed = new RssFeedUtil($this->user->id, $rss_id, $ad_deny_flg, $repeat_deliv_deny_flg, $keywords, $item);
-                $rss_feed->feedProsessing();
+                $rss_feed->feedProsessingDelivery();
                 if (is_null($rss_feed->getSendRssFeedTitle()) !== True) {
                     array_push($rss_contents , [
                         'title' => $rss_feed->getSendRssFeedTitle(),
