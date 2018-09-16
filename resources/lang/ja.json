@@ -1,0 +1,15 @@
+{
+  "Login": "ログイン",
+  "E-Mail Address": "メールアドレス",
+  "Password": "パスワード",
+  "Remember Me":"次から入力を省略",
+  "Register":"アカウント登録",
+  "Forgot Your Password?":"パスワードを忘れましたか？",
+  "Name":"名前",
+  "Confirm Password":"パスワード（確認）",
+  "Modify":"変更",
+  "ModifyAccount":"アカウント変更",
+  "Reset Password":"パスワードリセット",
+  "Send Password Reset Link":"パスワードリセットリンクを送る"
+
+}

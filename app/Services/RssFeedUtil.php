@@ -154,7 +154,7 @@ class RssFeedUtil
         $feed_time = $this->feed_time();
         //タイトルに広告が入っているか？
         if($this->isAd($title)){
-            Logs('rss_send_log')->debug('広告フィードにつき配信拒否',['title:' => $this->feed_title() ]);
+            Logs()->debug('広告フィードにつき配信拒否',['title:' => $this->feed_title() ]);
             return;
         }
         $this->send_rss_feed_title=$title;

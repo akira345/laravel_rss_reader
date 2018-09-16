@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Modify') }}</div>
+                <div class="card-header">{{ __('ModifyAccount') }}</div>
 
                 <div class="card-body">
                     @if (session('alert'))
