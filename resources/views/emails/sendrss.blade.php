@@ -2,7 +2,7 @@
 
 @foreach($contents as $content)
 RSS:「{{ $content['rss_comments'] }}」
-    @foreach($content['rss_contents'] as $rss_content)
+@foreach($content['rss_contents'] as $rss_content)
 
 タイトル：{{$rss_content['title']}}
 ({{$rss_content['time']}})
@@ -10,5 +10,5 @@ RSS:「{{ $content['rss_comments'] }}」
 {{$rss_content['description']}}
 link:{{$rss_content['link']}}
 --------------------------------------------------------------------
-    @endforeach
+@endforeach
 @endforeach
