@@ -56,7 +56,7 @@ class GetRss extends Command
                 $mailto = $user->email;
                 $subject = "RSSマッチングレポート(" . date('Ymd') . ")";
                 $contents = $send_rss_data_contents;
-                $mailfrom = "info@exsample.com";
+                $mailfrom = env('MAIL_FROM_ADDRESS', 'info@example.com');
                 //dump($content);
                 try {
                     Mail::to($mailto)->send(new SendRssMail($subject, $contents, $mailfrom));
