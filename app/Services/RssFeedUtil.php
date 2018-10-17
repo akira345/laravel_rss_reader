@@ -185,8 +185,8 @@ class RssFeedUtil
         }
         if(is_null($match_keywords) !==True){
             //キーワードにマッチ
-            //再送信記事かチェック
-            $repeat_deliv_flg = $this->isSendRss($title,True);
+            //再送信記事かチェック。repeat_deliv_deny_flgをFalseにして全配信データを対象とする。
+            $repeat_deliv_flg = $this->isSendRss($title,False);
             Logs('rss_send_log')->debug('配信DB記録',['title:' => $title]);
             //配信DBに記録
             $this->recordSendRssData($title);
