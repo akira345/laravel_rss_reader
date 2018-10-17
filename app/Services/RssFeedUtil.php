@@ -115,7 +115,7 @@ class RssFeedUtil
         //記事の中にキーワードにマッチしたものがあるか？
         $match_keywords = null;
         foreach ($this->uniq_keywords as $uniq_keyword) {
-            if (stripos(mb_convert_kana($title . $description, 'rnaskh', 'UTF-8'), $uniq_keyword)) {
+            if (stripos(mb_convert_kana($title . $description, 'rnaskh', 'UTF-8'), $uniq_keyword) !== False) {
                 //一致したキーワードをセット
                 //まずは正規化したキーワードの配列キー取得
                 $match_key = array_search($uniq_keyword, $this->normalization_keywords);
@@ -246,7 +246,7 @@ class RssFeedUtil
     private function array_strpos(string $in_str, array $in_array_keywords)
     {
         foreach ($in_array_keywords as $keyword) {
-            if (stripos($in_str, $keyword)) {
+            if (stripos($in_str, $keyword) !== False) {
                 return True;
             }
         }
