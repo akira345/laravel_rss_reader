@@ -97,7 +97,7 @@ class RssFeedUtil
             ->where('rss_id', $this->rss_id)
             ->where('title', $title);
         //再配信拒否チェック
-        if ($repeat_deliv_deny_flg !== True) {
+        if ($repeat_deliv_deny_flg) {
             //同じRSS,同じタイトルで配信する猶予期間は１週間
             $limit_time = date("Ymd", strtotime("-1 week"));
             $send_rss_count = $send_rss_count->where('updated_at', '>=', $limit_time);
