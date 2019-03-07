@@ -43,6 +43,9 @@
     DB_DATABASE=<データベース名>
     DB_USERNAME=<データベースユーザ名>
     DB_PASSWORD=<データベースパスワード>
+    MEMCACHED_HOST=<memcachedサーバ名>
+    MEMCACHED_PORT=11211
+    SESSION_STORE=memcached
     MAIL_DRIVER=smtp
     MAIL_HOST=<メールサーバアドレス>
     MAIL_PORT=25
