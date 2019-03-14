@@ -7,6 +7,7 @@ use App\Scopes\AuthUserScope;
 
 class RssData extends Model
 {
+    protected $table = 'rss_datas';
     protected $fillable= ['user_id','rss_url','comment','category_id','keywords','ad_deny_flg'];
     /**
      * RSSに対するカテゴリを取得

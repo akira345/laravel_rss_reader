@@ -3,7 +3,7 @@
 
 ----
 動作環境
-* laravel 5.6
+* laravel 5.8
 * PostgreSQL 10
 * Memcached 1.5.6
 * PHP 7.1以上

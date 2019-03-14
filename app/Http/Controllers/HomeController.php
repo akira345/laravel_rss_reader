@@ -74,7 +74,7 @@ class HomeController extends Controller
                 }
             }
             //5分間キャッシュさせる
-            Cache::put($key, $rss_contents, 5);
+            Cache::put($key, $rss_contents, now()->addMinutes(5));
         }
 
         $page = $rssData->rss_view_attribute->rss_contents_list_cnt;
