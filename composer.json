@@ -10,9 +10,9 @@
         "ext-pdo": "*",
         "doctrine/dbal": "2.9.2",
         "fideloper/proxy": "4.1.0",
-        "laravel/framework": "5.6.39",
+        "laravel/framework": "5.7.*",
         "laravel/tinker": "1.0.8",
-        "laravelcollective/html": "5.6.10",
+        "laravelcollective/html": "5.7.*",
         "willvincent/feeds": "1.1.7"
     },
     "require-dev": {
