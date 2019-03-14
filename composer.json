@@ -12,7 +12,7 @@
         "fideloper/proxy": "4.1.0",
         "laravel/framework": "5.6.39",
         "laravel/tinker": "1.0.8",
-        "laravelcollective/html": "5.6.10",
+        "laravelcollective/html": "5.8.0",
         "willvincent/feeds": "1.1.7"
     },
     "require-dev": {
