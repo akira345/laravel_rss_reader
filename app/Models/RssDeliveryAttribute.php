@@ -7,6 +7,7 @@ use App\Scopes\AuthUserScope;
 
 class RssDeliveryAttribute extends Model
 {
+    protected $table = 'rss_delivery_attributes';
     protected $fillable= ['rss_id','deliv_flg','repeat_deliv_deny_flg'];
     /**
      * メール配信対象RSSからRSS情報を取得

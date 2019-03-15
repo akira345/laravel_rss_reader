@@ -7,6 +7,7 @@ use App\Scopes\AuthUserScope;
 
 class WkSendRssData extends Model
 {
+    protected $table = 'wk_send_rss_datas';
     protected $fillable= ['user_id','rss_id','title'];
     /**
      * モデルの「初期起動」メソッド

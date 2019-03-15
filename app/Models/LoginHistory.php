@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 
 class LoginHistory extends Model
 {
+    protected $table = 'login_histories';
     protected $fillable= ['user_id','memo','ipaddr','user_agent'];
     /**
      * @param Int $user_id
