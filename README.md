@@ -6,7 +6,7 @@
 * laravel 5.8
 * PostgreSQL 10
 * Memcached 1.5.6
-* PHP 7.1以上
+* PHP 7.2以上
 
 ---
 デプロイ方法
