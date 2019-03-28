@@ -16,7 +16,7 @@
         "willvincent/feeds": "1.1.7"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "2.6.1",
+        "barryvdh/laravel-ide-helper": "2.6.2",
         "filp/whoops": "2.3.1",
         "fzaninotto/faker": "1.8.0",
         "mockery/mockery": "1.2.2",
