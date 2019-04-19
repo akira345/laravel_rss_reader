@@ -10,6 +10,9 @@ addons:
     packages:
     - postgresql-11
     - postgresql-client-11
+env:
+  global:
+  - PGPORT=5433
 install:
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
 
@@ -18,7 +21,7 @@ before_script:
   - gem install mailcatcher
   - phpenv config-add travis.php.ini
   - mailcatcher
-  - psql -c 'create database rss_db_test;' -U postgres
+  - psql -c 'create database rss_db_test;' -U postgres -p 5433
   - cp .env.travis .env
   - php artisan key:generate
 script:
