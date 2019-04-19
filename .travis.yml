@@ -1,0 +1,25 @@
+language: php
+php:
+  - 7.3
+services:
+  - memcached
+  - postgresql
+addons:
+  postgresql: "11"
+
+install:
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+
+before_script:
+  - sudo apt-get install php5-memcached
+  - gem install mailcatcher
+  - phpenv config-add travis.php.ini
+  - mailcacher
+  - psql -c 'create database rss_db_test;' -U postgres
+  - cp .env.travis .env
+  - php artisan key:generate
+script:
+  - php artisan migrate --seed
+  - ./vendor/bin/phpunit --coverage-clover clover.xml
+after_success:
+  - vendor/bin/coveralls -v
