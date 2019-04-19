@@ -14,7 +14,7 @@ before_script:
   - sudo apt-get install php5-memcached
   - gem install mailcatcher
   - phpenv config-add travis.php.ini
-  - mailcacher
+  - mailcatcher
   - psql -c 'create database rss_db_test;' -U postgres
   - cp .env.travis .env
   - php artisan key:generate
