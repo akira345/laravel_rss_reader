@@ -32,4 +32,4 @@ script:
   - php artisan migrate --seed
   - ./vendor/bin/phpunit --coverage-clover clover.xml
 after_success:
-  - vendor/bin/coveralls -v
+  - bash <(curl -s https://codecov.io/bash)
