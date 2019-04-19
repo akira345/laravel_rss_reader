@@ -1,6 +1,10 @@
 # laravel_rss_reader
 10年以上前に作ったmobile_rss_readerをlaravel勉強がてら移植中
 
+
+[![codecov](https://codecov.io/gh/akira345/laravel_rss_reader/branch/master/graph/badge.svg)](https://codecov.io/gh/akira345/laravel_rss_reader)
+
+
 ----
 動作環境
 * laravel 5.8.12
