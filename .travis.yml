@@ -6,7 +6,10 @@ services:
   - postgresql
 addons:
   postgresql: "11"
-
+  apt:
+    packages:
+    - postgresql-11
+    - postgresql-client-11
 install:
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
 
