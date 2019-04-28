@@ -42,11 +42,13 @@ class ResetPasswordTest extends TestCase
        $response->assertSessionHas('status',
            'パスワードリセットリンクが電子メールで送信されました');
     }
+
     public function from(string $url)
     {
         session()->setPreviousUrl(url($url));
         return $this;
     }
+
     public function testリセット失敗()
     {
         // ユーザーを1つ作成
@@ -143,6 +145,7 @@ class ResetPasswordTest extends TestCase
        // 変更されたパスワードが保存されていることを確認
        $this->assertTrue(Hash::check($new, $user->fresh()->password));
     }
+
     public function testユーザ登録()
     {
        $pass='password';
@@ -159,6 +162,7 @@ class ResetPasswordTest extends TestCase
        // 認証されていることを確認
        $this->assertTrue(Auth::check());
     }
+
     public function testユーザ登録パスワード短い()
     {
        $pass='12345';
@@ -181,6 +185,7 @@ class ResetPasswordTest extends TestCase
       $this->assertEquals('パスワード は 6 文字以上のみ有効です',
           session('errors')->first('password'));
     }
+
     public function testログイン失敗()
     {
         // ユーザーを１つ作成
