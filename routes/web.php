@@ -50,5 +50,5 @@ Route::put('/rss/{rss_data}','RssDataController@update')->name('rss_data.update'
 Route::delete('/rss/{rss_data}','RssDataController@destroy')->name('rss_data.destroy');
 
 Route::get('/logout', function () {
-    return Redirect::to('login');
+    return Redirect::to('/');
 });
