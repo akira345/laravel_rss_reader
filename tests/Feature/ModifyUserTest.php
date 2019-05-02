@@ -23,7 +23,9 @@ class ModifyUserTest extends TestCase
         $user = factory(User::class)->create();
         // 認証済み、つまりログイン済みしたことにする
         $this->actingAs($user);
-
+        //ユーザ変更画面へ移動
+        $response = $this->get('user/modify');
+        $response->assertStatus(200);
         // ユーザ変更をリクエスト
         $pass='p@ssword';
         $name='test';
