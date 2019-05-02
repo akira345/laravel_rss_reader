@@ -25,7 +25,7 @@ class DeleteUserTest extends TestCase
         // 認証済み、つまりログイン済みしたことにする
         $this->actingAs($user);
         // ユーザ削除をリクエスト
-        $response = $this->from('user/delete')->post('user/delete', [
+        $response = $this->post('user/delete', [
             'action' => 'delete',
         ]);
 
@@ -42,7 +42,7 @@ class DeleteUserTest extends TestCase
         // 認証済み、つまりログイン済みしたことにする
         $this->actingAs($user);
         // ユーザ削除をリクエストするがキャンセル
-        $response = $this->from('user/delete')->post('user/delete', [
+        $response = $this->post('user/delete', [
             'action' => 'back',
         ]);
 
@@ -53,9 +53,4 @@ class DeleteUserTest extends TestCase
         $response->assertRedirect('/login');
     }
 
-    public function from(string $url)
-    {
-        session()->setPreviousUrl(url($url));
-        return $this;
-    }
 }
