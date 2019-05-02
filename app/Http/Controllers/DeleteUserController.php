@@ -32,21 +32,22 @@ class DeleteUserController extends Controller
         }
         //ユーザ削除
 
-
-        event(new DeleteUser(Auth::user()));
-        DB::beginTransaction();
-        try {
-            User::where('id',Auth::user()->id)
-                ->delete();
-            DB::commit();
-        }catch (\PDOException $e){
-            DB::rollBack();
-            Log::error('ユーザ削除時にエラー',['user:'=> Auth::user()->id , 'exception'=> $e->getMessage()]);
-            return redirect()->route('delete_user_from')->with('alert','ユーザ削除に失敗しました。');
+        if ($request->get('action') === 'delete'){
+            event(new DeleteUser(Auth::user()));
+            DB::beginTransaction();
+            try {
+                User::where('id',Auth::user()->id)
+                    ->delete();
+                DB::commit();
+            }catch (\PDOException $e){
+                DB::rollBack();
+                Log::error('ユーザ削除時にエラー',['user:'=> Auth::user()->id , 'exception'=> $e->getMessage()]);
+                return redirect()->route('delete_user_from')->with('alert','ユーザ削除に失敗しました。');
+            }
+            //ログアウトさせ、ログイン画面表示
+            Auth::logout();
+            return redirect()->route('login');
         }
-        //ログアウトさせ、ログイン画面表示
-        Auth::logout();
-        return redirect()->route('login');
     }
 
 }
