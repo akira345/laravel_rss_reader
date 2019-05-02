@@ -22,8 +22,13 @@ class DeleteUserTest extends TestCase
     {
         // ユーザーを1つ作成
         $user = factory(User::class)->create();
+
         // 認証済み、つまりログイン済みしたことにする
         $this->actingAs($user);
+
+        //ユーザ削除画面へ移動
+        $response = $this->get('user/delete');
+        $response->assertStatus(200);
         // ユーザ削除をリクエスト
         $response = $this->post('user/delete', [
             'action' => 'delete',
