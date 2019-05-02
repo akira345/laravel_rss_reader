@@ -37,8 +37,9 @@ class LoginDenyedTest extends TestCase
                     session('errors')->first('email'));
             }else{
                 // エラメッセージを確認
-                $this->assertEquals('60 秒以上開けて再度お試しください',
-                    session('errors')->first('email'));
+                $this->assertRegExp('/[0-9]+ 秒以上開けて再度お試しください/',
+                 session('errors')->first('email')
+                );
             }
         }
     }
