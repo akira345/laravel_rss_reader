@@ -42,9 +42,9 @@ class ModifyUserTest extends TestCase
         $this->assertFalse(Auth::check());
 
         // 変更されたユーザが保存されていることを確認
-        $this->assertTrue($name === $user->fresh()->name);
+        $this->assertSame($name, $user->fresh()->name);
         //変更されたメアドが保存されていることを確認
-        $this->assertTrue($email === $user->fresh()->email);
+        $this->assertSame($email, $user->fresh()->email);
         //変更されたパスワードが保存されていることを確認
         $this->assertTrue(Hash::check($pass, $user->fresh()->password));
 
