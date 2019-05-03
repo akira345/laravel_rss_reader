@@ -17,7 +17,7 @@ class CreateRssListTest extends TestCase
     //これでDBをすべて吹っ飛ばす
     use RefreshDatabase;
 
-    public function testRSS登録()
+    public function recordRss()
     {
         // ユーザーを1つ作成
         $user = factory(User::class)->create();
@@ -41,6 +41,11 @@ class CreateRssListTest extends TestCase
             'hidden_flg'            => '1'
         ]);
         $response->assertStatus(302);
+
+    }
+    public function testRSS登録()
+    {
+        $this->recordRss();
 
         $this->artisan('getrss')
         ->assertExitCode(0);
