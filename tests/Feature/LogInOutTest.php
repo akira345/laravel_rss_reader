@@ -29,7 +29,7 @@ class LogInOutTest extends TestCase
         $this->assertFalse(Auth::check());
 
         // 異なるパスワードでログインを実行
-        $response = $this->post('login', [
+        $response = $this->post('/login', [
             'email'    => $user->email,
             'password' => 'test2222'
         ]);
@@ -56,7 +56,7 @@ class LogInOutTest extends TestCase
         $this->assertFalse(Auth::check());
 
         // ログインを実行
-        $response = $this->post('login', [
+        $response = $this->post('/login', [
             'email'    => $user->email,
             'password' => 'test1111'
         ]);
@@ -65,7 +65,7 @@ class LogInOutTest extends TestCase
         $this->assertTrue(Auth::check());
 
         // ログイン後にホームページにリダイレクトされるのを確認
-        $response->assertRedirect('home');
+        $response->assertRedirect('/home');
     }
 
     public function testログアウト()
@@ -80,7 +80,7 @@ class LogInOutTest extends TestCase
         $this->assertTrue(Auth::check());
 
         // ログアウトを実行
-        $response = $this->post('logout');
+        $response = $this->post('/logout');
 
         // 認証されていない
         $this->assertFalse(Auth::check());
@@ -92,7 +92,7 @@ class LogInOutTest extends TestCase
     public function testログインしていないのにログアウト()
     {
         // ログアウトを実行
-        $response = $this->get('logout');
+        $response = $this->get('/logout');
 
         // 認証されていない
         $this->assertFalse(Auth::check());
@@ -106,7 +106,7 @@ class LogInOutTest extends TestCase
         //５回失敗でロック
         for ($i=0; $i<6; $i++) {
             // 異なるパスワードでログインを実行
-            $response = $this->post('login', [
+            $response = $this->post('/login', [
                 'email'    => 'hoge@exsample.com',
                 'password' => 'password'
             ]);
@@ -146,7 +146,7 @@ class LogInOutTest extends TestCase
         // 認証されていることを確認
         $this->assertTrue(Auth::check());
         //ログイン履歴へ遷移
-        $response = $this->get('user/history');
+        $response = $this->get('/user/history');
         $response->assertStatus(200);
         //ビューの文字列チェック
         $response->assertSeeText('ログイン履歴');
@@ -160,17 +160,17 @@ class LogInOutTest extends TestCase
         $user = factory(User::class)->create();
 
         //パスワードリセット画面表示
-        $response = $this->get('password/reset');
+        $response = $this->get('/password/reset');
         $response->assertStatus(200);
 
         // パスワードリセットをリクエスト
-        $response = $this->from('password/email')->post('password/email', [
+        $response = $this->from('/password/email')->post('/password/email', [
             'email' => $user->email,
         ]);
 
         // 同画面にリダイレクト
         $response->assertStatus(302);
-        $response->assertRedirect('password/email');
+        $response->assertRedirect('/password/email');
         // 成功のメッセージ
         $response->assertSessionHas('status',
             'パスワードリセットリンクが電子メールで送信されました');
@@ -188,16 +188,16 @@ class LogInOutTest extends TestCase
         $user = factory(User::class)->create();
 
         //パスワードリセット画面表示
-        $response = $this->get('password/reset');
+        $response = $this->get('/password/reset');
         $response->assertStatus(200);
 
         // 存在しないユーザーのメールアドレスでパスワードリセットをリクエスト
-        $response = $this->from('password/email')->post('password/email', [
+        $response = $this->from('/password/email')->post('/password/email', [
             'email' => 'nobody@example.com'
         ]);
 
         $response->assertStatus(302);
-        $response->assertRedirect('password/email');
+        $response->assertRedirect('/password/email');
         // セッションにエラーを含むことを確認
         $response->assertSessionHasErrors(['email']);
 
@@ -216,11 +216,11 @@ class LogInOutTest extends TestCase
         $user = factory(User::class)->create();
 
         //パスワードリセット画面表示
-        $response = $this->get('password/reset');
+        $response = $this->get('/password/reset');
         $response->assertStatus(200);
 
         // パスワードリセットをリクエスト
-        $response = $this->post('password/email', [
+        $response = $this->post('/password/email', [
             'email' => $user->email
         ]);
 
@@ -236,12 +236,12 @@ class LogInOutTest extends TestCase
         );
 
         // パスワードリセットの画面へ
-        $response = $this->get('password/reset/'.$token);
+        $response = $this->get('/password/reset/'.$token);
         $response->assertStatus(200);
 
         // パスワードをリセット
         $new = 'reset1111';
-        $response = $this->post('password/reset', [
+        $response = $this->post('/password/reset', [
             'email'                 => $user->email,
             'token'                 => $token,
             'password'              => $new,

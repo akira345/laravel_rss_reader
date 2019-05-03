@@ -21,10 +21,10 @@ class RssListTest extends TestCase
     public function recordRss()
     {
         //RSS登録へ遷移
-        $response = $this->get('rss/create');
+        $response = $this->get('/rss/create');
         $response->assertStatus(200);
 
-        $response = $this->post('rss', [
+        $response = $this->post('/rss', [
             'rss_url'               =>'https://alas.aws.amazon.com/alas.rss',
             'comment'               => 'AmazonLinux',
             'category_id'           => '',
@@ -36,7 +36,7 @@ class RssListTest extends TestCase
             'hidden_flg'            => '1',//チェックボックスを入れた場合送信される値をセット。
         ]);
         $response->assertStatus(302);
-        $response->assertRedirect('rss');
+        $response->assertRedirect('/rss');
     }
     public function testRSS登録()
     {
@@ -64,11 +64,11 @@ class RssListTest extends TestCase
         $this->assertSame(true, $user->rss_datas->where('id','2')->fresh()[0]->rss_view_attribute->hidden_flg);
 
         //RSSへ遷移
-        $response = $this->get('rss');
+        $response = $this->get('/rss');
         $response->assertStatus(200);
         //ビューの文字列チェック
         $response->assertSeeText('AmazonLinux');
-        $response = $this->get('rss/2');
+        $response = $this->get('/rss/2');
         $response->assertStatus(200);
         //ビューの文字列チェック
         $response->assertSeeText('AmazonLinux');
@@ -88,11 +88,11 @@ class RssListTest extends TestCase
         $this->recordRss();
 
         //RSS変更画面へ移動
-        $response = $this->get('rss/3/edit');
+        $response = $this->get('/rss/3/edit');
         $response->assertStatus(200);
 
         // RSS変更をリクエスト
-        $response = $this->put('rss/3', [
+        $response = $this->put('/rss/3', [
             'rss_url'               =>'https://alas.aws.amazon.com/alas.rss',
             'comment'               => 'AmazonLinux2',//modified
             'category_id'           => '',
@@ -105,7 +105,7 @@ class RssListTest extends TestCase
         ]);
         // RSSへ遷移
         $response->assertStatus(302);
-        $response->assertRedirect('rss');
+        $response->assertRedirect('/rss');
 
         // 変更されたRSSデータが保存されていることを確認
         $this->assertSame('AmazonLinux2', $user->rss_datas->where('id', '3')->fresh()[0]->comment);
@@ -134,9 +134,9 @@ class RssListTest extends TestCase
         $this->assertDatabaseHas('rss_view_attributes',['rss_id' => 4]);
         $this->assertDatabaseHas('rss_delivery_attributes',['rss_id' => 4]);
         //RSS削除画面へ移動
-        $response = $this->delete('rss/4');
+        $response = $this->delete('/rss/4');
         $response->assertStatus(302);
-        $response->assertRedirect('rss');
+        $response->assertRedirect('/rss');
 
         //削除後データがないことを確認
         $this->assertDatabaseMissing('rss_datas',['id' => 4]);
@@ -158,10 +158,10 @@ class RssListTest extends TestCase
         // 変更されたRSSデータが保存されていることを確認
         $this->assertSame('https://alas.aws.amazon.com/alas.rss', $user->rss_datas->where('id', '5')->fresh()[0]->rss_url);
         //RSS二重登録
-        $response = $this->get('rss/create');
+        $response = $this->get('/rss/create');
         $response->assertStatus(200);
 
-        $response = $this->post('rss', [
+        $response = $this->post('/rss', [
             'rss_url'               =>'https://alas.aws.amazon.com/alas.rss',
             'comment'               => 'AmazonLinux',
             'category_id'           => '',
@@ -172,8 +172,10 @@ class RssListTest extends TestCase
             'rss_contents_list_cnt' => '10',
             'hidden_flg'            => '1',//チェックボックスを入れた場合送信される値をセット。
         ]);
+
         //戻される
         $response->assertStatus(302);
+        $response->assertRedirect('/rss/create');
 
         // セッションにエラーを含むことを確認
         $response->assertSessionHasErrors(['rss_url']);

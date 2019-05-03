@@ -88,13 +88,13 @@ class UserTest extends TestCase
         // 認証済み、つまりログイン済みしたことにする
         $this->actingAs($user);
         //ユーザ変更画面へ移動
-        $response = $this->get('user/modify');
+        $response = $this->get('/user/modify');
         $response->assertStatus(200);
         // ユーザ変更をリクエスト
         $pass='p@ssword';
         $name='test';
         $email='test@exsample.com';
-        $response = $this->post('user/modify', [
+        $response = $this->post('/user/modify', [
             'name'                  => $name,
             'email'                 => $email,
             'password'              => $pass,
@@ -124,10 +124,10 @@ class UserTest extends TestCase
         $this->actingAs($user);
 
         //ユーザ削除画面へ移動
-        $response = $this->get('user/delete');
+        $response = $this->get('/user/delete');
         $response->assertStatus(200);
         // ユーザ削除をリクエスト
-        $response = $this->post('user/delete', [
+        $response = $this->post('/user/delete', [
             'action' => 'delete',
         ]);
 
@@ -145,7 +145,7 @@ class UserTest extends TestCase
         // 認証済み、つまりログイン済みしたことにする
         $this->actingAs($user);
         // ユーザ削除をリクエストするがキャンセル
-        $response = $this->post('user/delete', [
+        $response = $this->post('/user/delete', [
             'action' => 'back',
         ]);
 

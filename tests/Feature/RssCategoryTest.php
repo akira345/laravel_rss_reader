@@ -21,14 +21,14 @@ class RssCategolyListTest extends TestCase
     public function recordRssCategory()
     {
         //RSSカテゴリ登録へ遷移
-        $response = $this->get('category/create');
+        $response = $this->get('/category/create');
         $response->assertStatus(200);
 
-        $response = $this->post('category', [
+        $response = $this->post('/category', [
             'category'               =>'テストカテゴリ',
         ]);
         $response->assertStatus(302);
-        $response->assertRedirect('category');
+        $response->assertRedirect('/category');
     }
     public function testRSSカテゴリ登録()
     {
@@ -44,11 +44,11 @@ class RssCategolyListTest extends TestCase
         $this->assertSame('テストカテゴリ', $user->category_datas->where('id', '2')->fresh()[0]->category);
 
         //カテゴリへ遷移
-        $response = $this->get('category');
+        $response = $this->get('/category');
         $response->assertStatus(200);
         //ビューの文字列チェック
         $response->assertSeeText('テストカテゴリ');
-        $response = $this->get('category/2');
+        $response = $this->get('/category/2');
         $response->assertStatus(200);
         //ビューの文字列チェック
         $response->assertSeeText('テストカテゴリ');
@@ -66,16 +66,16 @@ class RssCategolyListTest extends TestCase
         $this->recordRssCategory();
 
         //RSSカテゴリ変更画面へ移動
-        $response = $this->get('category/3/edit');
+        $response = $this->get('/category/3/edit');
         $response->assertStatus(200);
 
         // RSSカテゴリ変更をリクエスト
-        $response = $this->put('category/3', [
+        $response = $this->put('/category/3', [
             'category'               =>'テスト２',
         ]);
         // RSSカテゴリへ遷移
         $response->assertStatus(302);
-        $response->assertRedirect('category');
+        $response->assertRedirect('/category');
 
         // 変更されたRSSカテゴリデータが保存されていることを確認
         $this->assertSame('テスト２', $user->category_datas->where('id', '3')->fresh()[0]->category);
@@ -95,9 +95,9 @@ class RssCategolyListTest extends TestCase
         $this->assertDatabaseHas('categories',['id' => 4]);
 
         //RSSカテゴリ削除画面へ移動
-        $response = $this->delete('category/4');
+        $response = $this->delete('/category/4');
         $response->assertStatus(302);
-        $response->assertRedirect('category');
+        $response->assertRedirect('/category');
 
         //削除後データがないことを確認
         $this->assertDatabaseMissing('categories',['id' => 4]);
@@ -117,10 +117,10 @@ class RssCategolyListTest extends TestCase
         // 変更されたRSSカテゴリデータが保存されていることを確認
         $this->assertSame('テストカテゴリ', $user->category_datas->where('id', '5')->fresh()[0]->category);
         //RSS二重登録
-        $response = $this->get('category/create');
+        $response = $this->get('/category/create');
         $response->assertStatus(200);
 
-        $response = $this->post('category', [
+        $response = $this->post('/category', [
             'category'               =>'テストカテゴリ',
         ]);
         //戻される
