@@ -63,9 +63,15 @@ class RssListTest extends TestCase
         $this->assertSame(10, $user->rss_datas->where('id','1')->fresh()[0]->rss_view_attribute->rss_contents_list_cnt);
         $this->assertSame(true, $user->rss_datas->where('id','1')->fresh()[0]->rss_view_attribute->hidden_flg);
 
+        //RSSへ遷移
+        $response = $this->get('rss');
+        $response->assertStatus(200);
+        //ビューの文字列チェック
+        $response->assertSeeText('AmazonLinux');
+
         //メール送信
-        $this->artisan('getrss')
-            ->assertExitCode(0);
+        //$this->artisan('getrss')
+         //   ->assertExitCode(0);
     }
     public function testRSS編集()
     {
@@ -133,6 +139,46 @@ class RssListTest extends TestCase
         $this->assertDatabaseMissing('rss_datas',['id' => 3]);
         $this->assertDatabaseMissing('rss_view_attributes',['rss_id' => 3]);
         $this->assertDatabaseMissing('rss_delivery_attributes',['rss_id' => 3]);
+
+    }
+    public function testRSS二重登録()
+    {
+        // ユーザーを1つ作成
+        $user = factory(User::class)->create();
+
+        // 認証済み、つまりログイン済みしたことにする
+        $this->actingAs($user);
+
+        //RSS登録へ遷移
+        $this->recordRss();
+
+        // 変更されたRSSデータが保存されていることを確認
+        $this->assertSame('https://alas.aws.amazon.com/alas.rss', $user->rss_datas->where('id', '4')->fresh()[0]->rss_url);
+        //RSS二重登録
+        $response = $this->get('rss/create');
+        $response->assertStatus(200);
+
+        $response = $this->post('rss', [
+            'rss_url'               =>'https://alas.aws.amazon.com/alas.rss',
+            'comment'               => 'AmazonLinux',
+            'category_id'           => '',
+            'keywords'              => "critical\nmedium\nlow\nimportant",
+            'ad_deny_flg'           => '1',//チェックボックスを入れた場合送信される値をセット。
+            'deliv_flg'             => '1',//チェックボックスを入れた場合送信される値をセット。
+            'repeat_deliv_deny_flg' => '1',//チェックボックスを入れた場合送信される値をセット。
+            'rss_contents_list_cnt' => '10',
+            'hidden_flg'            => '1',//チェックボックスを入れた場合送信される値をセット。
+        ]);
+        //戻される
+        $response->assertStatus(302);
+
+        // セッションにエラーを含むことを確認
+        $response->assertSessionHasErrors(['rss_url']);
+
+        // エラメッセージを確認
+        $this->assertEquals('RSSフィードURL は既に存在します',
+            session('errors')->first('rss_url'));
+
 
     }
 }

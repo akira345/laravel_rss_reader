@@ -42,6 +42,12 @@ class RssCategolyListTest extends TestCase
         $this->recordRssCategory();
         // 変更されたRSSカテゴリデータが保存されていることを確認
         $this->assertSame('テストカテゴリ', $user->category_datas->where('id', '1')->fresh()[0]->category);
+
+        //カテゴリへ遷移
+        $response = $this->get('category');
+        $response->assertStatus(200);
+        //ビューの文字列チェック
+        $response->assertSeeText('テストカテゴリ');
     }
     public function testRSSカテゴリ編集()
     {
@@ -90,6 +96,38 @@ class RssCategolyListTest extends TestCase
 
         //削除後データがないことを確認
         $this->assertDatabaseMissing('categories',['id' => 3]);
+
+    }
+    public function testRSSカテゴリ二重登録()
+    {
+        // ユーザーを1つ作成
+        $user = factory(User::class)->create();
+
+        // 認証済み、つまりログイン済みしたことにする
+        $this->actingAs($user);
+
+        //RSSカテゴリ登録へ遷移
+        $this->recordRssCategory();
+
+        // 変更されたRSSカテゴリデータが保存されていることを確認
+        $this->assertSame('テストカテゴリ', $user->category_datas->where('id', '4')->fresh()[0]->category);
+        //RSS二重登録
+        $response = $this->get('category/create');
+        $response->assertStatus(200);
+
+        $response = $this->post('category', [
+            'category'               =>'テストカテゴリ',
+        ]);
+        //戻される
+        $response->assertStatus(302);
+
+        // セッションにエラーを含むことを確認
+        $response->assertSessionHasErrors(['category']);
+
+        // エラメッセージを確認
+        $this->assertEquals('カテゴリ名 は既に存在します',
+            session('errors')->first('category'));
+
 
     }
 }
