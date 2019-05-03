@@ -14,10 +14,10 @@ use App\Notifications\CustomPasswordReset;
 
 class ModifyUserTest extends TestCase
 {
-   //これでDBをすべて吹っ飛ばす
-   use RefreshDatabase;
+    //これでDBをすべて吹っ飛ばす
+    use RefreshDatabase;
 
-   public function testユーザ情報修正()
+    public function testユーザ情報修正()
     {
         // ユーザーを1つ作成
         $user = factory(User::class)->create();

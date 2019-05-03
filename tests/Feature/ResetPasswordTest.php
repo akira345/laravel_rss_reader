@@ -29,17 +29,17 @@ class ResetPasswordTest extends TestCase
         // ユーザーを1つ作成
         $user = factory(User::class)->create();
 
-       // パスワードリセットをリクエスト
-       $response = $this->from('password/email')->post('password/email', [
-           'email' => $user->email,
-       ]);
+        // パスワードリセットをリクエスト
+        $response = $this->from('password/email')->post('password/email', [
+            'email' => $user->email,
+        ]);
 
-       // 同画面にリダイレクト
-       $response->assertStatus(302);
-       $response->assertRedirect('password/email');
-       // 成功のメッセージ
-       $response->assertSessionHas('status',
-           'パスワードリセットリンクが電子メールで送信されました');
+        // 同画面にリダイレクト
+        $response->assertStatus(302);
+        $response->assertRedirect('password/email');
+        // 成功のメッセージ
+        $response->assertSessionHas('status',
+            'パスワードリセットリンクが電子メールで送信されました');
     }
 
     public function from(string $url)
@@ -53,19 +53,19 @@ class ResetPasswordTest extends TestCase
         // ユーザーを1つ作成
         $user = factory(User::class)->create();
 
-       // 存在しないユーザーのメールアドレスでパスワードリセットをリクエスト
-       $response = $this->from('password/email')->post('password/email', [
-           'email' => 'nobody@example.com'
-       ]);
+        // 存在しないユーザーのメールアドレスでパスワードリセットをリクエスト
+        $response = $this->from('password/email')->post('password/email', [
+            'email' => 'nobody@example.com'
+        ]);
 
-       $response->assertStatus(302);
-       $response->assertRedirect('password/email');
-      // セッションにエラーを含むことを確認
-      $response->assertSessionHasErrors(['email']);
+        $response->assertStatus(302);
+        $response->assertRedirect('password/email');
+        // セッションにエラーを含むことを確認
+        $response->assertSessionHasErrors(['email']);
 
-      // エラメッセージを確認
-      $this->assertEquals('ユーザーは存在しません',
-          session('errors')->first('email'));
+        // エラメッセージを確認
+        $this->assertEquals('ユーザーは存在しません',
+            session('errors')->first('email'));
 
     }
 
@@ -79,49 +79,49 @@ class ResetPasswordTest extends TestCase
 
         // パスワードリセットをリクエスト
         $response = $this->post('password/email', [
-           'email' => $user->email
+            'email' => $user->email
         ]);
 
-       // トークンを取得
+        // トークンを取得
 
-       $token = '';
+        $token = '';
 
-       Notification::assertSentTo(
-           $user,
-           CustomPasswordReset::class,
-           function ($notification, $channels) use ($user, &$token) {
-               $token = $notification->token;
-               return true;
-           }
-       );
+        Notification::assertSentTo(
+            $user,
+            CustomPasswordReset::class,
+            function ($notification, $channels) use ($user, &$token) {
+                $token = $notification->token;
+                return true;
+            }
+        );
 
-       // パスワードリセットの画面へ
-       $response = $this->get('password/reset/'.$token);
+        // パスワードリセットの画面へ
+        $response = $this->get('password/reset/'.$token);
 
-       $response->assertStatus(200);
+        $response->assertStatus(200);
 
-       // パスワードをリセット
+        // パスワードをリセット
 
-       $new = 'reset1111';
+        $new = 'reset1111';
 
-       $response = $this->post('password/reset', [
-           'email'                 => $user->email,
-           'token'                 => $token,
-           'password'              => $new,
-           'password_confirmation' => $new
-       ]);
+        $response = $this->post('password/reset', [
+            'email'                 => $user->email,
+            'token'                 => $token,
+            'password'              => $new,
+            'password_confirmation' => $new
+        ]);
 
-       // ホームへ遷移
-       $response->assertStatus(302);
-       $response->assertRedirect('/home');
-       // リセット成功のメッセージ
-       $response->assertSessionHas('status', 'パスワードがリセットされました');
+        // ホームへ遷移
+        $response->assertStatus(302);
+        $response->assertRedirect('/home');
+        // リセット成功のメッセージ
+        $response->assertSessionHas('status', 'パスワードがリセットされました');
 
-       // 認証されていることを確認
-       $this->assertTrue(Auth::check());
+        // 認証されていることを確認
+        $this->assertTrue(Auth::check());
 
-       // 変更されたパスワードが保存されていることを確認
-       $this->assertTrue(Hash::check($new, $user->fresh()->password));
+        // 変更されたパスワードが保存されていることを確認
+        $this->assertTrue(Hash::check($new, $user->fresh()->password));
     }
 
 }

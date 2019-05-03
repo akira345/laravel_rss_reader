@@ -12,7 +12,6 @@ use Notification;
 use App\Auth\Notifications\ResetPassword;
 use App\Notifications\CustomPasswordReset;
 
-
 class LoginDenyedTest extends TestCase
 {
     public function testログイン試行ブロック()
@@ -38,7 +37,7 @@ class LoginDenyedTest extends TestCase
             }else{
                 // エラメッセージを確認
                 $this->assertRegExp('/[0-9]+ 秒以上開けて再度お試しください/',
-                 session('errors')->first('email')
+                    session('errors')->first('email')
                 );
             }
         }

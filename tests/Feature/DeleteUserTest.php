@@ -12,7 +12,6 @@ use Notification;
 use App\Auth\Notifications\ResetPassword;
 use App\Notifications\CustomPasswordReset;
 
-
 class DeleteUserTest extends TestCase
 {
     //これでDBをすべて吹っ飛ばす
@@ -40,6 +39,7 @@ class DeleteUserTest extends TestCase
         // Welcomeページにリダイレクトすることを確認
         $response->assertRedirect('/login');
     }
+
     public function testユーザ削除キャンセル()
     {
         // ユーザーを1つ作成
