@@ -49,19 +49,19 @@ class RssListTest extends TestCase
         //RSS登録
         $this->recordRss();
         // 変更されたRSSデータが保存されていることを確認
-        $this->assertSame('https://alas.aws.amazon.com/alas.rss', $user->rss_datas->where('id', '1')->fresh()[0]->rss_url);
-        $this->assertSame('AmazonLinux', $user->rss_datas->where('id', '1')->fresh()[0]->comment);
-        $this->assertSame(null, $user->rss_datas->where('id', '1')->fresh()[0]->category_id);
-        $this->assertSame("critical\nmedium\nlow\nimportant", $user->rss_datas->where('id', '1')->fresh()[0]->keywords);
-        $this->assertSame(true, $user->rss_datas->where('id', '1')->fresh()[0]->ad_deny_flg);
+        $this->assertSame('https://alas.aws.amazon.com/alas.rss', $user->rss_datas->where('id', '2')->fresh()[0]->rss_url);
+        $this->assertSame('AmazonLinux', $user->rss_datas->where('id', '2')->fresh()[0]->comment);
+        $this->assertSame(null, $user->rss_datas->where('id', '2')->fresh()[0]->category_id);
+        $this->assertSame("critical\nmedium\nlow\nimportant", $user->rss_datas->where('id', '2')->fresh()[0]->keywords);
+        $this->assertSame(true, $user->rss_datas->where('id', '2')->fresh()[0]->ad_deny_flg);
 
         //変更されたRSS配信属性が保存されていることを確認。rss_dataとは1:1
-        $this->assertSame(true, $user->rss_datas->where('id','1')->fresh()[0]->rss_delivery_attribute->deliv_flg);
-        $this->assertSame(true, $user->rss_datas->where('id','1')->fresh()[0]->rss_delivery_attribute->repeat_deliv_deny_flg);
+        $this->assertSame(true, $user->rss_datas->where('id','2')->fresh()[0]->rss_delivery_attribute->deliv_flg);
+        $this->assertSame(true, $user->rss_datas->where('id','2')->fresh()[0]->rss_delivery_attribute->repeat_deliv_deny_flg);
 
         //変更された表示属性が保存されていることを確認。rss_dataとは1:1
-        $this->assertSame(10, $user->rss_datas->where('id','1')->fresh()[0]->rss_view_attribute->rss_contents_list_cnt);
-        $this->assertSame(true, $user->rss_datas->where('id','1')->fresh()[0]->rss_view_attribute->hidden_flg);
+        $this->assertSame(10, $user->rss_datas->where('id','2')->fresh()[0]->rss_view_attribute->rss_contents_list_cnt);
+        $this->assertSame(true, $user->rss_datas->where('id','2')->fresh()[0]->rss_view_attribute->hidden_flg);
 
         //RSSへ遷移
         $response = $this->get('rss');
@@ -70,8 +70,8 @@ class RssListTest extends TestCase
         $response->assertSeeText('AmazonLinux');
 
         //メール送信
-        //$this->artisan('getrss')
-         //   ->assertExitCode(0);
+        $this->artisan('getrss')
+            ->assertExitCode(0);
     }
     public function testRSS編集()
     {
@@ -85,11 +85,11 @@ class RssListTest extends TestCase
         $this->recordRss();
 
         //RSS変更画面へ移動
-        $response = $this->get('rss/2/edit');
+        $response = $this->get('rss/3/edit');
         $response->assertStatus(200);
 
         // RSS変更をリクエスト
-        $response = $this->put('rss/2', [
+        $response = $this->put('rss/3', [
             'rss_url'               =>'https://alas.aws.amazon.com/alas.rss',
             'comment'               => 'AmazonLinux2',//modified
             'category_id'           => '',
@@ -105,14 +105,14 @@ class RssListTest extends TestCase
         $response->assertRedirect('rss');
 
         // 変更されたRSSデータが保存されていることを確認
-        $this->assertSame('AmazonLinux2', $user->rss_datas->where('id', '2')->fresh()[0]->comment);
-        $this->assertSame(false, $user->rss_datas->where('id', '2')->fresh()[0]->ad_deny_flg);
+        $this->assertSame('AmazonLinux2', $user->rss_datas->where('id', '3')->fresh()[0]->comment);
+        $this->assertSame(false, $user->rss_datas->where('id', '3')->fresh()[0]->ad_deny_flg);
 
         //変更されたRSS配信属性が保存されていることを確認。rss_dataとは1:1
-        $this->assertSame(false, $user->rss_datas->where('id','2')->fresh()[0]->rss_delivery_attribute->deliv_flg);
+        $this->assertSame(false, $user->rss_datas->where('id','3')->fresh()[0]->rss_delivery_attribute->deliv_flg);
 
         //変更された表示属性が保存されていることを確認。rss_dataとは1:1
-        $this->assertSame(false, $user->rss_datas->where('id','2')->fresh()[0]->rss_view_attribute->hidden_flg);
+        $this->assertSame(false, $user->rss_datas->where('id','3')->fresh()[0]->rss_view_attribute->hidden_flg);
 
     }
     public function testRSS削除()
@@ -127,18 +127,18 @@ class RssListTest extends TestCase
         $this->recordRss();
 
         //削除前にデータがあることを確認
-        $this->assertDatabaseHas('rss_datas',['id' => 3]);
-        $this->assertDatabaseHas('rss_view_attributes',['rss_id' => 3]);
-        $this->assertDatabaseHas('rss_delivery_attributes',['rss_id' => 3]);
+        $this->assertDatabaseHas('rss_datas',['id' => 4]);
+        $this->assertDatabaseHas('rss_view_attributes',['rss_id' => 4]);
+        $this->assertDatabaseHas('rss_delivery_attributes',['rss_id' => 4]);
         //RSS削除画面へ移動
-        $response = $this->delete('rss/3');
+        $response = $this->delete('rss/4');
         $response->assertStatus(302);
         $response->assertRedirect('rss');
 
         //削除後データがないことを確認
-        $this->assertDatabaseMissing('rss_datas',['id' => 3]);
-        $this->assertDatabaseMissing('rss_view_attributes',['rss_id' => 3]);
-        $this->assertDatabaseMissing('rss_delivery_attributes',['rss_id' => 3]);
+        $this->assertDatabaseMissing('rss_datas',['id' => 4]);
+        $this->assertDatabaseMissing('rss_view_attributes',['rss_id' => 4]);
+        $this->assertDatabaseMissing('rss_delivery_attributes',['rss_id' => 4]);
 
     }
     public function testRSS二重登録()
@@ -153,7 +153,7 @@ class RssListTest extends TestCase
         $this->recordRss();
 
         // 変更されたRSSデータが保存されていることを確認
-        $this->assertSame('https://alas.aws.amazon.com/alas.rss', $user->rss_datas->where('id', '4')->fresh()[0]->rss_url);
+        $this->assertSame('https://alas.aws.amazon.com/alas.rss', $user->rss_datas->where('id', '5')->fresh()[0]->rss_url);
         //RSS二重登録
         $response = $this->get('rss/create');
         $response->assertStatus(200);
@@ -178,7 +178,6 @@ class RssListTest extends TestCase
         // エラメッセージを確認
         $this->assertEquals('RSSフィードURL は既に存在します',
             session('errors')->first('rss_url'));
-
-
     }
+
 }
