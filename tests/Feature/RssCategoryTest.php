@@ -48,6 +48,11 @@ class RssCategolyListTest extends TestCase
         $response->assertStatus(200);
         //ビューの文字列チェック
         $response->assertSeeText('テストカテゴリ');
+        $response = $this->get('category/2');
+        $response->assertStatus(200);
+        //ビューの文字列チェック
+        $response->assertSeeText('テストカテゴリ');
+
     }
     public function testRSSカテゴリ編集()
     {

@@ -68,7 +68,6 @@ class HomeTest extends TestCase
         $this->assertSame(1, $user->rss_datas->where('id', '1')->fresh()[0]->category_id);
 
         //Homeへ飛ぶ
-//        $response = $this->get('rss');
         $response = $this->get('home');
         $response->assertStatus(200);
 

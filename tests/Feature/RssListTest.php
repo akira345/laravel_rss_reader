@@ -68,7 +68,10 @@ class RssListTest extends TestCase
         $response->assertStatus(200);
         //ビューの文字列チェック
         $response->assertSeeText('AmazonLinux');
-
+        $response = $this->get('rss/2');
+        $response->assertStatus(200);
+        //ビューの文字列チェック
+        $response->assertSeeText('AmazonLinux');
         //メール送信
         $this->artisan('getrss')
             ->assertExitCode(0);
