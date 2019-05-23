@@ -7,8 +7,8 @@
 
 ----
 動作環境
-* laravel 5.8.17
-* PostgreSQL 10
+* laravel 5.8.18
+* PostgreSQL 10、11
 * Memcached 1.5.6
 * PHP 7.2以上
 
@@ -61,9 +61,13 @@
     ```
 5. ログファイルやキャッシュに書き込めるようパーミッションを設定します。
     ```
-    chmod -R 777 ./storage
+    chmod -R 777 ./storage ./bootstrap/cache
     ```
-6. publicディレクトリをドキュメントルートに設定します。
+6. DBにマイグレーションをします。本番環境だけどいい？と聞かれますので、YESとします。
+    '''
+    php artisan migrate
+    '''
+6. publicディレクトリをドキュメントルートに設定します。サーバによるので、各自調べてください。
 7. Cronに以下の内容を設定します。
     ```
     * * * * * php /<インストールしたディレクトリ>/laravel_rss_reader/artisan schedule:run >> /dev/null 2>&1
