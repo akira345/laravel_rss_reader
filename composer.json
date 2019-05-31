@@ -22,7 +22,7 @@
         "mockery/mockery": "1.2.2",
         "nunomaduro/collision": "3.0.1",
         "phpunit/phpunit": "8.1.6",
-        "phpunit/php-code-coverage": "7.0.3"
+        "phpunit/php-code-coverage": "7.0.4"
     },
     "autoload": {
         "classmap": [
