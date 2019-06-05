@@ -10,7 +10,7 @@
         "ext-pdo": "*",
         "doctrine/dbal": "2.9.2",
         "fideloper/proxy": "4.1.0",
-        "laravel/framework": "5.8.19",
+        "laravel/framework": "5.8.21",
         "laravel/tinker": "1.0.8",
         "laravelcollective/html": "5.8.0",
         "willvincent/feeds": "1.1.7"
