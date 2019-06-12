@@ -7,7 +7,7 @@
 
 ----
 動作環境
-* laravel 5.8.18
+* laravel 5.8.18以上
 * PostgreSQL 10、11
 * Memcached 1.5.6
 * PHP 7.2以上
