@@ -17,11 +17,11 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "2.6.2",
-        "filp/whoops": "2.3.1",
+        "filp/whoops": "2.4.1",
         "fzaninotto/faker": "1.8.0",
         "mockery/mockery": "1.2.2",
         "nunomaduro/collision": "3.0.1",
-        "phpunit/phpunit": "8.2.3",
+        "phpunit/phpunit": "8.2.4",
         "phpunit/php-code-coverage": "7.0.6"
     },
     "autoload": {
