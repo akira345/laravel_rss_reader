@@ -3080,9 +3080,9 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
 
-laravel-mix@4.0.16:
-  version "4.0.16"
-  resolved "https://registry.yarnpkg.com/laravel-mix/-/laravel-mix-4.0.16.tgz#449c121021f062f03707bf49d1221d4640760d07"
+laravel-mix@4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/laravel-mix/-/laravel-mix-4.1.2.tgz#eaf9999f030d2d45614a83457e0ee3b6f243b56d"
   dependencies:
     "@babel/core" "^7.2.0"
     "@babel/plugin-proposal-object-rest-spread" "^7.2.0"
