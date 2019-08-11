@@ -18,7 +18,8 @@ install:
 
 before_script:
   - sudo apt-get update
-  - sudo apt-get install php5-memcached
+  - sudo apt-cache search memcached | grep php
+  - sudo apt-get install php7-memcached
   - gem install mailcatcher
   - phpenv config-add travis.php.ini
   - mailcatcher
