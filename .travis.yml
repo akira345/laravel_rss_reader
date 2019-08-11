@@ -3,13 +3,15 @@ php:
   - 7.3
 services:
   - memcached
-  - postgresql
-addons:
-  postgresql: "11.2"
-  apt:
-    packages:
-    - postgresql-11
-    - postgresql-client-11
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get --yes remove postgresql\*
+  - sudo apt-get install -y postgresql-11 postgresql-client-11
+  - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
+  - sudo sed -i -e '/local.*peer/s/postgres/all/' -e 's/peer\|md5/trust/g' /etc/postgresql/*/main/pg_hba.conf
+  - sudo service postgresql restart 11
+
 env:
   global:
   - PGPORT=5433
@@ -23,19 +25,15 @@ before_script:
   - gem install mailcatcher
   - phpenv config-add travis.php.ini
   - mailcatcher
-  - sudo sed -i -e '/local.*peer/s/postgres/all/' -e 's/peer\|md5/trust/g' /etc/postgresql/*/main/pg_hba.conf
-  - sudo /etc/init.d/postgresql stop
-  - sudo /etc/init.d/postgresql start 11
-  - sudo systemctl status postgresql.service
-  - sudo journalctl -xe
   - psql --version
-  - sudo journalctl -b 
   - sleep 3
   - psql -c 'create database rss_db_test;' -U postgres -p 5433
   - cp .env.travis .env
   - php artisan key:generate
+
 script:
   - php artisan migrate --seed
   - ./vendor/bin/phpunit --coverage-clover clover.xml
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
