@@ -12,10 +12,6 @@ before_install:
   - sudo sed -i -e '/local.*peer/s/postgres/all/' -e 's/peer\|md5/trust/g' /etc/postgresql/*/main/pg_hba.conf
   - sudo service postgresql restart 11
 
-env:
-  global:
-  - PGPORT=5433
-
 install:
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
 
@@ -27,7 +23,7 @@ before_script:
   - mailcatcher
   - psql --version
   - sleep 3
-  - psql -c 'create database rss_db_test;' -U postgres -p 5433
+  - psql -c 'create database rss_db_test;' -U postgres -p 5432
   - cp .env.travis .env
   - php artisan key:generate
 
