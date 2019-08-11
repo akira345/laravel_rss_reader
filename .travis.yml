@@ -26,6 +26,7 @@ before_script:
   - sudo sed -i -e '/local.*peer/s/postgres/all/' -e 's/peer\|md5/trust/g' /etc/postgresql/*/main/pg_hba.conf
   - sudo systemctl restart postgresql
   - sudo systemctl status postgresql
+  - sudo journalctl -b 
   - sleep 3
   - psql -c 'create database rss_db_test;' -U postgres -p 5433
   - cp .env.travis .env
