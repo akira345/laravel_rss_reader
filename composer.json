@@ -21,7 +21,7 @@
         "fzaninotto/faker": "1.8.0",
         "mockery/mockery": "1.2.3",
         "nunomaduro/collision": "3.0.1",
-        "phpunit/phpunit": "8.3.4",
+        "phpunit/phpunit": "8.3.5",
         "phpunit/php-code-coverage": "7.0.7"
     },
     "autoload": {
