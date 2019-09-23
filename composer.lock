@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c1bc7630d1b1564f46a658d949c2a4d",
+    "content-hash": "41bb5f3a41c9d424eae7721c8859dfcf",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3259,22 +3259,22 @@
         },
         {
             "name": "willvincent/feeds",
-            "version": "v1.1.7",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willvincent/feeds.git",
-                "reference": "da6037d0675f029fc8ecd2dde5a7701eb5b6d5da"
+                "reference": "dd67918662fdad40c29dd8770df7ed7b9cd31b50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willvincent/feeds/zipball/da6037d0675f029fc8ecd2dde5a7701eb5b6d5da",
-                "reference": "da6037d0675f029fc8ecd2dde5a7701eb5b6d5da",
+                "url": "https://api.github.com/repos/willvincent/feeds/zipball/dd67918662fdad40c29dd8770df7ed7b9cd31b50",
+                "reference": "dd67918662fdad40c29dd8770df7ed7b9cd31b50",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0",
+                "illuminate/support": "~5.0 || ^6.0",
+                "php": ">=5.4.0 || ^7.2",
                 "simplepie/simplepie": "1.5.*"
             },
             "type": "library",
@@ -3304,7 +3304,7 @@
                 }
             ],
             "description": "Laravel 5 Service Provider for the SimplePie library",
-            "time": "2018-11-07T04:45:01+00:00"
+            "time": "2019-09-23T18:58:28+00:00"
         }
     ],
     "packages-dev": [
