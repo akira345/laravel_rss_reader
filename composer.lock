@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b7ff9abe13914d54692c42312fb354e6",
+    "content-hash": "a36921d6547fc61a0a644435c9d8688e",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3884,8 +3884,8 @@
             "authors": [
                 {
                     "name": "Filipe Dobreira",
-                    "role": "Developer",
-                    "homepage": "https://github.com/filp"
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
                 }
             ],
             "description": "php error handling for cool kids",
