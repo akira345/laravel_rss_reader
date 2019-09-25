@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b7ff9abe13914d54692c42312fb354e6",
+    "content-hash": "8e5e665e20361a71296b224c9659883d",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -701,16 +701,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.0.0",
+            "version": "v6.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "89c81d4dc37714d82521d05dc003b26b2a86defc"
+                "reference": "372e0add8a58e0e3deb78f87cbb2dc40d3e0ff08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/89c81d4dc37714d82521d05dc003b26b2a86defc",
-                "reference": "89c81d4dc37714d82521d05dc003b26b2a86defc",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/372e0add8a58e0e3deb78f87cbb2dc40d3e0ff08",
+                "reference": "372e0add8a58e0e3deb78f87cbb2dc40d3e0ff08",
                 "shasum": ""
             },
             "require": {
@@ -807,8 +807,8 @@
                 "moontoast/math": "Required to use ordered UUIDs (^1.1).",
                 "pda/pheanstalk": "Required to use the beanstalk queue driver (^4.0).",
                 "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^3.0).",
-                "symfony/cache": "Required to PSR-6 cache bridge (^4.3).",
-                "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^1.1).",
+                "symfony/cache": "Required to PSR-6 cache bridge (^4.3.4).",
+                "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^1.2).",
                 "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
             },
             "type": "library",
@@ -842,7 +842,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-09-03T13:09:57+00:00"
+            "time": "2019-09-24T13:40:36+00:00"
         },
         {
             "name": "laravel/helpers",
@@ -3884,8 +3884,8 @@
             "authors": [
                 {
                     "name": "Filipe Dobreira",
-                    "role": "Developer",
-                    "homepage": "https://github.com/filp"
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
                 }
             ],
             "description": "php error handling for cool kids",
