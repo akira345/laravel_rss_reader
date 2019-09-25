@@ -26,6 +26,8 @@ before_script:
   - psql -c 'create database rss_db_test;' -U postgres -p 5432
   - cp .env.travis .env
   - php artisan key:generate
+  - php artisan view:clear
+  - php artisan view:cache
 
 script:
   - php artisan migrate --seed
