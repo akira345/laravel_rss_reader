@@ -10,10 +10,10 @@
         "ext-pdo": "*",
         "doctrine/dbal": "2.9.2",
         "fideloper/proxy": "4.2.1",
-        "laravel/framework": "6.0.0",
+        "laravel/framework": "6.0.4",
         "laravel/helpers": "1.1.1",
         "laravel/tinker": "1.0.10",
-        "laravelcollective/html": "6.0.0",
+        "laravelcollective/html": "6.0.2",
         "willvincent/feeds": "2.0.0"
     },
     "require-dev": {
