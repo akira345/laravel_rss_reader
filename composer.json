@@ -10,7 +10,7 @@
         "ext-pdo": "*",
         "doctrine/dbal": "2.10.0",
         "fideloper/proxy": "4.2.1",
-        "laravel/framework": "6.4.1",
+        "laravel/framework": "6.5.0",
         "laravel/helpers": "1.1.1",
         "laravel/tinker": "1.0.10",
         "laravelcollective/html": "6.0.3",
@@ -22,7 +22,7 @@
         "fzaninotto/faker": "1.8.0",
         "mockery/mockery": "1.2.4",
         "nunomaduro/collision": "3.0.1",
-        "phpunit/phpunit": "8.4.2",
+        "phpunit/phpunit": "8.4.3",
         "phpunit/php-code-coverage": "7.0.8"
     },
     "autoload": {
