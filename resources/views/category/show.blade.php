@@ -18,11 +18,11 @@
                                 <h1 class="d-flex mb-3">
 
                                     <span class="d-inline-block">カテゴリ</span>
-                                    <form class="ml-auto" method="POST" action="{{ route('category.destroy',['category' => $category]) }}" accept-charset="UTF-8" style="display: inline;" onsubmit="if(confirm('削除してよいですか?')) { return true } else {return false };">
+                                    <form class="ml-auto" method="POST" action="{{ route('category.destroy',['category' => $category->id]) }}" accept-charset="UTF-8" style="display: inline;" onsubmit="if(confirm('削除してよいですか?')) { return true } else {return false };">
                                         <input type="hidden" name="_method" value="DELETE">
                                         @csrf
                                         <div class="btn-group" role="group">
-                                            <a class="btn btn-sm btn-warning" href="{{ route('category.edit',['category' => $category]) }}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="material-icons d-block">編集</i></a>
+                                            <a class="btn btn-sm btn-warning" href="{{ route('category.edit',['category' => $category->id]) }}" data-toggle="tooltip" data-placement="top" title="Edit"><i class="material-icons d-block">編集</i></a>
                                             <button type="submit" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="material-icons d-block">削除</i></button>
                                         </div>
                                     </form>

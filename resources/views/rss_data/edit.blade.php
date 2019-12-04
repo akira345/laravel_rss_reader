@@ -18,7 +18,7 @@
                         </h1>
                         <div class="row">
                             <div class="col-md-12">
-                                <form method="POST" action="{{route('rss_data.update',['rss_data' => $rss_data])}}" accept-charset="UTF-8" class="needs-validation" novalidate>
+                                <form method="POST" action="{{route('rss_data.update',['rss_data' => $rss_data->id])}}" accept-charset="UTF-8" class="needs-validation" novalidate>
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">

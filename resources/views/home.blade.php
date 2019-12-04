@@ -41,7 +41,7 @@
                              @endif
 
                             <li class="list-group-item d-inline-flex flex-wrap">
-                                <div><a href="{{ route('home.read',['rss_data' => $rss_data]) }}">{{ $rss_data->comment }}</a></div>
+                                <div><a href="{{ route('home.read',['rss_data' => $rss_data->id]) }}">{{ $rss_data->comment }}</a></div>
                             </li>
 
                         @endforeach

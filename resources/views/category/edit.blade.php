@@ -18,7 +18,7 @@
                         </h1>
                         <div class="row">
                             <div class="col-md-12">
-                                <form method="POST" action="{{route('category.update',['category' => $category])}}" accept-charset="UTF-8" class="needs-validation" novalidate>
+                                <form method="POST" action="{{route('category.update',['category' => $category->id])}}" accept-charset="UTF-8" class="needs-validation" novalidate>
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
