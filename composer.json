@@ -9,23 +9,23 @@
         "ext-mbstring": "*",
         "ext-pdo": "*",
         "doctrine/dbal": "2.10.1",
-        "fideloper/proxy": "4.2.2",
-        "laravel/framework": "6.15.1",
+        "fideloper/proxy": "4.3.0",
+        "laravel/framework": "6.17.1",
         "laravel/helpers": "1.1.1",
         "laravel/tinker": "2.2.0",
         "laravelcollective/html": "6.0.3",
         "willvincent/feeds": "2.0.0"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "2.6.6",
+        "barryvdh/laravel-ide-helper": "2.6.7",
         "filp/whoops": "2.7.1",
         "fzaninotto/faker": "1.9.1",
         "mockery/mockery": "1.3.1",
         "nunomaduro/collision": "3.0.1",
         "nunomaduro/larastan": "0.5.2",
         "phpstan/phpstan": "0.12.11",
-        "phpunit/php-code-coverage": "8.0.0",
-        "phpunit/phpunit": "9.0.0"
+        "phpunit/php-code-coverage": "8.0.1",
+        "phpunit/phpunit": "9.0.1"
     },
     "autoload": {
         "classmap": [
