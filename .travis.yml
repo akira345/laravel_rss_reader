@@ -5,10 +5,11 @@ services:
   - memcached
 
 before_install:
+  - sudo service postgresql stop
   - sudo apt-get update
   - sudo apt-get --yes remove postgresql\*
   - sudo apt-get install -y postgresql-11 postgresql-client-11
-  - sudo cp /etc/postgresql/{9.6,11}/main/pg_hba.conf
+  - sudo cp /etc/postgresql/{10,11}/main/pg_hba.conf
   - sudo sed -i -e '/local.*peer/s/postgres/all/' -e 's/peer\|md5/trust/g' /etc/postgresql/*/main/pg_hba.conf
   - sudo service postgresql restart 11
 
