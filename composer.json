@@ -9,7 +9,7 @@
         "ext-mbstring": "*",
         "ext-pdo": "*",
         "doctrine/dbal": "2.10.1",
-        "fideloper/proxy": "4.2.2",
+        "fideloper/proxy": "4.3.0",
         "laravel/framework": "6.15.1",
         "laravel/helpers": "1.1.1",
         "laravel/tinker": "2.2.0",
