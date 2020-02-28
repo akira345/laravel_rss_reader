@@ -25,7 +25,7 @@ before_script:
   - mailcatcher
   - psql --version
   - sleep 3
-  - psql -c 'create database rss_db_test;' -U postgres -p 5432
+  - psql -c 'create database rss_db_test;' -U postgres -p 5433
   - cp .env.travis .env
   - php artisan key:generate
   - php artisan view:clear
