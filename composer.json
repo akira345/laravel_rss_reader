@@ -11,7 +11,7 @@
         "doctrine/dbal": "2.10.1",
         "fideloper/proxy": "4.3.0",
         "laravel/framework": "6.17.1",
-        "laravel/helpers": "1.1.1",
+        "laravel/helpers": "1.2.0",
         "laravel/tinker": "2.2.0",
         "laravelcollective/html": "6.0.3",
         "willvincent/feeds": "2.0.0"
