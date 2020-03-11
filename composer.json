@@ -14,7 +14,7 @@
         "laravel/helpers": "1.1.1",
         "laravel/tinker": "2.2.0",
         "laravelcollective/html": "6.1.0",
-        "willvincent/feeds": "2.0.0"
+        "willvincent/feeds": "2.1.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "2.6.7",
