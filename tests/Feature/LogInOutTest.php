@@ -123,7 +123,7 @@ class LogInOutTest extends TestCase
                     session('errors')->first('email'));
             }else{
                 // エラメッセージを確認
-                $this->assertRegExp('/[0-9]+ 秒以上開けて再度お試しください/',
+                $this->assertMatchesRegularExpression('/[0-9]+ 秒以上開けて再度お試しください/',
                     session('errors')->first('email')
                 );
             }
