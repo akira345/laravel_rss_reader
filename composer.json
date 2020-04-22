@@ -12,7 +12,7 @@
         "fideloper/proxy": "4.3.0",
         "laravel/framework": "7.4.0",
         "laravel/helpers": "1.2.0",
-        "laravel/tinker": "2.3.0",
+        "laravel/tinker": "2.4.0",
         "laravelcollective/html": "6.1.0",
         "willvincent/feeds": "2.1.0",
 	"laravel/ui": "2.0.1"
