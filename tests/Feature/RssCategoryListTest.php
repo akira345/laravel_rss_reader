@@ -13,7 +13,7 @@ use App\Auth\Notifications\ResetPassword;
 use App\Notifications\CustomPasswordReset;
 
 //RSSカテゴリ登録回りのテスト
-class RssCategolyListTest extends TestCase
+class RssCategoryListTest extends TestCase
 {
     //これでDBをすべて吹っ飛ばす
     use RefreshDatabase;
