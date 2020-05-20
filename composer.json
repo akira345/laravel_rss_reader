@@ -1,7 +1,10 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -10,12 +13,12 @@
         "ext-pdo": "*",
         "doctrine/dbal": "2.10.2",
         "fideloper/proxy": "4.3.0",
-        "laravel/framework": "7.11.0",
+        "laravel/framework": "7.12.0",
         "laravel/helpers": "1.2.0",
         "laravel/tinker": "2.4.0",
-        "laravelcollective/html": "6.1.0",
+        "laravelcollective/html": "6.1.2",
         "willvincent/feeds": "2.1.0",
-	"laravel/ui": "2.0.3"
+        "laravel/ui": "2.0.3"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "2.7.0",
@@ -44,8 +47,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": []
         }
     },
     "scripts": {
