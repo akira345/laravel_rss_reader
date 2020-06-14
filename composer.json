@@ -22,7 +22,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "2.7.0",
-        "filp/whoops": "2.7.2",
+        "filp/whoops": "2.7.3",
         "fzaninotto/faker": "1.9.1",
         "mockery/mockery": "1.4.0",
         "nunomaduro/collision": "4.2.0",
