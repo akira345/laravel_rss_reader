@@ -26,7 +26,7 @@
         "fzaninotto/faker": "1.9.1",
         "mockery/mockery": "1.4.0",
         "nunomaduro/collision": "4.2.0",
-        "nunomaduro/larastan": "0.5.8",
+        "nunomaduro/larastan": "0.6.1",
         "phpstan/phpstan": "0.12.28",
         "phpunit/php-code-coverage": "8.0.2",
         "phpunit/phpunit": "9.2.2"
