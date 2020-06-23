@@ -12,8 +12,8 @@
         "ext-mbstring": "*",
         "ext-pdo": "*",
         "doctrine/dbal": "2.10.2",
-        "fideloper/proxy": "4.3.0",
-        "laravel/framework": "7.15.0",
+        "fideloper/proxy": "4.4.0",
+        "laravel/framework": "7.16.1",
         "laravel/helpers": "1.2.0",
         "laravel/tinker": "2.4.0",
         "laravelcollective/html": "6.1.2",
@@ -22,14 +22,14 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "2.7.0",
-        "filp/whoops": "2.7.2",
+        "filp/whoops": "2.7.3",
         "fzaninotto/faker": "1.9.1",
         "mockery/mockery": "1.4.0",
         "nunomaduro/collision": "4.2.0",
-        "nunomaduro/larastan": "0.5.8",
-        "phpstan/phpstan": "0.12.28",
+        "nunomaduro/larastan": "0.6.1",
+        "phpstan/phpstan": "0.12.30",
         "phpunit/php-code-coverage": "8.0.2",
-        "phpunit/phpunit": "9.2.2"
+        "phpunit/phpunit": "9.2.5"
     },
     "autoload": {
         "classmap": [
