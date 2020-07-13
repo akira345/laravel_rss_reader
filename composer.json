@@ -29,7 +29,7 @@
         "nunomaduro/larastan": "0.6.1",
         "phpstan/phpstan": "0.12.32",
         "phpunit/php-code-coverage": "8.0.2",
-        "phpunit/phpunit": "9.2.5"
+        "phpunit/phpunit": "9.2.6"
     },
     "autoload": {
         "classmap": [
