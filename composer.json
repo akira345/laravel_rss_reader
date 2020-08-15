@@ -21,7 +21,7 @@
         "laravel/ui": "2.1.0"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "2.7.0",
+        "barryvdh/laravel-ide-helper": "2.8.0",
         "filp/whoops": "2.7.3",
         "fzaninotto/faker": "1.9.1",
         "mockery/mockery": "1.4.1",
