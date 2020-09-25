@@ -38,20 +38,9 @@ class AuthLog extends LogDriverAbstract
             tap(new LineFormatter($format, null, true, true), function ($formatter) {
             })
         );
-        //extraフィールドにIPアドレスとユーザエージェントを追加
-        $ip = new WebProcessor();
-        //ユーザエージェントをextraフィールドに項目追加
-        $ip->addExtraField("agent", "HTTP_USER_AGENT");
-        // 各ログハンドラにフォーマッタとプロセッサを設定
-        $handler->pushProcessor($ip);
-        //ホスト名をセット
-        $handler->pushProcessor(function ($record) {
-            $record['extra']['hostname'] = gethostbyaddr($_SERVER['REMOTE_ADDR']);
-            return $record;
-        });
 
         // Monolog のインスタンスを生成して返す
-        return new Logger($this->parseChannel($config), [
+        $log = new Logger($this->parseChannel($config), [
             new FingersCrossedHandler(
                 $handler,
                 $config['activation'] ?? null,
@@ -61,5 +50,21 @@ class AuthLog extends LogDriverAbstract
                 $config['pass'] ?? null
             )
         ]);
+
+        //extraフィールドにIPアドレスとユーザエージェントを追加
+        $ip = new WebProcessor();
+        //ユーザエージェントをextraフィールドに項目追加
+        $ip->addExtraField("agent", "HTTP_USER_AGENT");
+        // 各ログハンドラにフォーマッタとプロセッサを設定
+        $log->pushProcessor($ip);
+
+        //ホスト名をセット
+        $log->pushProcessor(function ($record) {
+            $remoteIp = $_SERVER["REMOTE_ADDR"] ?? '127.0.0.1';
+            $record['extra']['hostname'] = gethostbyaddr($remoteIp);
+            return $record;
+        });
+
+        return $log;
     }
 }

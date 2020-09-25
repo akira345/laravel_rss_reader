@@ -5,7 +5,7 @@ namespace App\Logging;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Monolog\Formatter\LineFormatter;
-use Monolog\Handler\HandlerInterface;
+use Monolog\Handler\FormattableHandlerInterface;
 use Monolog\Logger as Monolog;
 use Psr\Log\LoggerInterface;
 
@@ -61,11 +61,11 @@ abstract class LogDriverAbstract
     /**
      * Prepare the handler for usage by Monolog.
      *
-     * @param \Monolog\Handler\HandlerInterface $handler
+     * @param \Monolog\Handler\FormattableHandlerInterface $handler
      *
-     * @return \Monolog\Handler\HandlerInterface
+     * @return \Monolog\Handler\FormattableHandlerInterface
      */
-    protected function prepareHandler(HandlerInterface $handler)
+    protected function prepareHandler(FormattableHandlerInterface $handler)
     {
         return $handler->setFormatter($this->formatter());
     }

@@ -40,10 +40,8 @@ class RssSendLog extends LogDriverAbstract
             })
         );
 
-        $ip = new IntrospectionProcessor(Logger::DEBUG, ['Illuminate\\']);
-        $handler->pushProcessor($ip);
         // Monolog のインスタンスを生成して返す
-        return new Logger($this->parseChannel($config), [
+        $log = new Logger($this->parseChannel($config), [
             new FingersCrossedHandler(
                 $handler,
                 $config['activation'] ?? null,
@@ -53,5 +51,9 @@ class RssSendLog extends LogDriverAbstract
                 $config['pass'] ?? null
             )
         ]);
+        // ログにクラス名を入れる
+        $ip = new IntrospectionProcessor(Logger::DEBUG, ['Illuminate\\']);
+        $log->pushProcessor($ip);
+        return $log;
     }
 }
