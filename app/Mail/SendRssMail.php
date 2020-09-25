@@ -17,7 +17,7 @@ class SendRssMail extends Mailable
      *
      * @return void
      */
-    public function __construct( $subject, $contents, $mailfrom)
+    public function __construct($subject, $contents, $mailfrom)
     {
         $this->subject = $subject;
         $this->contents = $contents;
@@ -32,10 +32,10 @@ class SendRssMail extends Mailable
     public function build()
     {
         return $this->from($this->mailfrom)
-                    ->subject($this->subject)
-                    ->text('emails.sendrss')
-                    ->with([
-                        'contents' => $this->contents,
-                    ]);
+            ->subject($this->subject)
+            ->text('emails.sendrss')
+            ->with([
+                'contents' => $this->contents,
+            ]);
     }
 }

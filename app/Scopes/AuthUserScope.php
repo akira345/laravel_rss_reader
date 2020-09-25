@@ -18,7 +18,7 @@ class AuthUserScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $user=Auth::user();
+        $user = Auth::user();
         $builder->where('user_id', $user->id);
     }
 }

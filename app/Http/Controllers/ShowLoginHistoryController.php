@@ -24,7 +24,7 @@ class ShowLoginHistoryController extends Controller
     public function index()
     {
         $datas = LoginHistory::query()
-            ->orderBy('updated_at','desc')
+            ->orderBy('updated_at', 'desc')
             ->paginate(25);
 
         // ビューを返す

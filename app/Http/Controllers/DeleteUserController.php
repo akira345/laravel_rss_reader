@@ -19,11 +19,13 @@ class DeleteUserController extends Controller
         $this->middleware('auth');
     }
 
-    public function showDeleteUserFrom(){
+    public function showDeleteUserFrom()
+    {
 
         return view('auth.delete');
     }
-    public function deleteUser(Request $request){
+    public function deleteUser(Request $request)
+    {
         // 確認画面でキャンセルボタンが押された場合、自身にPostしているので戻れないので、
         //TOPへ飛ばす
         if ($request->get('action') === 'back') {
@@ -32,22 +34,21 @@ class DeleteUserController extends Controller
         }
         //ユーザ削除
 
-        if ($request->get('action') === 'delete'){
+        if ($request->get('action') === 'delete') {
             event(new DeleteUser(Auth::user()));
             DB::beginTransaction();
             try {
-                User::where('id',Auth::user()->id)
+                User::where('id', Auth::user()->id)
                     ->delete();
                 DB::commit();
-            }catch (\PDOException $e){
+            } catch (\PDOException $e) {
                 DB::rollBack();
-                Log::error('ユーザ削除時にエラー',['user:'=> Auth::user()->id , 'exception'=> $e->getMessage()]);
-                return redirect()->route('delete_user_from')->with('alert','ユーザ削除に失敗しました。');
+                Log::error('ユーザ削除時にエラー', ['user:' => Auth::user()->id, 'exception' => $e->getMessage()]);
+                return redirect()->route('delete_user_from')->with('alert', 'ユーザ削除に失敗しました。');
             }
             //ログアウトさせ、ログイン画面表示
             Auth::logout();
             return redirect()->route('login');
         }
     }
-
 }

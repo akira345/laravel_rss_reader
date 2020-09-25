@@ -31,20 +31,22 @@ class HomeController extends Controller
     {
 
         $rss_datas = RssData::query()
-            ->whereIn('id',
-                function ($query)
-                {
+            ->whereIn(
+                'id',
+                function ($query) {
                     $query->select('rss_id')
                         ->from('rss_view_attributes')
-                        ->where('hidden_flg',False);
-                })
+                        ->where('hidden_flg', False);
+                }
+            )
             ->orderBy('category_id')
             ->orderBy('id')
             ->paginate(25);
 
-        return view('home',['rss_datas'=>$rss_datas]);
+        return view('home', ['rss_datas' => $rss_datas]);
     }
-    public function read(RssData $rssData,Request $request){
+    public function read(RssData $rssData, Request $request)
+    {
         $rss_id = $rssData->id;
         $ad_deny_flg = $rssData->ad_deny_flg;
         $repeat_deliv_deny_flg = $rssData->rss_delivery_attribute->repeat_deliv_deny_flg;
@@ -54,11 +56,11 @@ class HomeController extends Controller
         $rss_contents = [];
         //キャッシュ確認
         $key = sha1($rss_url);
-        if(Cache::has($key)) {
-        //    dump("cached");
+        if (Cache::has($key)) {
+            //    dump("cached");
             $rss_contents = Cache::get($key);
-        }else{
-        //    dump("notcached");
+        } else {
+            //    dump("notcached");
             //RSSのパーズ
             $feed = \Feeds::make($rss_url);
             foreach ($feed->get_items() as $item) {
@@ -80,7 +82,7 @@ class HomeController extends Controller
         $page = $rssData->rss_view_attribute->rss_contents_list_cnt;
         $list_rss_data = null;
         $paging_flg = False;
-        if ($page >0){
+        if ($page > 0) {
             $paging_flg = True;
             $div_rss_data = array_chunk($rss_contents, $page);
             $get_page = $request->input('page', 1);
@@ -92,9 +94,9 @@ class HomeController extends Controller
                 $get_page,
                 array('path' => $request->url())
             );
-        }else{
+        } else {
             $list_rss_data = $rss_contents;
         }
-        return view('read',['rss_datas'=>$list_rss_data,'comment'=>$comment,'paging_flg'=>$paging_flg]);
+        return view('read', ['rss_datas' => $list_rss_data, 'comment' => $comment, 'paging_flg' => $paging_flg]);
     }
 }

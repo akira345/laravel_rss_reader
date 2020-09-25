@@ -21,7 +21,7 @@ class LogInOutTest extends TestCase
     public function testログイン失敗()
     {
         // ユーザーを１つ作成
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password'  => bcrypt('test1111')
         ]);
 
@@ -41,14 +41,16 @@ class LogInOutTest extends TestCase
         $response->assertSessionHasErrors(['email']);
 
         // エラメッセージを確認
-        $this->assertEquals('認証に失敗しました',
-            session('errors')->first('email'));
+        $this->assertEquals(
+            '認証に失敗しました',
+            session('errors')->first('email')
+        );
     }
 
     public function testログイン成功()
     {
         // ユーザーを１つ作成
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password'  => bcrypt('test1111')
         ]);
 
@@ -71,7 +73,7 @@ class LogInOutTest extends TestCase
     public function testログアウト()
     {
         // ユーザーを１つ作成
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         // 認証済み、つまりログイン済みしたことにする
         $this->actingAs($user);
@@ -104,7 +106,7 @@ class LogInOutTest extends TestCase
     public function testログイン試行ブロック()
     {
         //５回失敗でロック
-        for ($i=0; $i<6; $i++) {
+        for ($i = 0; $i < 6; $i++) {
             // 異なるパスワードでログインを実行
             $response = $this->post('/login', [
                 'email'    => 'hoge@exsample.com',
@@ -117,13 +119,16 @@ class LogInOutTest extends TestCase
             // セッションにエラーを含むことを確認
             $response->assertSessionHasErrors(['email']);
 
-            if($i<5){
+            if ($i < 5) {
                 // エラメッセージを確認
-                $this->assertEquals('認証に失敗しました',
-                    session('errors')->first('email'));
-            }else{
+                $this->assertEquals(
+                    '認証に失敗しました',
+                    session('errors')->first('email')
+                );
+            } else {
                 // エラメッセージを確認
-                $this->assertMatchesRegularExpression('/[0-9]+ 秒以上開けて再度お試しください/',
+                $this->assertMatchesRegularExpression(
+                    '/[0-9]+ 秒以上開けて再度お試しください/',
                     session('errors')->first('email')
                 );
             }
@@ -132,7 +137,7 @@ class LogInOutTest extends TestCase
 
     public function testログイン履歴()
     {
-        $pass='password';
+        $pass = 'password';
         $response = $this->post('/register', [
             'name'                  => 'hoge',
             'email'                 => 'hoge@exsample.com',
@@ -157,7 +162,7 @@ class LogInOutTest extends TestCase
     public function testパスワードリセット()
     {
         // ユーザーを1つ作成
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         //パスワードリセット画面表示
         $response = $this->get('/password/reset');
@@ -172,8 +177,10 @@ class LogInOutTest extends TestCase
         $response->assertStatus(302);
         $response->assertRedirect('/password/email');
         // 成功のメッセージ
-        $response->assertSessionHas('status',
-            'パスワードリセットリンクが電子メールで送信されました');
+        $response->assertSessionHas(
+            'status',
+            'パスワードリセットリンクが電子メールで送信されました'
+        );
     }
 
     public function from(string $url)
@@ -185,7 +192,7 @@ class LogInOutTest extends TestCase
     public function testリセット失敗()
     {
         // ユーザーを1つ作成
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         //パスワードリセット画面表示
         $response = $this->get('/password/reset');
@@ -202,9 +209,10 @@ class LogInOutTest extends TestCase
         $response->assertSessionHasErrors(['email']);
 
         // エラメッセージを確認
-        $this->assertEquals('ユーザーは存在しません',
-            session('errors')->first('email'));
-
+        $this->assertEquals(
+            'ユーザーは存在しません',
+            session('errors')->first('email')
+        );
     }
 
     public function testパスワードリセット可能か()
@@ -213,7 +221,7 @@ class LogInOutTest extends TestCase
         Notification::assertNothingSent();
 
         // ユーザーを1つ作成
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         //パスワードリセット画面表示
         $response = $this->get('/password/reset');
@@ -236,7 +244,7 @@ class LogInOutTest extends TestCase
         );
 
         // パスワードリセットの画面へ
-        $response = $this->get('/password/reset/'.$token);
+        $response = $this->get('/password/reset/' . $token);
         $response->assertStatus(200);
 
         // パスワードをリセット

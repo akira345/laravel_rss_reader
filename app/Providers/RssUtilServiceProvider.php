@@ -26,7 +26,7 @@ class RssUtilServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('rssutil', function(Application $app){
+        $this->app->bind('rssutil', function (Application $app) {
             return new RssUtilService();
         });
     }

@@ -6,7 +6,6 @@ use Monolog\Logger;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Handler\FingersCrossedHandler;
 use Monolog\Formatter\LineFormatter;
-use Monolog\Processor\WebProcessor;
 use Monolog\Processor\IntrospectionProcessor;
 
 class RssSendLog extends LogDriverAbstract
@@ -22,8 +21,12 @@ class RssSendLog extends LogDriverAbstract
         // StreamHandler を生成
         $handler = $this->prepareHandler(
             new RotatingFileHandler(
-                $config['path'], $config['days'] ?? 7, $this->level($config),
-                $config['bubble'] ?? true, $config['permission'] ?? null, $config['locking'] ?? false
+                $config['path'],
+                $config['days'] ?? 7,
+                $this->level($config),
+                $config['bubble'] ?? true,
+                $config['permission'] ?? null,
+                $config['locking'] ?? false
             )
         );
 

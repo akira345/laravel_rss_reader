@@ -2,7 +2,6 @@
 
 namespace App\Logging;
 
-use Illuminate\Log\Logger;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Monolog\Formatter\LineFormatter;

@@ -8,13 +8,13 @@ use App\Scopes\AuthUserScope;
 class RssDeliveryAttribute extends Model
 {
     protected $table = 'rss_delivery_attributes';
-    protected $fillable= ['rss_id','deliv_flg','repeat_deliv_deny_flg'];
+    protected $fillable = ['rss_id', 'deliv_flg', 'repeat_deliv_deny_flg'];
     /**
      * メール配信対象RSSからRSS情報を取得
      */
     public function rss_data()
     {
-        return $this->belongsTo('App\Models\RssData','rss_id')->withoutGlobalScopes();
+        return $this->belongsTo('App\Models\RssData', 'rss_id')->withoutGlobalScopes();
     }
     /**
      * モデルの「初期起動」メソッド

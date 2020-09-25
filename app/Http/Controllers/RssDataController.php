@@ -34,7 +34,7 @@ class RssDataController extends Controller
         $rss_datas = RssData::query()
             ->orderBy('id')
             ->paginate(25);
-        return view('rss_data.index',['rss_datas'=>$rss_datas]);
+        return view('rss_data.index', ['rss_datas' => $rss_datas]);
     }
 
     /**
@@ -47,7 +47,7 @@ class RssDataController extends Controller
         $categories = Category::query()
             ->orderBy('id')
             ->pluck('category', 'id');
-        return view('rss_data.create',['categories'=>$categories]);
+        return view('rss_data.create', ['categories' => $categories]);
     }
 
     /**
@@ -68,38 +68,39 @@ class RssDataController extends Controller
                 'max:2000',
                 'url',
                 'active_url',
-                Rule::unique('rss_datas')->where(function($query){
-                    return $query->where('user_id',Auth::user()->id);
-                })],
+                Rule::unique('rss_datas')->where(function ($query) {
+                    return $query->where('user_id', Auth::user()->id);
+                })
+            ],
         ])->validate();
 
         Validator::make($request->all(), [
-            'comment'=>[
+            'comment' => [
                 'required',
                 'string',
                 'max:512'
             ],
-            'category_id'=>[
+            'category_id' => [
                 'integer',
                 'min:0',
                 'max:2147483647',
                 'nullable'
             ],
-            'keywords'=>[
+            'keywords' => [
                 'required',
                 'string',
                 'max:2000'
             ],
-            'ad_deny_flg'=>['boolean'],
-            'deliv_flg'=>['boolean'],
-            'repeat_deliv_deny_flg'=>['boolean'],
-            'rss_contents_list_cnt'=>[
+            'ad_deny_flg' => ['boolean'],
+            'deliv_flg' => ['boolean'],
+            'repeat_deliv_deny_flg' => ['boolean'],
+            'rss_contents_list_cnt' => [
                 'integer',
                 'min:0',
                 'max:32767',
                 'nullable'
             ],
-            'hidden_flg'=>['boolean']
+            'hidden_flg' => ['boolean']
         ])->validate();
 
         //保存
@@ -116,7 +117,7 @@ class RssDataController extends Controller
             RssDeliveryAttribute::create([
                 'rss_id' => $rss_data->id,
                 'deliv_flg' => $this->isCheck($request->deliv_flg),
-                'repeat_deliv_deny_flg' =>$this->isCheck($request->repeat_deliv_deny_flg),
+                'repeat_deliv_deny_flg' => $this->isCheck($request->repeat_deliv_deny_flg),
             ]);
             RssViewAttribute::create([
                 'rss_id' => $rss_data->id,
@@ -124,15 +125,14 @@ class RssDataController extends Controller
                 'hidden_flg' => $this->isCheck($request->hidden_flg),
             ]);
             DB::commit();
-        }catch (\PDOException $e){
+        } catch (\PDOException $e) {
             DB::rollBack();
-            Log::error('RSS追加時にエラー',['user:'=> $user->id ,'exception'=> $e->getMessage()]);
-            return redirect()->route('rss_data.index')->with('alert','RSS['.$request->comment.']の追加に失敗しました。');
+            Log::error('RSS追加時にエラー', ['user:' => $user->id, 'exception' => $e->getMessage()]);
+            return redirect()->route('rss_data.index')->with('alert', 'RSS[' . $request->comment . ']の追加に失敗しました。');
         }
         //二重投稿防止
         $request->session()->regenerateToken();
-        return redirect()->route('rss_data.index')->with('status','RSS['.$request->comment.']を追加しました');
-
+        return redirect()->route('rss_data.index')->with('status', 'RSS[' . $request->comment . ']を追加しました');
     }
 
     /**
@@ -143,7 +143,7 @@ class RssDataController extends Controller
      */
     public function show(RssData $rssData)
     {
-        return view('rss_data.show',['rss_data'=>$rssData]);
+        return view('rss_data.show', ['rss_data' => $rssData]);
     }
 
     /**
@@ -157,7 +157,7 @@ class RssDataController extends Controller
         $categories = Category::query()
             ->orderBy('id')
             ->pluck('category', 'id');
-        return view('rss_data.edit',['categories'=>$categories,'rss_data'=>$rssData]);
+        return view('rss_data.edit', ['categories' => $categories, 'rss_data' => $rssData]);
     }
 
     /**
@@ -170,7 +170,7 @@ class RssDataController extends Controller
     public function update(Request $request, RssData $rssData)
     {
         $user = Auth::user();
-        if($request->rss_url <> $rssData->rss_url) {
+        if ($request->rss_url <> $rssData->rss_url) {
             //バリデーションチェック
             //ユーザID単位でユニークにする。
             Validator::make($request->all(), [
@@ -182,69 +182,70 @@ class RssDataController extends Controller
                     'active_url',
                     Rule::unique('rss_datas')->where(function ($query) {
                         return $query->where('user_id', Auth::user()->id);
-                    })],
+                    })
+                ],
             ])->validate();
         }
-            Validator::make($request->all(), [
-                'comment'=>[
-                    'required',
-                    'string',
-                    'max:512'
-                ],
-                'category_id'=>[
-                    'integer',
-                    'min:0',
-                    'max:2147483647',
-                    'nullable'
-                ],
-                'keywords'=>[
-                    'required',
-                    'string',
-                    'max:2000'
-                ],
-                'ad_deny_flg'=>['boolean'],
-                'deliv_flg'=>['boolean'],
-                'repeat_deliv_deny_flg'=>['boolean'],
-                'rss_contents_list_cnt'=>[
-                    'integer',
-                    'min:0',
-                    'max:32767',
-                    'nullable'
-                ],
-                'hidden_flg'=>['boolean']
-            ])->validate();
+        Validator::make($request->all(), [
+            'comment' => [
+                'required',
+                'string',
+                'max:512'
+            ],
+            'category_id' => [
+                'integer',
+                'min:0',
+                'max:2147483647',
+                'nullable'
+            ],
+            'keywords' => [
+                'required',
+                'string',
+                'max:2000'
+            ],
+            'ad_deny_flg' => ['boolean'],
+            'deliv_flg' => ['boolean'],
+            'repeat_deliv_deny_flg' => ['boolean'],
+            'rss_contents_list_cnt' => [
+                'integer',
+                'min:0',
+                'max:32767',
+                'nullable'
+            ],
+            'hidden_flg' => ['boolean']
+        ])->validate();
 
-            //保存
-            DB::beginTransaction();
-            try {
-                $rssData->rss_url = $request->rss_url;
-                $rssData->comment = $request->comment;
-                $rssData->category_id = $request->category_id;
-                $rssData->keywords = $request->keywords;
-                $rssData->ad_deny_flg = $this->isCheck($request->ad_deny_flg);
-                $rssData->save();
+        //保存
+        DB::beginTransaction();
+        try {
+            $rssData->rss_url = $request->rss_url;
+            $rssData->comment = $request->comment;
+            $rssData->category_id = $request->category_id;
+            $rssData->keywords = $request->keywords;
+            $rssData->ad_deny_flg = $this->isCheck($request->ad_deny_flg);
+            $rssData->save();
 
-                RssDeliveryAttribute::where('rss_id',$rssData->id)
-                    ->withoutGlobalScopes()
-                    ->update([
-                        'deliv_flg' => $this->isCheck($request->deliv_flg),
-                        'repeat_deliv_deny_flg' => $this->isCheck($request->repeat_deliv_deny_flg),
-                    ]);
-                RssViewAttribute::where('rss_id',$rssData->id)
-                    ->withoutGlobalScopes()
-                    ->update([
-                        'rss_contents_list_cnt' => is_null($request->rss_contents_list_cnt) ? 0 : $request->rss_contents_list_cnt,
-                        'hidden_flg' => $this->isCheck($request->hidden_flg),
-                    ]);
-                DB::commit();
-            }catch (\PDOException $e){
-                DB::rollBack();
-                Log::error('RSS変更時にエラー',['user:' => $user->id , 'rss:' => $request->comment,'exception'=> $e->getMessage()]);
-                return redirect()->route('rss_data.index')->with('alert','RSS[' . $request->comment . ']を変更失敗しました。');
-            }
-            //二重投稿防止
-            $request->session()->regenerateToken();
-            return redirect()->route('rss_data.index')->with('status','RSS[' . $request->comment . ']を変更しました');
+            RssDeliveryAttribute::where('rss_id', $rssData->id)
+                ->withoutGlobalScopes()
+                ->update([
+                    'deliv_flg' => $this->isCheck($request->deliv_flg),
+                    'repeat_deliv_deny_flg' => $this->isCheck($request->repeat_deliv_deny_flg),
+                ]);
+            RssViewAttribute::where('rss_id', $rssData->id)
+                ->withoutGlobalScopes()
+                ->update([
+                    'rss_contents_list_cnt' => is_null($request->rss_contents_list_cnt) ? 0 : $request->rss_contents_list_cnt,
+                    'hidden_flg' => $this->isCheck($request->hidden_flg),
+                ]);
+            DB::commit();
+        } catch (\PDOException $e) {
+            DB::rollBack();
+            Log::error('RSS変更時にエラー', ['user:' => $user->id, 'rss:' => $request->comment, 'exception' => $e->getMessage()]);
+            return redirect()->route('rss_data.index')->with('alert', 'RSS[' . $request->comment . ']を変更失敗しました。');
+        }
+        //二重投稿防止
+        $request->session()->regenerateToken();
+        return redirect()->route('rss_data.index')->with('status', 'RSS[' . $request->comment . ']を変更しました');
     }
 
     /**
@@ -255,21 +256,21 @@ class RssDataController extends Controller
      */
     public function destroy(RssData $rssData)
     {
-            //削除
-            DB::beginTransaction();
-            try {
-                $rssData->delete();
-                DB::commit();
-            }catch (\PDOException $e){
-                DB::rollBack();
-                Log::error('RSS削除時にエラー',['user:'=> Auth::user()->id , 'rss_id:'=>$rssData->id ,'exception'=> $e->getMessage()]);
-                return redirect()->route('rss_data.index')->with('alert','RSS['. $rssData->comment . ']の削除に失敗しました。');
-            }
-            //リダイレクト
-            return redirect()->route('rss_data.index')->with('status', 'RSS[' . $rssData->comment . ']を削除しました。');
-
+        //削除
+        DB::beginTransaction();
+        try {
+            $rssData->delete();
+            DB::commit();
+        } catch (\PDOException $e) {
+            DB::rollBack();
+            Log::error('RSS削除時にエラー', ['user:' => Auth::user()->id, 'rss_id:' => $rssData->id, 'exception' => $e->getMessage()]);
+            return redirect()->route('rss_data.index')->with('alert', 'RSS[' . $rssData->comment . ']の削除に失敗しました。');
+        }
+        //リダイレクト
+        return redirect()->route('rss_data.index')->with('status', 'RSS[' . $rssData->comment . ']を削除しました。');
     }
-    private function isCheck($checkbox_value){
+    private function isCheck($checkbox_value)
+    {
         return (isset($checkbox_value) == '1' ? '1' : '0');
     }
 }

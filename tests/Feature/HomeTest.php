@@ -24,7 +24,7 @@ class HomeTest extends TestCase
         $response->assertStatus(200);
 
         $response = $this->post('/category', [
-            'category'               =>'テストカテゴリ',
+            'category'               => 'テストカテゴリ',
         ]);
         $response->assertStatus(302);
         $response->assertRedirect('/category');
@@ -36,13 +36,13 @@ class HomeTest extends TestCase
         $response->assertStatus(200);
 
         $response = $this->post('/rss', [
-            'rss_url'               =>'https://alas.aws.amazon.com/alas.rss',
+            'rss_url'               => 'https://alas.aws.amazon.com/alas.rss',
             'comment'               => 'AmazonLinux',
             'category_id'           => $category_id,
             'keywords'              => "critical\nmedium\nlow\nimportant",
-            'ad_deny_flg'           => '1',//チェックボックスを入れた場合送信される値をセット。
-            'deliv_flg'             => '1',//チェックボックスを入れた場合送信される値をセット。
-            'repeat_deliv_deny_flg' => '1',//チェックボックスを入れた場合送信される値をセット。
+            'ad_deny_flg'           => '1', //チェックボックスを入れた場合送信される値をセット。
+            'deliv_flg'             => '1', //チェックボックスを入れた場合送信される値をセット。
+            'repeat_deliv_deny_flg' => '1', //チェックボックスを入れた場合送信される値をセット。
             'rss_contents_list_cnt' => '10',
             //'hidden_flg'            => '0',//チェックボックスを入れた場合送信される値をセット。
         ]);
@@ -52,7 +52,7 @@ class HomeTest extends TestCase
     public function test一覧表示()
     {
         // ユーザーを1つ作成
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         // 認証済み、つまりログイン済みしたことにする
         $this->actingAs($user);
@@ -80,5 +80,4 @@ class HomeTest extends TestCase
         $response->assertSeeText('ALAS');
         $response->assertSeeText('AmazonLinux 記事一覧');
     }
-
 }

@@ -2,7 +2,7 @@
 
 return [
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | Cache Location
   |--------------------------------------------------------------------------
@@ -11,9 +11,9 @@ return [
   | most cases.
   |
   */
-  'cache.location' => storage_path() . '/framework/cache',
+    'cache.location' => storage_path() . '/framework/cache',
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | Cache Life
   |--------------------------------------------------------------------------
@@ -21,9 +21,9 @@ return [
   | Life of cache, in seconds
   |
   */
-  'cache.life'     => 3600,
+    'cache.life'     => 3600,
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | Cache Disabled
   |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ return [
   |
   |
   */
-  'cache.disabled' => false,
+    'cache.disabled' => false,
     /*
   |--------------------------------------------------------------------------
   | Disable Check for SSL certificates (enable for self signed certificates)
@@ -40,8 +40,8 @@ return [
   |
   |
   */
-  'ssl_check.disabled' => false,
-  /*
+    'ssl_check.disabled' => false,
+    /*
   |--------------------------------------------------------------------------
   | Strip Html Tags Disabled
   |--------------------------------------------------------------------------
@@ -49,9 +49,9 @@ return [
   |
   |
   */
-  'strip_html_tags.disabled'=> false,
+    'strip_html_tags.disabled' => false,
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | Striped Html Tags
   |--------------------------------------------------------------------------
@@ -59,10 +59,10 @@ return [
   |
   |
   */
-  // 'base', 'blink', 'body', 'doctype', 'embed', 'font', 'form', 'frame', 'frameset', 'html', 'iframe', 'input', 'marquee', 'meta', 'noscript', 'object', 'param', 'script', 'style'
-  'strip_html_tags.tags'=> [ 'base', 'blink', 'body', 'doctype', 'embed', 'font', 'form', 'frame', 'frameset', 'html', 'iframe', 'input', 'marquee', 'meta', 'noscript', 'object', 'param', 'script', 'style'],
+    // 'base', 'blink', 'body', 'doctype', 'embed', 'font', 'form', 'frame', 'frameset', 'html', 'iframe', 'input', 'marquee', 'meta', 'noscript', 'object', 'param', 'script', 'style'
+    'strip_html_tags.tags' => ['base', 'blink', 'body', 'doctype', 'embed', 'font', 'form', 'frame', 'frameset', 'html', 'iframe', 'input', 'marquee', 'meta', 'noscript', 'object', 'param', 'script', 'style'],
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | Strip Attributes Disabled
   |--------------------------------------------------------------------------
@@ -70,9 +70,9 @@ return [
   |
   |
   */
-    'strip_attribute.disabled'=> false,
+    'strip_attribute.disabled' => false,
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | Striped Attributes Tags
   |--------------------------------------------------------------------------
@@ -80,10 +80,10 @@ return [
   |
   |
   */
-  // 'bgsound', 'class', 'expr', 'id', 'style', 'onclick', 'onerror', 'onfinish', 'onmouseover', 'onmouseout', 'onfocus', 'onblur', 'lowsrc', 'dynsrc'
-    'strip_attributes.tags'=> [ 'bgsound', 'class', 'expr', 'id', 'style', 'onclick', 'onerror', 'onfinish', 'onmouseover', 'onmouseout', 'onfocus', 'onblur', 'lowsrc', 'dynsrc'],
+    // 'bgsound', 'class', 'expr', 'id', 'style', 'onclick', 'onerror', 'onfinish', 'onmouseover', 'onmouseout', 'onfocus', 'onblur', 'lowsrc', 'dynsrc'
+    'strip_attributes.tags' => ['bgsound', 'class', 'expr', 'id', 'style', 'onclick', 'onerror', 'onfinish', 'onmouseover', 'onmouseout', 'onfocus', 'onblur', 'lowsrc', 'dynsrc'],
 
-  /*
+    /*
   |--------------------------------------------------------------------------
   | CURL Options
   |--------------------------------------------------------------------------
@@ -92,8 +92,8 @@ return [
   | Set to null to disable
   |
   */
-  'curl.options' => null,
-  
-  'curl.timeout' => null,
+    'curl.options' => null,
+
+    'curl.timeout' => null,
 
 ];

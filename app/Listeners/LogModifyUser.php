@@ -5,6 +5,7 @@ namespace App\Listeners;
 use Illuminate\Http\Request;
 use App\Models\LoginHistory;
 use App\Events\ModifyUser;
+
 class LogModifyUser
 {
     /**
@@ -27,8 +28,8 @@ class LogModifyUser
     public function handle(ModifyUser $event)
     {
         $user = $event->user;
-        Logs('authlog')->info('ユーザ情報変更',['user:' . $user->id]);
+        Logs('authlog')->info('ユーザ情報変更', ['user:' . $user->id]);
         $login_his_db = new LoginHistory();
-        $login_his_db->record($user->id, $this->request,"ユーザ情報変更");
+        $login_his_db->record($user->id, $this->request, "ユーザ情報変更");
     }
 }

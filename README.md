@@ -1,47 +1,51 @@
 # laravel_rss_reader
-10年以上前に作ったmobile_rss_readerをlaravel勉強がてら移植中
+
+10 年以上前に作った mobile_rss_reader を laravel 勉強がてら移植中
 
 [![codecov](https://codecov.io/gh/akira345/laravel_rss_reader/branch/master/graph/badge.svg)](https://codecov.io/gh/akira345/laravel_rss_reader)
 
-----
+---
+
 動作環境
 
-  * laravel 6.0.0以上
-  * PostgreSQL 10、11
-  * Memcached 1.5.6
-  * PHP 7.2以上
+-   laravel 8.0.0 以上
+-   PostgreSQL 10、11
+-   Memcached 1.5.6
+-   PHP 7.3 以上
 
-----
+---
+
 デプロイ方法
 
-  1. チェックアウト 
+1. チェックアウト
 
-      ```
-      git clone https://github.com/akira345/laravel_rss_reader.git
-      ```
+    ```
+    git clone https://github.com/akira345/laravel_rss_reader.git
+    ```
 
-  2. インストール
+2. インストール
 
-      ```
-      cd laravel_rss_reader
-      composer install
-      ```
+    ```
+    cd laravel_rss_reader
+    composer install
+    ```
 
-  3. 設定のひな型をコピーしてハッシュ生成
+3. 設定のひな型をコピーしてハッシュ生成
 
-      ```
-      cp .env.example .env
-      php artisan key:generate
-      ```
+    ```
+    cp .env.example .env
+    php artisan key:generate
+    ```
 
-  4. 設定する
+4. 設定する
 
-      ```
-      vi .env
-      ```
+    ```
+    vi .env
+    ```
 
-      ----
-      * .envの設定内容について
+    ***
+
+    - .env の設定内容について
 
         以下の内容を変更します。ない項目は追記します。
 
@@ -69,21 +73,21 @@
         MAIL_FROM_NAME=<上記メアドのユーザ名>
         ```
 
-  5. ログファイルやキャッシュに書き込めるようパーミッションを設定します。
+5. ログファイルやキャッシュに書き込めるようパーミッションを設定します。
 
-      ```
-      chmod -R 777 ./storage ./bootstrap/cache
-      ```
+    ```
+    chmod -R 777 ./storage ./bootstrap/cache
+    ```
 
-  6. DBにマイグレーションをします。本番環境だけどいい？と聞かれますので、YESとします。
+6. DB にマイグレーションをします。本番環境だけどいい？と聞かれますので、YES とします。
 
-      ```
-      php artisan migrate
-      ```
+    ```
+    php artisan migrate
+    ```
 
-  7. publicディレクトリをドキュメントルートに設定します。サーバによるので、各自調べてください。
-  8. Cronに以下の内容を設定します。
+7. public ディレクトリをドキュメントルートに設定します。サーバによるので、各自調べてください。
+8. Cron に以下の内容を設定します。
 
-      ```
-      * * * * * php /<インストールしたディレクトリ>/laravel_rss_reader/artisan schedule:run >> /dev/null 2>&1
-      ```
+    ```
+    * * * * * php /<インストールしたディレクトリ>/laravel_rss_reader/artisan schedule:run >> /dev/null 2>&1
+    ```

@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\CustomPasswordReset;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
+    use HasFactory;
     /**
      * The attributes that are mass assignable.
      *
@@ -32,21 +33,21 @@ class User extends Authenticatable
      */
     public function login_histories()
     {
-        return $this->hasMany('App\Models\LoginHistory','user_id');
+        return $this->hasMany('App\Models\LoginHistory', 'user_id');
     }
     /**
      * RSSデータを取得
      */
     public function rss_datas()
     {
-        return $this->hasMany('App\Models\RssData','user_id');
+        return $this->hasMany('App\Models\RssData', 'user_id');
     }
     /**
      * RSSカテゴリを取得
      */
     public function category_datas()
     {
-        return $this->hasMany('App\Models\Category','user_id');
+        return $this->hasMany('App\Models\Category', 'user_id');
     }
     /**
      * パスワードリセット通知の送信

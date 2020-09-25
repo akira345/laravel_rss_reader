@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Services;
+
 use App\Models\WkSendRssData;
 use Illuminate\Support\Facades\DB;
 
@@ -20,19 +22,24 @@ class RssFeedUtil
     private $send_rss_feed_description;
     private $send_rss_feed_link;
 
-    public function getSendRssFeedTitle() {
+    public function getSendRssFeedTitle()
+    {
         return $this->send_rss_feed_title;
     }
-    public function getSendRssFeedTime(){
+    public function getSendRssFeedTime()
+    {
         return $this->send_rss_feed_time;
     }
-    public function getSendRssFeedMatchKeywords(){
+    public function getSendRssFeedMatchKeywords()
+    {
         return $this->send_rss_feed_match_keywords;
     }
-    public function getSendRssFeedDescription(){
+    public function getSendRssFeedDescription()
+    {
         return $this->send_rss_feed_description;
     }
-    public function getSendRssFeedLink(){
+    public function getSendRssFeedLink()
+    {
         return $this->send_rss_feed_link;
     }
 
@@ -51,19 +58,19 @@ class RssFeedUtil
         bool $ad_deny_flg,
         bool $repeat_deliv_deny_flg,
         string $keywords,
-        \SimplePie_Item $item)
-    {
+        \SimplePie_Item $item
+    ) {
         $this->item = $item;
-        $this->user_id=$user_id;
-        $this->rss_id=$rss_id;
-        $this->ad_deny_flg=$ad_deny_flg;
-        $this->repeat_deliv_deny_flg=$repeat_deliv_deny_flg;
+        $this->user_id = $user_id;
+        $this->rss_id = $rss_id;
+        $this->ad_deny_flg = $ad_deny_flg;
+        $this->repeat_deliv_deny_flg = $repeat_deliv_deny_flg;
         //改行をデリミタとして配列化。念のため改行コードをそろえておく
-        $this->keywords=explode("\n", str_replace(array("\r\n", "\n", "\r"), "\n", $keywords));
+        $this->keywords = explode("\n", str_replace(array("\r\n", "\n", "\r"), "\n", $keywords));
         //キーワード文字の正規化を行う(すべて半角化)
         $this->normalization_keywords = $this->mb_convert_kana_variables($this->keywords, 'rnaskh', 'UTF-8');
         //キーワードの重複を除外
-        $this->uniq_keywords=array_unique($this->normalization_keywords);
+        $this->uniq_keywords = array_unique($this->normalization_keywords);
 
         $this->send_rss_feed_title = null;
         $this->send_rss_feed_time = null;
@@ -77,9 +84,10 @@ class RssFeedUtil
      * @param string $title
      * @return bool|int
      */
-    private function isAd(string $title){
-        if($this->ad_deny_flg){
-            return ($this->array_strpos($title,$this->ad_words()));
+    private function isAd(string $title)
+    {
+        if ($this->ad_deny_flg) {
+            return ($this->array_strpos($title, $this->ad_words()));
         } else {
             return False;
         }
@@ -91,7 +99,8 @@ class RssFeedUtil
      * @param bool $repeat_deliv_deny_flg 再配信拒否フラグ
      * @return bool
      */
-    private function isSendRss(string $title,bool $repeat_deliv_deny_flg){
+    private function isSendRss(string $title, bool $repeat_deliv_deny_flg)
+    {
         $send_rss_count = DB::table('wk_send_rss_datas')
             ->where('user_id', $this->user_id)
             ->where('rss_id', $this->rss_id)
@@ -111,7 +120,8 @@ class RssFeedUtil
      * @param string $description RSS本文
      * @return null|string マッチしたキーワード
      */
-    private function getMatchKeywords(string $title,string $description){
+    private function getMatchKeywords(string $title, string $description)
+    {
         //記事の中にキーワードにマッチしたものがあるか？
         $match_keywords = null;
         foreach ($this->uniq_keywords as $uniq_keyword) {
@@ -131,78 +141,81 @@ class RssFeedUtil
      * @param string $title
      * @return bool|int
      */
-    private function recordSendRssData(string $title){
+    private function recordSendRssData(string $title)
+    {
         DB::beginTransaction();
         try {
             WkSendRssData::create([
-            'user_id' => $this->user_id,
-            'rss_id' => $this->rss_id,
-            'title' => $title,
+                'user_id' => $this->user_id,
+                'rss_id' => $this->rss_id,
+                'title' => $title,
             ]);
             DB::commit();
             return True;
-        }catch (\PDOException $e){
+        } catch (\PDOException $e) {
             DB::rollBack();
-            Logs('rss_send_log')->error('RSS配信テーブル書き込みエラー',['user:' => $this->user_id , 'rss_id:' => $this->rss_id , ' title:' => $title,'exception'=>$e->getMessage() ]);
+            Logs('rss_send_log')->error('RSS配信テーブル書き込みエラー', ['user:' => $this->user_id, 'rss_id:' => $this->rss_id, ' title:' => $title, 'exception' => $e->getMessage()]);
             return False;
         }
     }
-    public function feedProsessingList(){
+    public function feedProsessingList()
+    {
         $title = $this->feed_title();
         $description = $this->feed_description();
         $feed_link = $this->feed_link();
         $feed_time = $this->feed_time();
         //タイトルに広告が入っているか？
-        if($this->isAd($title)){
-            Logs()->debug('広告フィードにつき配信拒否',['title:' => $this->feed_title() ]);
+        if ($this->isAd($title)) {
+            Logs()->debug('広告フィードにつき配信拒否', ['title:' => $this->feed_title()]);
             return;
         }
-        $this->send_rss_feed_title=$title;
+        $this->send_rss_feed_title = $title;
         $this->send_rss_feed_time = $feed_time;
-        $this->send_rss_feed_description=$description;
-        $this->send_rss_feed_link=$feed_link;
+        $this->send_rss_feed_description = $description;
+        $this->send_rss_feed_link = $feed_link;
     }
     /**
      *
      */
-    public function feedProsessingDelivery(){
-        Logs('rss_send_log')->debug('RSSフィード取得開始',['title:' => $this->feed_title() ]);
+    public function feedProsessingDelivery()
+    {
+        Logs('rss_send_log')->debug('RSSフィード取得開始', ['title:' => $this->feed_title()]);
         $title = $this->feed_title();
         $description = $this->feed_description();
         $feed_link = $this->feed_link();
         $feed_time = $this->feed_time();
         $match_keywords = null;
         //タイトルに広告が入っているか？
-        if($this->isAd($title)){
-            Logs('rss_send_log')->debug('広告フィードにつき配信拒否',['title:' => $this->feed_title() ]);
+        if ($this->isAd($title)) {
+            Logs('rss_send_log')->debug('広告フィードにつき配信拒否', ['title:' => $this->feed_title()]);
             return;
         }
         //すでに配信済みの記事か？
-        if($this->isSendRss($title,$this->repeat_deliv_deny_flg) !==True){
+        if ($this->isSendRss($title, $this->repeat_deliv_deny_flg) !== True) {
             //未配信ならキーワードマッチングチェック
-            $match_keywords = $this->getMatchKeywords($title,$description);
-            Logs('rss_send_log')->debug('未配信記事につきキーワードマッチ',['match_keywords:' => $match_keywords ]);
+            $match_keywords = $this->getMatchKeywords($title, $description);
+            Logs('rss_send_log')->debug('未配信記事につきキーワードマッチ', ['match_keywords:' => $match_keywords]);
         }
-        if(is_null($match_keywords) !==True){
+        if (is_null($match_keywords) !== True) {
             //キーワードにマッチ
             //再送信記事かチェック。repeat_deliv_deny_flgをFalseにして全配信データを対象とする。
-            $repeat_deliv_flg = $this->isSendRss($title,False);
-            Logs('rss_send_log')->debug('配信DB記録',['title:' => $title]);
+            $repeat_deliv_flg = $this->isSendRss($title, False);
+            Logs('rss_send_log')->debug('配信DB記録', ['title:' => $title]);
             //配信DBに記録
             $this->recordSendRssData($title);
             //プロパティセット
             //再送ならタイトルに(再)をつける。
-            if($repeat_deliv_flg){
-                $this->send_rss_feed_title='(再)' . $title;
-            }else{
-                $this->send_rss_feed_title=$title;
+            if ($repeat_deliv_flg) {
+                $this->send_rss_feed_title = '(再)' . $title;
+            } else {
+                $this->send_rss_feed_title = $title;
             }
             $this->send_rss_feed_time = $feed_time;
-            $this->send_rss_feed_match_keywords=$match_keywords;
-            $this->send_rss_feed_description=$description;
-            $this->send_rss_feed_link=$feed_link;
+            $this->send_rss_feed_match_keywords = $match_keywords;
+            $this->send_rss_feed_description = $description;
+            $this->send_rss_feed_link = $feed_link;
         }
-        Logs('rss_send_log')->debug('フィード処理終了',['title:' => $title]);
+        Logs('rss_send_log')->debug('フィード処理終了', ['title:' => $title]);
         return;
     }
     /**
@@ -257,7 +270,8 @@ class RssFeedUtil
      * 広告ワード配列
      * @return array
      */
-    private function ad_words(){
+    private function ad_words()
+    {
         return array("[PR]", "【PR】", "AD:", "［PR］", "AD：", "広告：", "PR:", "PR：", "Info:");
     }
 
@@ -266,7 +280,8 @@ class RssFeedUtil
      * 改行コードと文字コードの統一のみ行い、それ以上の扱いは上部にゆだねる
      * @return mixed
      */
-    private function feed_title(){
+    private function feed_title()
+    {
         $title = mb_convert_encoding($this->item->get_title(), 'UTF-8', 'auto');
         return str_replace(array("\r\n", "\n", "\r"), "\n", $title);
     }
@@ -276,7 +291,8 @@ class RssFeedUtil
      * 改行コードと文字コードの統一のみ行い、それ以上の扱いは上部にゆだねる
      * @return mixed
      */
-    private function feed_description(){
+    private function feed_description()
+    {
         $description = mb_convert_encoding($this->item->get_description(), 'UTF-8', 'auto');
         return str_replace(array("\r\n", "\n", "\r"), "\n", $description);
     }
@@ -286,7 +302,8 @@ class RssFeedUtil
      * 改行コードと文字コードの統一のみ行い、それ以上の扱いは上部にゆだねる
      * @return mixed
      */
-    private function feed_link(){
+    private function feed_link()
+    {
         $link = mb_convert_encoding($this->item->get_link(), 'UTF-8', 'auto');
         return str_replace(array("\r\n", "\n", "\r"), "\n", $link);
     }
@@ -295,7 +312,8 @@ class RssFeedUtil
      * RSSフィードの時刻を取得
      * @return int|null|string
      */
-    private function feed_time(){
+    private function feed_time()
+    {
         return $this->item->get_date('Y-m-d H:i:s'); //2009-04-24 22:25:34
     }
 }

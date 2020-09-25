@@ -20,7 +20,7 @@ class UserTest extends TestCase
 
     public function testユーザ登録()
     {
-        $pass='password';
+        $pass = 'password';
         $response = $this->post('/register', [
             'name'                  => 'hoge',
             'email'                 => 'hoge@exsample.com',
@@ -37,7 +37,7 @@ class UserTest extends TestCase
 
     public function testユーザ登録パスワード短い()
     {
-        $pass='12345';
+        $pass = '12345';
         $response = $this->post('/register', [
             'name'                  => 'hoge',
             'email'                 => 'hoge@exsample.com',
@@ -51,17 +51,19 @@ class UserTest extends TestCase
         $response->assertRedirect('/');
 
         // セッションにエラーを含むことを確認
-         $response->assertSessionHasErrors(['password']);
+        $response->assertSessionHasErrors(['password']);
 
         // エラメッセージを確認
-        $this->assertEquals('パスワード は 6 文字以上のみ有効です',
-        session('errors')->first('password'));
+        $this->assertEquals(
+            'パスワード は 6 文字以上のみ有効です',
+            session('errors')->first('password')
+        );
     }
 
     public function testユーザ登録パスワード間違い()
     {
-        $pass='123456789';
-        $pass2='987654321';
+        $pass = '123456789';
+        $pass2 = '987654321';
         $response = $this->post('/register', [
             'name'                  => 'hoge',
             'email'                 => 'hoge@exsample.com',
@@ -78,22 +80,24 @@ class UserTest extends TestCase
         $response->assertSessionHasErrors(['password']);
 
         // エラメッセージを確認
-        $this->assertEquals('パスワード を確認用と一致させてください',
-            session('errors')->first('password'));
+        $this->assertEquals(
+            'パスワード を確認用と一致させてください',
+            session('errors')->first('password')
+        );
     }
     public function testユーザ情報修正()
     {
         // ユーザーを1つ作成
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         // 認証済み、つまりログイン済みしたことにする
         $this->actingAs($user);
         //ユーザ変更画面へ移動
         $response = $this->get('/user/modify');
         $response->assertStatus(200);
         // ユーザ変更をリクエスト
-        $pass='p@ssword';
-        $name='test';
-        $email='test@exsample.com';
+        $pass = 'p@ssword';
+        $name = 'test';
+        $email = 'test@exsample.com';
         $response = $this->post('/user/modify', [
             'name'                  => $name,
             'email'                 => $email,
@@ -113,12 +117,11 @@ class UserTest extends TestCase
         $this->assertSame($email, $user->fresh()->email);
         //変更されたパスワードが保存されていることを確認
         $this->assertTrue(Hash::check($pass, $user->fresh()->password));
-
     }
     public function testユーザ削除()
     {
         // ユーザーを1つ作成
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         // 認証済み、つまりログイン済みしたことにする
         $this->actingAs($user);
@@ -141,7 +144,7 @@ class UserTest extends TestCase
     public function testユーザ削除キャンセル()
     {
         // ユーザーを1つ作成
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         // 認証済み、つまりログイン済みしたことにする
         $this->actingAs($user);
         // ユーザ削除をリクエストするがキャンセル
@@ -155,6 +158,4 @@ class UserTest extends TestCase
         // Welcomeページにリダイレクトすることを確認
         $response->assertRedirect('/login');
     }
-
 }
-

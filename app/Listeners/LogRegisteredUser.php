@@ -30,8 +30,8 @@ class LogRegisteredUser
     public function handle(Registered $event)
     {
         $user = $event->user;
-        Logs('authlog')->info('ユーザ登録完了',['user:' . $user->id]);
+        Logs('authlog')->info('ユーザ登録完了', ['user:' . $user->id]);
         $login_his_db = new LoginHistory();
-        $login_his_db->record($user->id, $this->request,"ユーザ登録完了");
+        $login_his_db->record($user->id, $this->request, "ユーザ登録完了");
     }
 }

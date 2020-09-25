@@ -18,7 +18,6 @@ class CommandTest extends TestCase
     {
         //ユーザ登録、RSS登録した後で実行。RFC違反メールのテスト
         $this->artisan('getrss')
-        ->assertExitCode(0);
+            ->assertExitCode(0);
     }
-
 }

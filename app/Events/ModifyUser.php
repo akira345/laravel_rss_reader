@@ -30,6 +30,4 @@ class ModifyUser
     {
         $this->user = $user;
     }
-
-
 }

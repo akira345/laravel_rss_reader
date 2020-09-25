@@ -17,13 +17,14 @@ class ModifyUserInformationController extends Controller
      * ユーザ情報変更画面初期表示
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showModifyUserInformationFrom(){
+    public function showModifyUserInformationFrom()
+    {
         $user = Auth::user();
         $user_name = $user->name;
         $user_email = $user->email;
         $user_passwd = "";
 
-        return view('auth.modify',['name' => $user_name,'email' => $user_email,'password' => $user_passwd]);
+        return view('auth.modify', ['name' => $user_name, 'email' => $user_email, 'password' => $user_passwd]);
     }
 
     /**
@@ -40,7 +41,8 @@ class ModifyUserInformationController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function modifyUserInformation(Request $request){
+    public function modifyUserInformation(Request $request)
+    {
         $user = Auth::user();
         $hash_password = $user->password;
         //$user_name = $user->username;
@@ -53,17 +55,16 @@ class ModifyUserInformationController extends Controller
         $user_name = $request->name;
 
         //メアドチェック
-        if($request->email){
-            if($user_email <> $request->email) {
+        if ($request->email) {
+            if ($user_email <> $request->email) {
                 Validator::make($request->all(), [
                     'email' => 'required|string|email|max:255|unique:users',
                 ])->validate();
                 $user_email = $request->email;
             }
-
         }
         //パスワードチェック
-        if($request->password){
+        if ($request->password) {
             Validator::make($request->all(), [
                 'password' => 'required|string|min:6|confirmed',
             ])->validate();
@@ -72,9 +73,9 @@ class ModifyUserInformationController extends Controller
         //ユーザテーブルに変更
         //イベントを発生される
         event(new ModifyUser($this->updateUser([
-           'name' => $user_name,
-           'email' => $user_email,
-           'hash_password' => $hash_password,
+            'name' => $user_name,
+            'email' => $user_email,
+            'hash_password' => $hash_password,
         ])));
 
         //ログアウトさせ、ログイン画面表示
@@ -86,7 +87,8 @@ class ModifyUserInformationController extends Controller
      * @param array $data
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
-    protected function updateUser(Array $data){
+    protected function updateUser(array $data)
+    {
         DB::beginTransaction();
         try {
             User::where('id', Auth::user()->id)
@@ -96,10 +98,10 @@ class ModifyUserInformationController extends Controller
                     'password' => $data['hash_password'],
                 ]);
             DB::commit();
-        }catch (\PDOException $e){
+        } catch (\PDOException $e) {
             DB::rollBack();
-            Log::error('ユーザ変更時にエラー',['user:'=> Auth::user()->id , 'exception'=> $e->getMessage()]);
-            return redirect()->route('modify_user_information_from')->with('alert','ユーザ変更に失敗しました。');
+            Log::error('ユーザ変更時にエラー', ['user:' => Auth::user()->id, 'exception' => $e->getMessage()]);
+            return redirect()->route('modify_user_information_from')->with('alert', 'ユーザ変更に失敗しました。');
         }
         //イベントへ渡すためにUserを返す
         return Auth::user();

@@ -7,6 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Request;
 use App\Models\LoginHistory;
+
 class LogPasswordReset
 {
     /**
@@ -29,8 +30,8 @@ class LogPasswordReset
     public function handle(PasswordReset $event)
     {
         $user = $event->user;
-        Logs('authlog')->info('パスワードリセット',['user:' . $user->id]);
+        Logs('authlog')->info('パスワードリセット', ['user:' . $user->id]);
         $login_his_db = new LoginHistory();
-        $login_his_db->record($user->id, $this->request,"パスワードリセット");
+        $login_his_db->record($user->id, $this->request, "パスワードリセット");
     }
 }

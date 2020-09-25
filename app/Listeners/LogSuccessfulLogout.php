@@ -30,8 +30,8 @@ class LogSuccessfulLogout
     public function handle(Logout $event)
     {
         $user = $event->user;
-        Logs('authlog')->info('ログアウト',['user:' . $user->id]);
+        Logs('authlog')->info('ログアウト', ['user:' . $user->id]);
         $login_his_db = new LoginHistory();
-        $login_his_db->record($user->id, $this->request,"ログアウト");
+        $login_his_db->record($user->id, $this->request, "ログアウト");
     }
 }

@@ -7,7 +7,6 @@ use Monolog\Handler\RotatingFileHandler;
 use Monolog\Handler\FingersCrossedHandler;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Processor\WebProcessor;
-use Monolog\Processor\IntrospectionProcessor;
 
 class AuthLog extends LogDriverAbstract
 {
@@ -22,8 +21,12 @@ class AuthLog extends LogDriverAbstract
         // StreamHandler を生成
         $handler = $this->prepareHandler(
             new RotatingFileHandler(
-                $config['path'], $config['days'] ?? 7, $this->level($config),
-                $config['bubble'] ?? true, $config['permission'] ?? null, $config['locking'] ?? false
+                $config['path'],
+                $config['days'] ?? 7,
+                $this->level($config),
+                $config['bubble'] ?? true,
+                $config['permission'] ?? null,
+                $config['locking'] ?? false
             )
         );
 
@@ -38,11 +41,11 @@ class AuthLog extends LogDriverAbstract
         //extraフィールドにIPアドレスとユーザエージェントを追加
         $ip = new WebProcessor();
         //ユーザエージェントをextraフィールドに項目追加
-        $ip->addExtraField("agent","HTTP_USER_AGENT");
+        $ip->addExtraField("agent", "HTTP_USER_AGENT");
         // 各ログハンドラにフォーマッタとプロセッサを設定
         $handler->pushProcessor($ip);
         //ホスト名をセット
-        $handler->pushProcessor(function ($record){
+        $handler->pushProcessor(function ($record) {
             $record['extra']['hostname'] = gethostbyaddr($_SERVER['REMOTE_ADDR']);
             return $record;
         });
