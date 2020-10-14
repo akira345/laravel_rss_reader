@@ -1424,10 +1424,10 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap@4.5.2:
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.5.2.tgz#a85c4eda59155f0d71186b6e6ad9b875813779ab"
-  integrity sha512-vlGn0bcySYl/iV+BGA544JkkZP5LB3jsmkeKLFQakCOwCM3AOk7VkldBz4jrzSe+Z0Ezn99NVXa1o45cQY4R6A==
+bootstrap@4.5.3:
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.5.3.tgz#c6a72b355aaf323920be800246a6e4ef30997fe6"
+  integrity sha512-o9ppKQioXGqhw8Z7mah6KdTYpNQY//tipnkxppWhPbiSWdD+1raYsnhwEZjkTHYbGee4cVQ0Rx65EhOY/HNLcQ==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -3963,10 +3963,10 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-laravel-mix@5.0.5:
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/laravel-mix/-/laravel-mix-5.0.5.tgz#1da6488ac3af79f248bcbc2e589dcaeb03f3dafc"
-  integrity sha512-ruogwsrTsmUpZU9x1Whgxh+gcEB/6IFJlL+ZTSrYt1SXfOsi8BgMI2R9RWvQpOyR+40VYl7n7Gsr+sHjfFb90Q==
+laravel-mix@5.0.7:
+  version "5.0.7"
+  resolved "https://registry.yarnpkg.com/laravel-mix/-/laravel-mix-5.0.7.tgz#1ae6cab68460402f68e2d78c10813e86b96df10d"
+  integrity sha512-TL5txnQkzcwM8DYckgzjISSPGyZN6znFYb4NgtTSi9aIvfzOIEC6p0eYM6wDa/BkEKv290Ru6HWmH6Q2XApogQ==
   dependencies:
     "@babel/core" "^7.2.0"
     "@babel/plugin-proposal-object-rest-spread" "^7.2.0"
