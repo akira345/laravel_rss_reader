@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ffc4af84c3c9bf069d4159da1b5d53f",
+    "content-hash": "748e778c17feb132d5687aaa648ef041",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2944,7 +2944,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-18T14:27:32+00:00"
+            "time": "2020-10-07T15:23:00+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -6500,16 +6500,16 @@
         },
         {
             "name": "nunomaduro/larastan",
-            "version": "v0.6.4",
+            "version": "v0.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/larastan.git",
-                "reference": "a92f9e20f0aa7a62704ffb09f7445b45f1ad91f7"
+                "reference": "4649da8e2e3bd179ba46aac9c8e4d76c87ae47c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/a92f9e20f0aa7a62704ffb09f7445b45f1ad91f7",
-                "reference": "a92f9e20f0aa7a62704ffb09f7445b45f1ad91f7",
+                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/4649da8e2e3bd179ba46aac9c8e4d76c87ae47c0",
+                "reference": "4649da8e2e3bd179ba46aac9c8e4d76c87ae47c0",
                 "shasum": ""
             },
             "require": {
@@ -6589,7 +6589,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-09-02T14:19:36+00:00"
+            "time": "2020-10-21T07:54:14+00:00"
         },
         {
             "name": "phar-io/manifest",
