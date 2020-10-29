@@ -28,7 +28,7 @@
         "filp/whoops": "2.9.0",
         "fzaninotto/faker": "1.9.1",
         "mockery/mockery": "1.4.2",
-        "nunomaduro/collision": "5.0.2",
+        "nunomaduro/collision": "5.1.0",
         "nunomaduro/larastan": "0.6.7",
         "phpstan/phpstan": "0.12.50",
         "phpunit/php-code-coverage": "9.2.0",
