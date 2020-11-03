@@ -20,7 +20,7 @@
         "laravel/tinker": "2.4.2",
         "laravelcollective/html": "6.2.0",
         "willvincent/feeds": "2.2.0",
-        "laravel/ui": "3.0.0"
+        "laravel/ui": "3.1.0"
     },
     "require-dev": {
         "facade/ignition": "2.4.1",
