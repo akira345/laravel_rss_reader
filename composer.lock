@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a1e7584f0abb9f27a9651f27e7efe1b",
+    "content-hash": "ad314efff24d003bbc84e364774afd4a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1289,21 +1289,21 @@
         },
         {
             "name": "laravel/helpers",
-            "version": "v1.3.0",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/helpers.git",
-                "reference": "b4b8d6e84a6306fc88870f61a244d8c537779f2d"
+                "reference": "cde8ea2427db4f37d67729846b70452499210a21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/helpers/zipball/b4b8d6e84a6306fc88870f61a244d8c537779f2d",
-                "reference": "b4b8d6e84a6306fc88870f61a244d8c537779f2d",
+                "url": "https://api.github.com/repos/laravel/helpers/zipball/cde8ea2427db4f37d67729846b70452499210a21",
+                "reference": "cde8ea2427db4f37d67729846b70452499210a21",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "~5.8.0|^6.0|^7.0|^8.0",
-                "php": ">=7.1.3"
+                "php": "^7.1.3|^8.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.0|^8.0|^9.0"
@@ -1338,7 +1338,10 @@
                 "helpers",
                 "laravel"
             ],
-            "time": "2020-08-25T17:54:37+00:00"
+            "support": {
+                "source": "https://github.com/laravel/helpers/tree/v1.4.0"
+            },
+            "time": "2020-11-03T16:38:41+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -8605,5 +8608,5 @@
         "ext-pdo": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }
