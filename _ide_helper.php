@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 8.6.0.
+ * Generated for Laravel 8.13.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -2705,7 +2705,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Create a new batch of queueable jobs.
          *
-         * @param \Illuminate\Support\Collection|array $jobs
+         * @param \Illuminate\Support\Collection|array|mixed $jobs
          * @return \Illuminate\Bus\PendingBatch
          * @static
          */
@@ -3379,6 +3379,17 @@ namespace Illuminate\Support\Facades {
         {
             /** @var \Illuminate\Cache\Repository $instance */
             return $instance->tags($names);
+        }
+        /**
+         * Determine if the current store supports tags.
+         *
+         * @return bool
+         * @static
+         */
+        public static function supportsTags()
+        {
+            /** @var \Illuminate\Cache\Repository $instance */
+            return $instance->supportsTags();
         }
         /**
          * Get the default cache time.
@@ -10910,7 +10921,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the currently dispatched route instance.
          *
-         * @return \Illuminate\Routing\Route
+         * @return \Illuminate\Routing\Route|null
          * @static
          */
         public static function getCurrentRoute()
@@ -11081,6 +11092,17 @@ namespace Illuminate\Support\Facades {
         {
             /** @var \Illuminate\Routing\Router $instance */
             $instance->setCompiledRoutes($routes);
+        }
+        /**
+         * Remove any duplicate middleware from the given array.
+         *
+         * @param array $middleware
+         * @return array
+         * @static
+         */
+        public static function uniqueMiddleware($middleware)
+        {
+            return \Illuminate\Routing\Router::uniqueMiddleware($middleware);
         }
         /**
          * Register a custom macro.
@@ -11387,6 +11409,19 @@ namespace Illuminate\Support\Facades {
         {            //Method inherited from \Illuminate\Database\Schema\Builder
             /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
             $instance->dropIfExists($table);
+        }
+        /**
+         * Drop columns from a table schema.
+         *
+         * @param string $table
+         * @param string|array $columns
+         * @return void
+         * @static
+         */
+        public static function dropColumns($table, $columns)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder
+            /** @var \Illuminate\Database\Schema\PostgresBuilder $instance */
+            $instance->dropColumns($table, $columns);
         }
         /**
          * Rename a table on the schema.
@@ -12815,7 +12850,7 @@ namespace Illuminate\Support\Facades {
          * Create a signed route URL for a named route.
          *
          * @param string $name
-         * @param array $parameters
+         * @param mixed $parameters
          * @param \DateTimeInterface|\DateInterval|int|null $expiration
          * @param bool $absolute
          * @return string
@@ -13745,7 +13780,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Start a component rendering process.
          *
-         * @param \Illuminate\View\View|\Illuminate\Contracts\Support\Htmlable|\Closure|string $view
+         * @param \Illuminate\Contracts\View\View|\Illuminate\Contracts\Support\Htmlable|\Closure|string $view
          * @param array $data
          * @return void
          * @static
@@ -15793,7 +15828,7 @@ namespace {
         /**
          * Add a basic where clause to the query.
          *
-         * @param \Closure|string|array $column
+         * @param \Closure|string|array|\Illuminate\Database\Query\Expression $column
          * @param mixed $operator
          * @param mixed $value
          * @param string $boolean
@@ -15809,7 +15844,7 @@ namespace {
         /**
          * Add a basic where clause to the query, and return the first result.
          *
-         * @param \Closure|string|array $column
+         * @param \Closure|string|array|\Illuminate\Database\Query\Expression $column
          * @param mixed $operator
          * @param mixed $value
          * @param string $boolean
@@ -15825,7 +15860,7 @@ namespace {
         /**
          * Add an "or where" clause to the query.
          *
-         * @param \Closure|array|string $column
+         * @param \Closure|array|string|\Illuminate\Database\Query\Expression $column
          * @param mixed $operator
          * @param mixed $value
          * @return \Illuminate\Database\Eloquent\Builder|static
@@ -15840,7 +15875,7 @@ namespace {
         /**
          * Add an "order by" clause for a timestamp to the query.
          *
-         * @param string $column
+         * @param string|\Illuminate\Database\Query\Expression $column
          * @return \Illuminate\Database\Eloquent\Builder|static
          * @static
          */
@@ -15853,7 +15888,7 @@ namespace {
         /**
          * Add an "order by" clause for a timestamp to the query.
          *
-         * @param string $column
+         * @param string|\Illuminate\Database\Query\Expression $column
          * @return \Illuminate\Database\Eloquent\Builder|static
          * @static
          */
@@ -16020,7 +16055,7 @@ namespace {
         /**
          * Get a single column's value from the first result of a query.
          *
-         * @param string $column
+         * @param string|\Illuminate\Database\Query\Expression $column
          * @return mixed
          * @static
          */
@@ -16084,7 +16119,7 @@ namespace {
         /**
          * Get an array with the values of a given column.
          *
-         * @param string $column
+         * @param string|\Illuminate\Database\Query\Expression $column
          * @param string|null $key
          * @return \Illuminate\Support\Collection
          * @static
@@ -16152,6 +16187,21 @@ namespace {
         {
             /** @var \Illuminate\Database\Eloquent\Builder $instance */
             return $instance->forceCreate($attributes);
+        }
+
+        /**
+         * Insert new records or update the existing ones.
+         *
+         * @param array $values
+         * @param array|string $uniqueBy
+         * @param array|null $update
+         * @return int
+         * @static
+         */
+        public static function upsert($values, $uniqueBy, $update = null)
+        {
+            /** @var \Illuminate\Database\Eloquent\Builder $instance */
+            return $instance->upsert($values, $uniqueBy, $update);
         }
 
         /**
@@ -16608,7 +16658,7 @@ namespace {
         /**
          * Add a polymorphic relationship count / exists condition to the query.
          *
-         * @param string $relation
+         * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
          * @param string|array $types
          * @param string $operator
          * @param int $count
@@ -16626,7 +16676,7 @@ namespace {
         /**
          * Add a polymorphic relationship count / exists condition to the query with an "or".
          *
-         * @param string $relation
+         * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
          * @param string|array $types
          * @param string $operator
          * @param int $count
@@ -16642,7 +16692,7 @@ namespace {
         /**
          * Add a polymorphic relationship count / exists condition to the query.
          *
-         * @param string $relation
+         * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
          * @param string|array $types
          * @param string $boolean
          * @param \Closure|null $callback
@@ -16658,7 +16708,7 @@ namespace {
         /**
          * Add a polymorphic relationship count / exists condition to the query with an "or".
          *
-         * @param string $relation
+         * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
          * @param string|array $types
          * @return \Illuminate\Database\Eloquent\Builder|static
          * @static
@@ -16672,7 +16722,7 @@ namespace {
         /**
          * Add a polymorphic relationship count / exists condition to the query with where clauses.
          *
-         * @param string $relation
+         * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
          * @param string|array $types
          * @param \Closure|null $callback
          * @param string $operator
@@ -16689,7 +16739,7 @@ namespace {
         /**
          * Add a polymorphic relationship count / exists condition to the query with where clauses and an "or".
          *
-         * @param string $relation
+         * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
          * @param string|array $types
          * @param \Closure|null $callback
          * @param string $operator
@@ -16706,7 +16756,7 @@ namespace {
         /**
          * Add a polymorphic relationship count / exists condition to the query with where clauses.
          *
-         * @param string $relation
+         * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
          * @param string|array $types
          * @param \Closure|null $callback
          * @return \Illuminate\Database\Eloquent\Builder|static
@@ -16721,7 +16771,7 @@ namespace {
         /**
          * Add a polymorphic relationship count / exists condition to the query with where clauses and an "or".
          *
-         * @param string $relation
+         * @param \Illuminate\Database\Eloquent\Relations\MorphTo|string $relation
          * @param string|array $types
          * @param \Closure|null $callback
          * @return \Illuminate\Database\Eloquent\Builder|static
@@ -16731,6 +16781,21 @@ namespace {
         {
             /** @var \Illuminate\Database\Eloquent\Builder $instance */
             return $instance->orWhereDoesntHaveMorph($relation, $types, $callback);
+        }
+
+        /**
+         * Add subselect queries to include an aggregate value for a relationship.
+         *
+         * @param mixed $relations
+         * @param string $column
+         * @param string $function
+         * @return \Illuminate\Database\Eloquent\Builder|static
+         * @static
+         */
+        public static function withAggregate($relations, $column, $function = null)
+        {
+            /** @var \Illuminate\Database\Eloquent\Builder $instance */
+            return $instance->withAggregate($relations, $column, $function);
         }
 
         /**
@@ -16747,6 +16812,62 @@ namespace {
         }
 
         /**
+         * Add subselect queries to include the max of the relation's column.
+         *
+         * @param string $relation
+         * @param string $column
+         * @return \Illuminate\Database\Eloquent\Builder|static
+         * @static
+         */
+        public static function withMax($relation, $column)
+        {
+            /** @var \Illuminate\Database\Eloquent\Builder $instance */
+            return $instance->withMax($relation, $column);
+        }
+
+        /**
+         * Add subselect queries to include the min of the relation's column.
+         *
+         * @param string $relation
+         * @param string $column
+         * @return \Illuminate\Database\Eloquent\Builder|static
+         * @static
+         */
+        public static function withMin($relation, $column)
+        {
+            /** @var \Illuminate\Database\Eloquent\Builder $instance */
+            return $instance->withMin($relation, $column);
+        }
+
+        /**
+         * Add subselect queries to include the sum of the relation's column.
+         *
+         * @param string $relation
+         * @param string $column
+         * @return \Illuminate\Database\Eloquent\Builder|static
+         * @static
+         */
+        public static function withSum($relation, $column)
+        {
+            /** @var \Illuminate\Database\Eloquent\Builder $instance */
+            return $instance->withSum($relation, $column);
+        }
+
+        /**
+         * Add subselect queries to include the average of the relation's column.
+         *
+         * @param string $relation
+         * @param string $column
+         * @return \Illuminate\Database\Eloquent\Builder|static
+         * @static
+         */
+        public static function withAvg($relation, $column)
+        {
+            /** @var \Illuminate\Database\Eloquent\Builder $instance */
+            return $instance->withAvg($relation, $column);
+        }
+
+        /**
          * Merge the where constraints from another query to the current query.
          *
          * @param \Illuminate\Database\Eloquent\Builder $from
@@ -16757,6 +16878,18 @@ namespace {
         {
             /** @var \Illuminate\Database\Eloquent\Builder $instance */
             return $instance->mergeConstraintsFrom($from);
+        }
+
+        /**
+         * Explains the query.
+         *
+         * @return \Illuminate\Support\Collection
+         * @static
+         */
+        public static function explain()
+        {
+            /** @var \Illuminate\Database\Eloquent\Builder $instance */
+            return $instance->explain();
         }
 
         /**
@@ -18569,6 +18702,18 @@ namespace {
         {
             /** @var \Illuminate\Database\Query\Builder $instance */
             return $instance->useWritePdo();
+        }
+
+        /**
+         * Clone the query.
+         *
+         * @return static
+         * @static
+         */
+        public static function clone()
+        {
+            /** @var \Illuminate\Database\Query\Builder $instance */
+            return $instance->clone();
         }
 
         /**
