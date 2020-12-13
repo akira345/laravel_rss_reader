@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a57698f3ed68a290f16ad4d725276ce3",
+    "content-hash": "dcbf9d25b644712c39932a6c863e77d1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -7103,16 +7103,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.60",
+            "version": "0.12.61",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "d4577922c296d28746e28a5f046e787562143157"
+                "reference": "2096111b454b018ba6edcd4852b54a78e4ccbeca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d4577922c296d28746e28a5f046e787562143157",
-                "reference": "d4577922c296d28746e28a5f046e787562143157",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/2096111b454b018ba6edcd4852b54a78e4ccbeca",
+                "reference": "2096111b454b018ba6edcd4852b54a78e4ccbeca",
                 "shasum": ""
             },
             "require": {
@@ -7143,7 +7143,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.60"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.61"
             },
             "funding": [
                 {
@@ -7159,7 +7159,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-12T13:07:07+00:00"
+            "time": "2020-12-13T10:04:03+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
