@@ -27,7 +27,7 @@
         "nunomaduro/larastan": "0.7.0",
         "phpstan/phpstan": "0.12.71",
         "phpunit/php-code-coverage": "9.2.5",
-        "phpunit/phpunit": "9.5.1"
+        "phpunit/phpunit": "9.5.2"
     },
     "autoload": {
         "psr-4": {
