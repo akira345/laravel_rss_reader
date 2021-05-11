@@ -10,22 +10,22 @@
     "require": {
         "php": "^7.3",
         "fideloper/proxy": "4.4.1",
-        "fruitcake/laravel-cors": "2.0.3",
+        "fruitcake/laravel-cors": "2.0.4",
         "guzzlehttp/guzzle": "7.3.0",
-        "laravel/framework": "8.38.0",
+        "laravel/framework": "8.41.0",
         "laravel/tinker": "2.6.1",
         "laravelcollective/html": "6.2.1",
         "willvincent/feeds": "2.2.0",
         "laravel/ui": "3.2.1"
     },
     "require-dev": {
-        "facade/ignition": "2.8.3",
+        "facade/ignition": "2.9.0",
         "barryvdh/laravel-ide-helper": "2.10.0",
         "fakerphp/faker": "1.14.1",
         "mockery/mockery": "1.4.3",
         "nunomaduro/collision": "5.4.0",
-        "nunomaduro/larastan": "0.7.4",
-        "phpstan/phpstan": "0.12.84",
+        "nunomaduro/larastan": "0.7.5",
+        "phpstan/phpstan": "0.12.86",
         "phpunit/php-code-coverage": "9.2.6",
         "phpunit/phpunit": "9.5.4"
     },
