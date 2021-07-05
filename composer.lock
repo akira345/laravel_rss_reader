@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad8b0788c2dd5c5fc859e5b956c96978",
+    "content-hash": "81261a03522524177b9e85bc12916430",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6851,16 +6851,16 @@
         },
         {
             "name": "nunomaduro/larastan",
-            "version": "v0.7.8",
+            "version": "v0.7.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/larastan.git",
-                "reference": "dc05566a2e7c53049b52223ba45689ecde691206"
+                "reference": "e14fc866fa4291788be7f62725b7261ebe45904b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/dc05566a2e7c53049b52223ba45689ecde691206",
-                "reference": "dc05566a2e7c53049b52223ba45689ecde691206",
+                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/e14fc866fa4291788be7f62725b7261ebe45904b",
+                "reference": "e14fc866fa4291788be7f62725b7261ebe45904b",
                 "shasum": ""
             },
             "require": {
@@ -6924,7 +6924,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nunomaduro/larastan/issues",
-                "source": "https://github.com/nunomaduro/larastan/tree/v0.7.8"
+                "source": "https://github.com/nunomaduro/larastan/tree/v0.7.9"
             },
             "funding": [
                 {
@@ -6944,7 +6944,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-07-02T13:17:34+00:00"
+            "time": "2021-07-05T10:22:59+00:00"
         },
         {
             "name": "phar-io/manifest",
