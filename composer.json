@@ -24,7 +24,7 @@
         "fakerphp/faker": "1.15.0",
         "mockery/mockery": "1.4.3",
         "nunomaduro/collision": "5.5.0",
-        "nunomaduro/larastan": "0.7.10",
+        "nunomaduro/larastan": "0.7.11",
         "phpstan/phpstan": "0.12.93",
         "phpunit/php-code-coverage": "9.2.6",
         "phpunit/phpunit": "9.5.7"
