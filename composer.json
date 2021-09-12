@@ -25,7 +25,7 @@
         "mockery/mockery": "1.4.3",
         "nunomaduro/collision": "5.9.0",
         "nunomaduro/larastan": "0.7.12",
-        "phpstan/phpstan": "0.12.98",
+        "phpstan/phpstan": "0.12.99",
         "phpunit/php-code-coverage": "9.2.6",
         "phpunit/phpunit": "9.5.9"
     },
