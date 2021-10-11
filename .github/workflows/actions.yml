@@ -56,8 +56,6 @@ jobs:
         run: php artisan migrate --seed
       - name: runTest
         run: ./vendor/bin/phpunit --coverage-clover clover.xml
-      - name: test
-        run: ls -lah
       - uses: codecov/codecov-action@v2
         with:
           files: ./clover.xml
