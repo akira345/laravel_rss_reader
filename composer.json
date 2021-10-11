@@ -8,11 +8,12 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.3",
+        "php": "^7.3|^8.0",
         "fideloper/proxy": "4.4.1",
         "fruitcake/laravel-cors": "2.0.4",
         "guzzlehttp/guzzle": "7.3.0",
         "laravel/framework": "8.63.0",
+        "laravel/sanctum": "^2.11",
         "laravel/tinker": "2.6.2",
         "laravelcollective/html": "6.2.1",
         "willvincent/feeds": "2.2.0",
@@ -22,6 +23,7 @@
         "facade/ignition": "2.14.1",
         "barryvdh/laravel-ide-helper": "2.10.0",
         "fakerphp/faker": "1.16.0",
+        "laravel/sail": "^1.0.1",
         "mockery/mockery": "1.4.4",
         "nunomaduro/collision": "5.10.0",
         "nunomaduro/larastan": "0.7.12",
@@ -41,27 +43,30 @@
             "Tests\\": "tests/"
         }
     },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
-    },
     "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi"
+        ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ],
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
         ]
     },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
     "config": {
+        "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true,
-        "optimize-autoloader": true
+        "sort-packages": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true
