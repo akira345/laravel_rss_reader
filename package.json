@@ -17,7 +17,7 @@
         "lodash": "4.17.21",
         "@popperjs/core": "2.10.2",
         "postcss": "8.3.9",
-        "sass": "1.42.1",
+        "sass": "1.43.2",
         "sass-loader": "12.2.0",
         "webpack": "5.58.2"
     }
