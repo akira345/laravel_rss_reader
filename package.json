@@ -19,6 +19,6 @@
         "postcss": "8.3.10",
         "sass": "1.43.2",
         "sass-loader": "12.2.0",
-        "webpack": "5.59.0"
+        "webpack": "5.59.1"
     }
 }
