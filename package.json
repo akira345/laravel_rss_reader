@@ -16,7 +16,7 @@
         "laravel-mix": "6.0.34",
         "lodash": "4.17.21",
         "@popperjs/core": "2.10.2",
-        "postcss": "8.3.10",
+        "postcss": "8.3.11",
         "sass": "1.43.2",
         "sass-loader": "12.2.0",
         "webpack": "5.59.1"
