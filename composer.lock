@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d4cf7d91e14955a0732d403b9fc54fbd",
+    "content-hash": "0245a625796791b9af8ca45214423a76",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5919,12 +5919,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "81ad4e7e58270afbc38e5fbd26edb45b884a2bfa"
+                "reference": "3645d3042c1ee531deda178cbcc5b3fe9ee0181b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/81ad4e7e58270afbc38e5fbd26edb45b884a2bfa",
-                "reference": "81ad4e7e58270afbc38e5fbd26edb45b884a2bfa",
+                "url": "https://api.github.com/repos/composer/composer/zipball/3645d3042c1ee531deda178cbcc5b3fe9ee0181b",
+                "reference": "3645d3042c1ee531deda178cbcc5b3fe9ee0181b",
                 "shasum": ""
             },
             "require": {
@@ -6010,7 +6010,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-25T12:16:20+00:00"
+            "time": "2021-10-26T10:40:52+00:00"
         },
         {
             "name": "composer/metadata-minifier",
@@ -7463,16 +7463,16 @@
         },
         {
             "name": "nunomaduro/larastan",
-            "version": "v0.7.14",
+            "version": "v0.7.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/larastan.git",
-                "reference": "af14aa59e1ef791df12329de09a4ff99eceb9af2"
+                "reference": "fffd371277aeca7951a841818d21f1015a0a2662"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/af14aa59e1ef791df12329de09a4ff99eceb9af2",
-                "reference": "af14aa59e1ef791df12329de09a4ff99eceb9af2",
+                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/fffd371277aeca7951a841818d21f1015a0a2662",
+                "reference": "fffd371277aeca7951a841818d21f1015a0a2662",
                 "shasum": ""
             },
             "require": {
@@ -7537,7 +7537,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nunomaduro/larastan/issues",
-                "source": "https://github.com/nunomaduro/larastan/tree/v0.7.14"
+                "source": "https://github.com/nunomaduro/larastan/tree/v0.7.15"
             },
             "funding": [
                 {
@@ -7557,7 +7557,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-10-25T15:56:03+00:00"
+            "time": "2021-10-26T11:07:56+00:00"
         },
         {
             "name": "phar-io/manifest",
