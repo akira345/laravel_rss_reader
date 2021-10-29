@@ -3243,10 +3243,10 @@ klona@^2.0.4:
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.4.tgz#7bb1e3affb0cb8624547ef7e8f6708ea2e39dfc0"
   integrity sha512-ZRbnvdg/NxqzC7L9Uyqzf4psi1OM4Cuc+sJAkQPjO6XkQIJTNbfK2Rsmbw8fx1p2mkZdp2FZYo2+LwXYY/uwIA==
 
-laravel-mix@6.0.35:
-  version "6.0.35"
-  resolved "https://registry.yarnpkg.com/laravel-mix/-/laravel-mix-6.0.35.tgz#d9d0aea9e23073cbeba7d054ecd0e688780774f9"
-  integrity sha512-DGb/0IHqBphtgkQ/ej5BMqBxdPkk0uyB7itRckigOVKi/BDA+24YPH3ntZnEj05r0nw6nR3rbyC64U17m6henQ==
+laravel-mix@6.0.36:
+  version "6.0.36"
+  resolved "https://registry.yarnpkg.com/laravel-mix/-/laravel-mix-6.0.36.tgz#6a0309b76c93c15e6b4b18bac3457801ad3b9d71"
+  integrity sha512-4SXZnMgMW/zyLrBXsybx69e5oFB3bSLNwwOz9rv0G+PaoSG90eNz7HwRrzD+xxsoQI8q6f8DOBpIJ4EHEviapQ==
   dependencies:
     "@babel/core" "^7.14.5"
     "@babel/plugin-proposal-object-rest-spread" "^7.14.5"
