@@ -21,7 +21,7 @@
         "jquery": "3.6.0",
         "laravel-mix": "6.0.39",
         "lodash": "4.17.21",
-        "postcss": "8.4.4",
+        "postcss": "8.4.5",
         "sass": "1.45.0",
         "sass-loader": "12.4.0",
         "webpack": "5.65.0",
