@@ -19,7 +19,7 @@
         "laravel/ui": "3.4.0"
     },
     "require-dev": {
-        "facade/ignition": "2.17.2",
+        "facade/ignition": "2.17.4",
         "barryvdh/laravel-ide-helper": "2.10.0",
         "fakerphp/faker": "1.17.0",
         "mockery/mockery": "1.4.4",
