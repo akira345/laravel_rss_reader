@@ -12,14 +12,14 @@
         "fideloper/proxy": "4.4.1",
         "fruitcake/laravel-cors": "2.0.4",
         "guzzlehttp/guzzle": "7.4.1",
-        "laravel/framework": "8.75.0",
+        "laravel/framework": "8.77.1",
         "laravel/tinker": "2.6.3",
         "laravelcollective/html": "6.2.1",
         "willvincent/feeds": "2.2.0",
-        "laravel/ui": "3.4.0"
+        "laravel/ui": "3.4.1"
     },
     "require-dev": {
-        "facade/ignition": "2.17.2",
+        "facade/ignition": "2.17.4",
         "barryvdh/laravel-ide-helper": "2.10.0",
         "fakerphp/faker": "1.17.0",
         "mockery/mockery": "1.4.4",
@@ -27,7 +27,7 @@
         "nunomaduro/larastan": "1.0.1",
         "phpstan/phpstan": "1.1.2",
         "phpunit/php-code-coverage": "9.2.10",
-        "phpunit/phpunit": "9.5.10"
+        "phpunit/phpunit": "9.5.11"
     },
     "autoload": {
         "psr-4": {
