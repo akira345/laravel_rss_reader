@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "63a14dd7e8ca59a2b27d6a28fff3d717",
+    "content-hash": "0882a7bf3637b065a46b4adc629044f6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1019,16 +1019,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.80.0",
+            "version": "v8.83.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "8949a2e46b0f274f39c61eee8d5de1dc6a1f686b"
+                "reference": "29bc8779103909ebc428478b339ee6fa8703e193"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/8949a2e46b0f274f39c61eee8d5de1dc6a1f686b",
-                "reference": "8949a2e46b0f274f39c61eee8d5de1dc6a1f686b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/29bc8779103909ebc428478b339ee6fa8703e193",
+                "reference": "29bc8779103909ebc428478b339ee6fa8703e193",
                 "shasum": ""
             },
             "require": {
@@ -1061,7 +1061,7 @@
                 "symfony/var-dumper": "^5.4",
                 "tijsverkoyen/css-to-inline-styles": "^2.2.2",
                 "vlucas/phpdotenv": "^5.4.1",
-                "voku/portable-ascii": "^1.4.8"
+                "voku/portable-ascii": "^1.6.1"
             },
             "conflict": {
                 "tightenco/collect": "<5.5.33"
@@ -1188,7 +1188,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-01-18T15:51:42+00:00"
+            "time": "2022-02-08T15:44:51+00:00"
         },
         {
             "name": "laravel/serializable-closure",
