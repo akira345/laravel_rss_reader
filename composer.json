@@ -20,7 +20,7 @@
     },
     "require-dev": {
         "facade/ignition": "2.17.5",
-        "barryvdh/laravel-ide-helper": "2.12.2",
+        "barryvdh/laravel-ide-helper": "2.12.3",
         "fakerphp/faker": "1.19.0",
         "mockery/mockery": "1.5.0",
         "nunomaduro/collision": "5.11.0",
