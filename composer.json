@@ -15,7 +15,7 @@
         "laravel/framework": "8.83.4",
         "laravel/tinker": "2.7.0",
         "laravelcollective/html": "6.3.0",
-        "willvincent/feeds": "2.2.0",
+        "willvincent/feeds": "2.3.0",
         "laravel/ui": "3.4.5"
     },
     "require-dev": {
