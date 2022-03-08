@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "02181f696f2a88e7b2c98294cac47d6d",
+    "content-hash": "839fbaea969ef8b77f2b8bcd19bb9963",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5587,21 +5587,21 @@
         },
         {
             "name": "willvincent/feeds",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willvincent/feeds.git",
-                "reference": "1093d06cd6626aabe31e75d6d8a835846064f27c"
+                "reference": "ac46ca2b3337a12846c71afab970d947de0ff32c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willvincent/feeds/zipball/1093d06cd6626aabe31e75d6d8a835846064f27c",
-                "reference": "1093d06cd6626aabe31e75d6d8a835846064f27c",
+                "url": "https://api.github.com/repos/willvincent/feeds/zipball/ac46ca2b3337a12846c71afab970d947de0ff32c",
+                "reference": "ac46ca2b3337a12846c71afab970d947de0ff32c",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "illuminate/support": "~5.0 || ^6.0 || ^7.0 || ^8.0",
+                "illuminate/support": "~5.0 || ^6.0 || ^7.0 || ^8.0|^9.0",
                 "php": ">=5.4.0 || ^7.2",
                 "simplepie/simplepie": "1.5.*"
             },
@@ -5634,9 +5634,9 @@
             "description": "Laravel 5 Service Provider for the SimplePie library",
             "support": {
                 "issues": "https://github.com/willvincent/feeds/issues",
-                "source": "https://github.com/willvincent/feeds/tree/v2.2.0"
+                "source": "https://github.com/willvincent/feeds/tree/v2.3.0"
             },
-            "time": "2020-09-14T15:37:36+00:00"
+            "time": "2022-03-08T17:42:52+00:00"
         }
     ],
     "packages-dev": [
