@@ -44,7 +44,7 @@ jobs:
         run: cp .env.github .env
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 14
           cache: yarn
