@@ -7,9 +7,7 @@ use App\User;
 use Auth;
 use Hash;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Notification;
-use App\Auth\Notifications\ResetPassword;
 use App\Notifications\CustomPasswordReset;
 
 //ログイン、ログアウト、パスワードリセット、ログイン履歴テスト

@@ -4,13 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\User;
-use Auth;
-use Hash;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Notification;
-use App\Auth\Notifications\ResetPassword;
-use App\Notifications\CustomPasswordReset;
 
 //RSSカテゴリ登録回りのテスト
 class RssCategoryListTest extends TestCase
