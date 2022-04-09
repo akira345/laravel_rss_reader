@@ -59,7 +59,9 @@ jobs:
         run: yarn install
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --no-suggest
-      - name: change permission
+      - name: install latest version for chromium driver
+        run: php artisan dusk:chrome-driver
+      - name: change permission for chromium driver
         run: chmod 755 vendor/laravel/dusk/bin/*
       - name: Generate key
         run: php artisan key:generate
@@ -70,7 +72,7 @@ jobs:
       - name: migrate
         run: php artisan migrate --seed
       - name: E2E Test
-        run: php artisan dusk:chrome-driver && php artisan dusk
+        run:  php artisan dusk
       - name: runTest
         run: ./vendor/bin/phpunit --coverage-clover clover.xml
       - uses: codecov/codecov-action@v3
