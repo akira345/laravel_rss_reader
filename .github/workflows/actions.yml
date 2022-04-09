@@ -71,6 +71,8 @@ jobs:
         run: php artisan view:cache
       - name: migrate
         run: php artisan migrate --seed
+      - name: Run Laravel Server
+        run: php artisan serve > /dev/null 2>&1 &
       - name: E2E Test
         run:  php artisan dusk
       - name: runTest
