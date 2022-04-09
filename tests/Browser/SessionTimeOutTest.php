@@ -21,7 +21,7 @@ class SessionTimeOutTest extends DuskTestCase
         $user = User::factory()->create([
             'password'  => bcrypt('test1111')
         ]);
-
+        print_r($user);
         // ログイン
         $this->browse(function ($browser) use ($user) {
             $browser->visit('/login')
@@ -38,8 +38,8 @@ class SessionTimeOutTest extends DuskTestCase
             $browser->screenshot('entry');
             $browser->driver->manage()->deleteAllCookies();
             $browser->press('登録')
-                    ->assertPathIs('/login');
-                    $browser->screenshot('exit');
+                    ->assertPathIs('/home');
+            $browser->screenshot('exit');
         });
     }
 }
