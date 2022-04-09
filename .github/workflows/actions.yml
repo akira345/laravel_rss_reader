@@ -9,6 +9,9 @@ on:
     branches:
       - main
       - master
+env:
+  LC_ALL: "ja_JP.UTF-8"
+  TZ: "Asia/Tokyo"
 
 jobs:
   test:
@@ -33,6 +36,10 @@ jobs:
       memcached:
         image: memcached:latest
     steps:
+      - name: install packages
+        run: apt-get update && apt-get install -y apt-utils locales fonts-ipafont libnss3 libx11-6 libnss3-dev libasound2-data  libasound2 xdg-utils chromium
+      - name: Setup Japanese locale
+        run: echo "ja_JP.UTF-8 UTF-8" > /etc/locale.gen && locale-gen ja_JP.UTF-8
       - uses: actions/checkout@v3
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -52,6 +59,8 @@ jobs:
         run: yarn install
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --no-suggest
+      - name: change permission
+        run: chmod 755 vendor/laravel/dusk/bin/*
       - name: Generate key
         run: php artisan key:generate
       - name: clear view
@@ -60,6 +69,8 @@ jobs:
         run: php artisan view:cache
       - name: migrate
         run: php artisan migrate --seed
+      - name: E2E Test
+        run: php artisan dusk
       - name: runTest
         run: ./vendor/bin/phpunit --coverage-clover clover.xml
       - uses: codecov/codecov-action@v3
