@@ -9,7 +9,7 @@ use App\User;
 class SessionTimeOutTest extends DuskTestCase
 {
     // DBマイグレーション
-    //use DatabaseMigrations;
+    use DatabaseMigrations;
     /**
      * セッションタイムアウト時リダイレクトされるか？
      *
