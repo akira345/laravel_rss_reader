@@ -37,7 +37,7 @@ abstract class DuskTestCase extends BaseTestCase
             return $items->merge([
                 '--disable-gpu',
                 '--headless',
-                //'--no-sandbox', // Dockerで動かすのに追加
+                '--no-sandbox', // Dockerで動かすのに追加
             ]);
         })->all());
 
