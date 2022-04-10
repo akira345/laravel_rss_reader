@@ -27,6 +27,7 @@ class SessionTimeOutTest extends DuskTestCase
             $browser->visit('/login')
                     ->type('email', $user->email)
                     ->type('password', 'test1111')
+                    ->screenshot('beforeLogin')
                     ->press('ログイン')
                     ->assertPathIs('/home');
             $browser->screenshot('login');
