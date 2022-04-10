@@ -24,7 +24,7 @@ class SessionTimeOutTest extends DuskTestCase
         // ユーザ登録
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/register')
-                    ->type('mame', 'test@example.com')
+                    ->type('name', 'test@example.com')
                     ->type('email','test@example.com')
                     ->type('password', 'test1111')
                     ->type('password_confirmation','test1111')
@@ -34,7 +34,7 @@ class SessionTimeOutTest extends DuskTestCase
                     ->assertPathIs('/home');
             $browser->screenshot('login');
         });
-
+/*
         // ログイン
         $this->browse(function (Browser $browser) use ($user) {
             $browser->visit('/login')
@@ -46,6 +46,7 @@ class SessionTimeOutTest extends DuskTestCase
                     ->assertPathIs('/home');
             $browser->screenshot('login');
         });
+*/
         // カテゴリを登録
         $this->browse(function (Browser $browser){
             $browser->visit('/category/create')
