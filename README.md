@@ -92,3 +92,8 @@
     ```
     * * * * * php /<インストールしたディレクトリ>/laravel_rss_reader/artisan schedule:run >> /dev/null 2>&1
     ```
+---
+
+テストについて
+
+ローカルでテストを実行する場合、 `.env` の `APP_ENV` を `testing` に変更しないと、 `Received Mockery_1_Illuminate_Console_OutputStyle::askQuestion(), but no expectations were specified` のエラーが出ます。
