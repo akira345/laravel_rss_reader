@@ -27,7 +27,7 @@ class SessionTimeOutTest extends DuskTestCase
                     ->type('name', 'test@example.com')
                     ->type('email','test@example.com')
                     ->type('password', 'test1111')
-                    ->type('password_confirmation','test2222')
+                    ->type('password_confirmation','test1111')
                     ->screenshot('beforeLogin')
                     ->click('@register_button')
                     ->screenshot('afterLogin')
