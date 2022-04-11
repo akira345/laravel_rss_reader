@@ -23,15 +23,15 @@ class SessionTimeOutTest extends DuskTestCase
         ]);
         // ユーザ登録
         $this->browse(function (Browser $browser) use ($user) {
-            $browser->visit('/register')
-                    ->type('name', 'test@example.com')
-                    ->type('email','test@example.com')
-                    ->type('password', 'test1111')
-                    ->type('password_confirmation','test1111')
-                    ->screenshot('beforeLogin')
-                    ->click('@register_button')
-                    ->screenshot('afterLogin')
-                    ->assertPathIs('/home');
+            $browser->visit('/register');
+            $browser->type('name', 'test@example.com');
+            $browser->type('email','test@example.com');
+            $browser->type('password', 'test1111');
+            $browser->type('password_confirmation','test1111');
+            $browser->screenshot('beforeLogin');
+            $browser->click('@register_button');
+            $browser->screenshot('afterLogin');
+            $browser->assertPathIs('/home');
             $browser->screenshot('login');
         });
 /*
