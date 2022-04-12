@@ -30,6 +30,7 @@ class SessionTimeOutTest extends DuskTestCase
             $browser->type('password_confirmation','test1111');
             $browser->screenshot('beforeLogin');
             $browser->click('@register_button');
+            $browser->pause(1000);
             $browser->screenshot('afterLogin');
             $browser->assertPathIs('/home');
             $browser->screenshot('login');
