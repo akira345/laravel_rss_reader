@@ -76,7 +76,7 @@ jobs:
       - name: Run Laravel Server
         run: php artisan serve --no-reload &
       - name: E2E Test
-        run:  php artisan dusk
+        run:  php artisan dusk --env github
       - name: Upload Screenshots
         if: failure()
         uses: actions/upload-artifact@v2
