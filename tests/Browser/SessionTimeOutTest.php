@@ -46,7 +46,7 @@ class SessionTimeOutTest extends DuskTestCase
                     ->assertPathIs('/home');
             $browser->screenshot('login');
         });
-*/
+
         // カテゴリを登録
         $this->browse(function (Browser $browser){
             $browser->visit('/category/create')
@@ -57,5 +57,6 @@ class SessionTimeOutTest extends DuskTestCase
                     ->assertPathIs('/login');
                     $browser->screenshot('exit');
         });
+*/
     }
 }
