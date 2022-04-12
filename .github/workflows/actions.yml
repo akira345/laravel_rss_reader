@@ -75,8 +75,10 @@ jobs:
         run: php artisan migrate --seed
       - name: Run Laravel Server
         run: php artisan serve --no-reload &
+      - name: Clear config cache
+        run: php artisan config:clear
       - name: E2E Test
-        run:  php artisan dusk --env github
+        run:  php artisan dusk
       - name: Upload Screenshots
         if: failure()
         uses: actions/upload-artifact@v2
