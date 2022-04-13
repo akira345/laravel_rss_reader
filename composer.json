@@ -19,9 +19,10 @@
         "laravel/ui": "3.4.5"
     },
     "require-dev": {
-        "facade/ignition": "2.17.5",
         "barryvdh/laravel-ide-helper": "2.12.3",
+        "facade/ignition": "2.17.5",
         "fakerphp/faker": "1.19.0",
+        "laravel/dusk": "^6.23",
         "mockery/mockery": "1.5.0",
         "nunomaduro/collision": "5.11.0",
         "nunomaduro/larastan": "1.0.3",
@@ -47,6 +48,10 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:models",
+            "@php artisan ide-helper:meta",
             "@php artisan vendor:publish --tag=laravel-assets --ansi"
         ],
         "post-root-package-install": [
