@@ -12,7 +12,7 @@
         "fideloper/proxy": "4.4.1",
         "fruitcake/laravel-cors": "3.0.0",
         "guzzlehttp/guzzle": "7.4.2",
-        "laravel/framework": "8.83.8",
+        "laravel/framework": "8.83.9",
         "laravel/tinker": "2.7.2",
         "laravelcollective/html": "6.3.0",
         "willvincent/feeds": "2.3.0",
