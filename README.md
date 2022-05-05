@@ -9,8 +9,7 @@
 
 動作環境
 
--   laravel 8.0.0 以上
--   PostgreSQL 10、11
+-   PostgreSQL 13 または MySQL 8.0
 -   Memcached 1.5.6
 -   PHP 8.1 以上
 
