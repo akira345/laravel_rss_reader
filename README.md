@@ -12,7 +12,7 @@
 -   laravel 8.0.0 以上
 -   PostgreSQL 10、11
 -   Memcached 1.5.6
--   PHP 7.3 以上
+-   PHP 8.1 以上
 
 ---
 
