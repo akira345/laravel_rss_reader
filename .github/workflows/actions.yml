@@ -37,7 +37,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4.3'
+          php-version: '8.1.2'
           extensions: mbstring, opcache, memcached
           ini-values: date.timezone = "Asia/Tokyo",mbstring.internal_encoding = "UTF-8",mbstring.language = "Japanese",opcache.memory_consumption=128,opcache.interned_strings_buffer=8,opcache.max_accelerated_files=4000,opcache.revalidate_freq=2,opcache.fast_shutdown=1,opcache.enable_cli=1
       - name: Copy environment file
@@ -46,7 +46,7 @@ jobs:
         run: chmod -R 777 storage bootstrap/cache
       - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
           cache: yarn
       - name: Install
         run: yarn install
