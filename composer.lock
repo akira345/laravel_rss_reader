@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c387e6722c28431eaa3601410d35eb6",
+    "content-hash": "a83104c7716fff33054f09a1f35fe4bb",
     "packages": [
         {
             "name": "brick/math",
@@ -1032,16 +1032,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.83.12",
+            "version": "v8.83.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2af2314989845db68dfbb65a54b8748ffaf26204"
+                "reference": "1eed68ec70c98d1a7a6f0fcedbea10cb6dd69a20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2af2314989845db68dfbb65a54b8748ffaf26204",
-                "reference": "2af2314989845db68dfbb65a54b8748ffaf26204",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1eed68ec70c98d1a7a6f0fcedbea10cb6dd69a20",
+                "reference": "1eed68ec70c98d1a7a6f0fcedbea10cb6dd69a20",
                 "shasum": ""
             },
             "require": {
@@ -1201,7 +1201,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-05-10T13:57:07+00:00"
+            "time": "2022-05-17T14:08:01+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -1465,16 +1465,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "32a49eb2b38fe5e5c417ab748a45d0beaab97955"
+                "reference": "cb36fee279f7fca01d5d9399ddd1b37e48e2eca1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/32a49eb2b38fe5e5c417ab748a45d0beaab97955",
-                "reference": "32a49eb2b38fe5e5c417ab748a45d0beaab97955",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/cb36fee279f7fca01d5d9399ddd1b37e48e2eca1",
+                "reference": "cb36fee279f7fca01d5d9399ddd1b37e48e2eca1",
                 "shasum": ""
             },
             "require": {
@@ -1567,7 +1567,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-04-07T22:37:05+00:00"
+            "time": "2022-05-14T15:37:39+00:00"
         },
         {
             "name": "league/config",
