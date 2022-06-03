@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55f5619bc1b0ea0517e31fc417eced95",
+    "content-hash": "2bf4025bfb5ebb1e36e97f85632ef6a2",
     "packages": [
         {
             "name": "brick/math",
@@ -6459,16 +6459,16 @@
         },
         {
             "name": "nunomaduro/larastan",
-            "version": "v2.1.6",
+            "version": "v2.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/larastan.git",
-                "reference": "d0d5114e757f516bb2a2679ee03b7102db61d587"
+                "reference": "086b665d173f65166b61f786210c180308294554"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/d0d5114e757f516bb2a2679ee03b7102db61d587",
-                "reference": "d0d5114e757f516bb2a2679ee03b7102db61d587",
+                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/086b665d173f65166b61f786210c180308294554",
+                "reference": "086b665d173f65166b61f786210c180308294554",
                 "shasum": ""
             },
             "require": {
@@ -6484,7 +6484,7 @@
                 "mockery/mockery": "^1.4.4",
                 "php": "^8.0.2",
                 "phpmyadmin/sql-parser": "^5.5",
-                "phpstan/phpstan": "^1.7.0"
+                "phpstan/phpstan": "^1.7.10"
             },
             "require-dev": {
                 "nikic/php-parser": "^4.13.2",
@@ -6533,7 +6533,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nunomaduro/larastan/issues",
-                "source": "https://github.com/nunomaduro/larastan/tree/v2.1.6"
+                "source": "https://github.com/nunomaduro/larastan/tree/v2.1.7"
             },
             "funding": [
                 {
@@ -6553,7 +6553,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-05-23T20:17:50+00:00"
+            "time": "2022-06-03T14:29:57+00:00"
         },
         {
             "name": "phar-io/manifest",
