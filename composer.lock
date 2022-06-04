@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bf4025bfb5ebb1e36e97f85632ef6a2",
+    "content-hash": "1c93165c1e63b6a76b634c03ee1209e2",
     "packages": [
         {
             "name": "brick/math",
@@ -6459,16 +6459,16 @@
         },
         {
             "name": "nunomaduro/larastan",
-            "version": "v2.1.7",
+            "version": "v2.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/larastan.git",
-                "reference": "086b665d173f65166b61f786210c180308294554"
+                "reference": "2a0b2dade387bc19bdf070650c1ba1e035c709da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/086b665d173f65166b61f786210c180308294554",
-                "reference": "086b665d173f65166b61f786210c180308294554",
+                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/2a0b2dade387bc19bdf070650c1ba1e035c709da",
+                "reference": "2a0b2dade387bc19bdf070650c1ba1e035c709da",
                 "shasum": ""
             },
             "require": {
@@ -6533,7 +6533,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nunomaduro/larastan/issues",
-                "source": "https://github.com/nunomaduro/larastan/tree/v2.1.7"
+                "source": "https://github.com/nunomaduro/larastan/tree/v2.1.8"
             },
             "funding": [
                 {
@@ -6553,7 +6553,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-06-03T14:29:57+00:00"
+            "time": "2022-06-04T14:21:33+00:00"
         },
         {
             "name": "phar-io/manifest",
