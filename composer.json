@@ -18,7 +18,7 @@
         "laravel/ui": "3.4.6"
     },
     "require-dev": {
-        "spatie/laravel-ignition": "^1.0",
+        "spatie/laravel-ignition": "1.2.4",
         "barryvdh/laravel-ide-helper": "2.12.3",
         "fakerphp/faker": "1.19.0",
         "mockery/mockery": "1.5.0",
