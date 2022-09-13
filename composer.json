@@ -15,7 +15,7 @@
         "laravel/tinker": "2.7.2",
         "laravelcollective/html": "6.3.0",
         "willvincent/feeds": "2.3.0",
-        "laravel/ui": "4.0.1"
+        "laravel/ui": "4.0.2"
     },
     "require-dev": {
         "spatie/laravel-ignition": "1.4.1",
