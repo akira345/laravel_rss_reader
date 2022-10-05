@@ -9,6 +9,8 @@ on:
     branches:
       - main
       - master
+env:
+  NODE_OPTIONS: '--max-old-space-size=4096'
 
 jobs:
   test:
@@ -50,8 +52,6 @@ jobs:
           cache: yarn
       - name: Install
         run: yarn install
-        env:
-          NODE_OPTIONS: '--max-old-space-size=4096'
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --no-suggest
       - name: Generate key
