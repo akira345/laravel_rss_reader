@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bbaaa2c9b1e3f7fe5d67adcedf281c85",
+    "content-hash": "f807967b35018f45a96592bb629cd7cd",
     "packages": [
         {
             "name": "brick/math",
@@ -6680,20 +6680,19 @@
         },
         {
             "name": "nunomaduro/larastan",
-            "version": "2.2.5",
+            "version": "2.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/larastan.git",
-                "reference": "42ee94bc30f3501a1d01a47222b49c1fbb54a316"
+                "reference": "af9398796e252262ddac3e55f41d2433fcbb4641"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/42ee94bc30f3501a1d01a47222b49c1fbb54a316",
-                "reference": "42ee94bc30f3501a1d01a47222b49c1fbb54a316",
+                "url": "https://api.github.com/repos/nunomaduro/larastan/zipball/af9398796e252262ddac3e55f41d2433fcbb4641",
+                "reference": "af9398796e252262ddac3e55f41d2433fcbb4641",
                 "shasum": ""
             },
             "require": {
-                "composer/pcre": "^3.0",
                 "ext-json": "*",
                 "illuminate/console": "^9",
                 "illuminate/container": "^9",
@@ -6754,7 +6753,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nunomaduro/larastan/issues",
-                "source": "https://github.com/nunomaduro/larastan/tree/2.2.5"
+                "source": "https://github.com/nunomaduro/larastan/tree/2.2.6"
             },
             "funding": [
                 {
@@ -6774,7 +6773,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-10-18T10:13:18+00:00"
+            "time": "2022-10-24T10:31:11+00:00"
         },
         {
             "name": "phar-io/manifest",
