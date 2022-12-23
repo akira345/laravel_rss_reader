@@ -22,7 +22,7 @@
         "barryvdh/laravel-ide-helper": "2.12.3",
         "fakerphp/faker": "1.21.0",
         "mockery/mockery": "1.5.1",
-        "nunomaduro/collision": "6.3.1",
+        "nunomaduro/collision": "6.3.2",
         "nunomaduro/larastan": "2.3.1",
         "phpstan/phpstan": "1.9.4",
         "phpunit/php-code-coverage": "9.2.22",
