@@ -18,7 +18,7 @@ jobs:
     runs-on: "ubuntu-latest"
     services:
       postgres:
-        image: akira345/postgres13-ja_jp-locale:latest
+        image: akira345/postgres15-ja_jp-locale:latest
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
@@ -39,7 +39,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1.2'
+          php-version: '8.2.0'
           extensions: mbstring, opcache, memcached
           ini-values: date.timezone = "Asia/Tokyo",mbstring.internal_encoding = "UTF-8",mbstring.language = "Japanese",opcache.memory_consumption=128,opcache.interned_strings_buffer=8,opcache.max_accelerated_files=4000,opcache.revalidate_freq=2,opcache.fast_shutdown=1,opcache.enable_cli=1
       - name: Copy environment file
@@ -48,7 +48,7 @@ jobs:
         run: chmod -R 777 storage bootstrap/cache
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: yarn
       - name: Install
         run: yarn install
