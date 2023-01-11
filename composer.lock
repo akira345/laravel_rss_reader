@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b8d749d8312f5e860a6c094b6561503b",
+    "content-hash": "32fb918fa4a8622269c39fddc2f3a6ad",
     "packages": [
         {
             "name": "brick/math",
@@ -1337,27 +1337,27 @@
         },
         {
             "name": "laravel/ui",
-            "version": "v4.1.1",
+            "version": "v4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/ui.git",
-                "reference": "ac94e596ffd39c63cfa41f5407b765b07df97483"
+                "reference": "810adddcf4e2538b0d1ed470c3a5220ffe761370"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/ui/zipball/ac94e596ffd39c63cfa41f5407b765b07df97483",
-                "reference": "ac94e596ffd39c63cfa41f5407b765b07df97483",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/810adddcf4e2538b0d1ed470c3a5220ffe761370",
+                "reference": "810adddcf4e2538b0d1ed470c3a5220ffe761370",
                 "shasum": ""
             },
             "require": {
-                "illuminate/console": "^9.21",
-                "illuminate/filesystem": "^9.21",
-                "illuminate/support": "^9.21",
-                "illuminate/validation": "^9.21",
+                "illuminate/console": "^9.21|^10.0",
+                "illuminate/filesystem": "^9.21|^10.0",
+                "illuminate/support": "^9.21|^10.0",
+                "illuminate/validation": "^9.21|^10.0",
                 "php": "^8.0"
             },
             "require-dev": {
-                "orchestra/testbench": "^7.0"
+                "orchestra/testbench": "^7.0|^8.0"
             },
             "type": "library",
             "extra": {
@@ -1392,9 +1392,9 @@
                 "ui"
             ],
             "support": {
-                "source": "https://github.com/laravel/ui/tree/v4.1.1"
+                "source": "https://github.com/laravel/ui/tree/v4.2.0"
             },
-            "time": "2022-12-05T15:09:21+00:00"
+            "time": "2023-01-10T12:13:29+00:00"
         },
         {
             "name": "laravelcollective/html",
