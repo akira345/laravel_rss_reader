@@ -25,7 +25,7 @@
         "nunomaduro/collision": "6.4.0",
         "nunomaduro/larastan": "2.4.0",
         "phpstan/phpstan": "1.9.14",
-        "phpunit/php-code-coverage": "9.2.23",
+        "phpunit/php-code-coverage": "9.2.24",
         "phpunit/phpunit": "9.5.28"
     },
     "autoload": {
