@@ -13,7 +13,7 @@
         "guzzlehttp/guzzle": "7.5.0",
         "laravel/framework": "9.51.0",
         "laravel/tinker": "2.8.0",
-        "laravelcollective/html": "6.3.0",
+        "laravelcollective/html": "6.4.0",
         "willvincent/feeds": "2.4.0",
         "laravel/ui": "4.2.0"
     },
