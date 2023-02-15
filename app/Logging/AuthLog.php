@@ -18,8 +18,8 @@ class AuthLog extends LogDriverAbstract
      */
     public function __invoke(array $config)
     {
-        // StreamHandler を生成
-        $handler = $this->prepareHandler(
+        // formattableHandler を生成
+        $formattableHandler = $this->prepareHandler(
             new RotatingFileHandler(
                 $config['path'],
                 $config['days'] ?? 7,
@@ -33,8 +33,8 @@ class AuthLog extends LogDriverAbstract
         // ログに出力するフォーマット
         $format = '[%datetime% %channel%.%level_name%] %message% [%context%] [ip:%extra.ip% agent:%extra.agent% hostname:%extra.hostname%]' . PHP_EOL;
 
-        // StreamHandler にフォーマッタをセット
-        $handler->setFormatter(
+        // formattableHandler にフォーマッタをセット
+        $formattableHandler->setFormatter(
             tap(new LineFormatter($format, null, true, true), function ($formatter) {
             })
         );
@@ -42,7 +42,7 @@ class AuthLog extends LogDriverAbstract
         // Monolog のインスタンスを生成して返す
         $log = new Logger($this->parseChannel($config), [
             new FingersCrossedHandler(
-                $handler,
+                $formattableHandler,
                 $config['activation'] ?? null,
                 0,
                 true,

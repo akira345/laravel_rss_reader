@@ -39,7 +39,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1.13'
+          php-version: '8.2.2'
           extensions: mbstring, opcache, memcached
           ini-values: date.timezone = "Asia/Tokyo",mbstring.internal_encoding = "UTF-8",mbstring.language = "Japanese",opcache.memory_consumption=128,opcache.interned_strings_buffer=8,opcache.max_accelerated_files=4000,opcache.revalidate_freq=2,opcache.fast_shutdown=1,opcache.enable_cli=1
       - name: Copy environment file

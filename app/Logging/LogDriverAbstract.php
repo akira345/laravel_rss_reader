@@ -6,8 +6,8 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\FormattableHandlerInterface;
-use Monolog\Logger as Monolog;
 use Psr\Log\LoggerInterface;
+use Monolog\Level;
 
 abstract class LogDriverAbstract
 {
@@ -17,14 +17,14 @@ abstract class LogDriverAbstract
      * @var array
      */
     protected $levels = [
-        'debug'     => Monolog::DEBUG,
-        'info'      => Monolog::INFO,
-        'notice'    => Monolog::NOTICE,
-        'warning'   => Monolog::WARNING,
-        'error'     => Monolog::ERROR,
-        'critical'  => Monolog::CRITICAL,
-        'alert'     => Monolog::ALERT,
-        'emergency' => Monolog::EMERGENCY,
+        'debug'     => Level::Debug,
+        'info'      => Level::Info,
+        'notice'    => Level::Notice,
+        'warning'   => Level::Warning,
+        'error'     => Level::Error,
+        'critical'  => Level::Critical,
+        'alert'     => Level::Alert,
+        'emergency' => Level::Emergency,
     ];
 
     /**

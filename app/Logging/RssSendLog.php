@@ -7,6 +7,7 @@ use Monolog\Handler\RotatingFileHandler;
 use Monolog\Handler\FingersCrossedHandler;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Processor\IntrospectionProcessor;
+use Monolog\Level;
 
 class RssSendLog extends LogDriverAbstract
 {
@@ -18,8 +19,8 @@ class RssSendLog extends LogDriverAbstract
      */
     public function __invoke(array $config)
     {
-        // StreamHandler を生成
-        $handler = $this->prepareHandler(
+        // formattableHandler を生成
+        $formattableHandler = $this->prepareHandler(
             new RotatingFileHandler(
                 $config['path'],
                 $config['days'] ?? 7,
@@ -33,8 +34,8 @@ class RssSendLog extends LogDriverAbstract
         // ログに出力するフォーマット
         $format = '[%datetime% %channel%.%level_name%] %message% [%context%] [%extra.class%::%extra.function%(%extra.line%)]' . PHP_EOL;
 
-        // StreamHandler にフォーマッタをセット
-        $handler->setFormatter(
+        // formattableHandler にフォーマッタをセット
+        $formattableHandler->setFormatter(
             tap(new LineFormatter($format, null, true, true), function (\Monolog\Formatter\LineFormatter $formatter) {
                 $formatter->includeStacktraces();
             })
@@ -43,7 +44,7 @@ class RssSendLog extends LogDriverAbstract
         // Monolog のインスタンスを生成して返す
         $log = new Logger($this->parseChannel($config), [
             new FingersCrossedHandler(
-                $handler,
+                $formattableHandler,
                 $config['activation'] ?? null,
                 0,
                 true,
@@ -52,7 +53,7 @@ class RssSendLog extends LogDriverAbstract
             )
         ]);
         // ログにクラス名を入れる
-        $ip = new IntrospectionProcessor(Logger::DEBUG, ['Illuminate\\']);
+        $ip = new IntrospectionProcessor(Level::Debug, ['Illuminate\\']);
         $log->pushProcessor($ip);
         return $log;
     }

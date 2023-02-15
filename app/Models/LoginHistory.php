@@ -8,6 +8,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * App\Models\LoginHistory
+ *
+ * @property int $id
+ * @property int $user_id 登録ユーザID
+ * @property string $memo 備考
+ * @property string $ipaddr アクセス元IPアドレス
+ * @property string $user_agent ユーザエージェント
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginHistory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginHistory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginHistory query()
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginHistory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginHistory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginHistory whereIpaddr($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginHistory whereMemo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginHistory whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginHistory whereUserAgent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LoginHistory whereUserId($value)
+ * @mixin \Eloquent
+ */
 class LoginHistory extends Model
 {
     protected $table = 'login_histories';

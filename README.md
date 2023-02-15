@@ -11,7 +11,7 @@
 
 -   PostgreSQL 13 または MySQL 8.0
 -   Memcached 1.5.6
--   PHP 8.1 以上
+-   PHP 8.2 以上
 
 ---
 
