@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "07aa38f0c6ec6cf0b69da8fa5e8265d4",
+    "content-hash": "a4f65917029a60e2ff62dfc493d7fe6b",
     "packages": [
         {
             "name": "brick/math",
@@ -3091,25 +3091,27 @@
         },
         {
             "name": "simplepie/simplepie",
-            "version": "1.6.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplepie/simplepie.git",
-                "reference": "2bdbc51ed1010941c9c5f2cddca433e79665bfe1"
+                "reference": "65b095d87bc00898d8fa7737bdbcda93a3fbcc55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplepie/simplepie/zipball/2bdbc51ed1010941c9c5f2cddca433e79665bfe1",
-                "reference": "2bdbc51ed1010941c9c5f2cddca433e79665bfe1",
+                "url": "https://api.github.com/repos/simplepie/simplepie/zipball/65b095d87bc00898d8fa7737bdbcda93a3fbcc55",
+                "reference": "65b095d87bc00898d8fa7737bdbcda93a3fbcc55",
                 "shasum": ""
             },
             "require": {
                 "ext-pcre": "*",
                 "ext-xml": "*",
                 "ext-xmlreader": "*",
-                "php": ">=5.6.0"
+                "php": ">=7.2.0"
             },
             "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.19 || ^3.8",
+                "psr/simple-cache": "^1 || ^2 || ^3",
                 "yoast/phpunit-polyfills": "^1.0.1"
             },
             "suggest": {
@@ -3159,9 +3161,9 @@
             ],
             "support": {
                 "issues": "https://github.com/simplepie/simplepie/issues",
-                "source": "https://github.com/simplepie/simplepie/tree/1.6.0"
+                "source": "https://github.com/simplepie/simplepie/tree/1.8.0"
             },
-            "time": "2022-04-21T11:05:19+00:00"
+            "time": "2023-01-20T08:37:35+00:00"
         },
         {
             "name": "symfony/console",
@@ -5629,21 +5631,21 @@
         },
         {
             "name": "willvincent/feeds",
-            "version": "v2.4.0",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willvincent/feeds.git",
-                "reference": "ae4c1b55761c9c4cf665d447fdbc9a0fb25dde0d"
+                "reference": "1942a2cf03753a9544162786ff2502fdd1596016"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willvincent/feeds/zipball/ae4c1b55761c9c4cf665d447fdbc9a0fb25dde0d",
-                "reference": "ae4c1b55761c9c4cf665d447fdbc9a0fb25dde0d",
+                "url": "https://api.github.com/repos/willvincent/feeds/zipball/1942a2cf03753a9544162786ff2502fdd1596016",
+                "reference": "1942a2cf03753a9544162786ff2502fdd1596016",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "illuminate/support": "~5.0 || ^6.0 || ^7.0 || ^8.0|^9.0",
+                "illuminate/support": "~5.0 || ^6.0 || ^7.0 || ^8.0|^9.0|^10.0",
                 "php": ">=5.4.0 || ^7.2 || ^8.0",
                 "simplepie/simplepie": "^1.5"
             },
@@ -5676,9 +5678,9 @@
             "description": "Laravel 5 Service Provider for the SimplePie library",
             "support": {
                 "issues": "https://github.com/willvincent/feeds/issues",
-                "source": "https://github.com/willvincent/feeds/tree/v2.4.0"
+                "source": "https://github.com/willvincent/feeds/tree/v2.5.0"
             },
-            "time": "2022-09-27T18:33:16+00:00"
+            "time": "2023-02-15T08:03:28+00:00"
         }
     ],
     "packages-dev": [
