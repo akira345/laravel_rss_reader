@@ -6306,16 +6306,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.14.6",
+            "version": "2.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "f7948baaa0330277c729714910336383286305da"
+                "reference": "e864ac957acd66e1565f25efda61e37791a5db0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/f7948baaa0330277c729714910336383286305da",
-                "reference": "f7948baaa0330277c729714910336383286305da",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/e864ac957acd66e1565f25efda61e37791a5db0b",
+                "reference": "e864ac957acd66e1565f25efda61e37791a5db0b",
                 "shasum": ""
             },
             "require": {
@@ -6365,7 +6365,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.14.6"
+                "source": "https://github.com/filp/whoops/tree/2.15.1"
             },
             "funding": [
                 {
@@ -6373,7 +6373,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-11-02T16:23:29+00:00"
+            "time": "2023-03-06T18:09:13+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -6559,34 +6559,39 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v7.0.2",
+            "version": "v7.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "15e5fe35305419c9c6cf196be8d62cf70087a20c"
+                "reference": "f502ff3b2051124c89b4dd3a8a497ca65f3ce26c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/15e5fe35305419c9c6cf196be8d62cf70087a20c",
-                "reference": "15e5fe35305419c9c6cf196be8d62cf70087a20c",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/f502ff3b2051124c89b4dd3a8a497ca65f3ce26c",
+                "reference": "f502ff3b2051124c89b4dd3a8a497ca65f3ce26c",
                 "shasum": ""
             },
             "require": {
-                "filp/whoops": "^2.14.6",
+                "filp/whoops": "^2.15.1",
                 "nunomaduro/termwind": "^1.15.1",
                 "php": "^8.1.0",
-                "symfony/console": "^6.2.5"
+                "symfony/console": "^6.2.7"
+            },
+            "conflict": {
+                "phpunit/phpunit": "<10.0.16"
             },
             "require-dev": {
-                "laravel/framework": "^10.0.0",
-                "laravel/pint": "^1.4.1",
-                "laravel/sail": "^1.20.1",
+                "brianium/paratest": "^7.1.1",
+                "laravel/framework": "^10.3.3",
+                "laravel/pint": "^1.6.0",
+                "laravel/sail": "^1.21.2",
                 "laravel/sanctum": "^3.2.1",
-                "laravel/tinker": "^2.8.0",
-                "nunomaduro/larastan": "^2.4.0",
-                "orchestra/testbench-core": "^8.0.0",
+                "laravel/tinker": "^2.8.1",
+                "nunomaduro/larastan": "^2.5.1",
+                "orchestra/testbench-core": "^8.0.5",
                 "pestphp/pest": "^2.0.0",
-                "phpunit/phpunit": "^10.0.7",
+                "phpunit/phpunit": "^10.0.16",
+                "sebastian/environment": "^6.0.0",
                 "spatie/laravel-ignition": "^2.0.0"
             },
             "type": "library",
@@ -6646,7 +6651,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-02-11T18:10:08+00:00"
+            "time": "2023-03-14T14:34:49+00:00"
         },
         {
             "name": "nunomaduro/larastan",
