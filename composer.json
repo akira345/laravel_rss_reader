@@ -14,7 +14,7 @@
         "laravel/tinker": "2.8.2",
         "laravelcollective/html": "6.4.1",
         "willvincent/feeds": "2.5.0",
-        "laravel/ui": "4.2.2"
+        "laravel/ui": "4.2.3"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",
