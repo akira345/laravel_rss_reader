@@ -18,7 +18,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",
-        "fakerphp/faker": "1.23.0",
+        "fakerphp/faker": "1.23.1",
         "mockery/mockery": "1.6.7",
         "nunomaduro/collision": "^7.0",
         "nunomaduro/larastan": "2.7.0",
