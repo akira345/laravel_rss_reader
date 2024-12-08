@@ -53,7 +53,7 @@ jobs:
       - name: Install
         run: yarn install
       - name: Install Dependencies
-        run: composer install --no-interaction --prefer-dist --no-suggest
+        run: composer install --no-interaction --prefer-dist
       - name: Generate key
         run: php artisan key:generate
       - name: clear view
