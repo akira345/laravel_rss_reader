@@ -12,9 +12,9 @@
         "guzzlehttp/guzzle": "7.9.2",
         "laravel/framework": "^10.0",
         "laravel/tinker": "2.10.0",
-        "laravelcollective/html": "6.4.1",
         "willvincent/feeds": "2.6.0",
         "laravel/ui": "4.6.0"
+        "spatie/laravel-html": "^3.11",
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",

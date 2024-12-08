@@ -45,7 +45,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="category_id-field">カテゴリ</label>
-                                        {{Form::select('category_id', $categories, null, ['id' => 'category_id-field','class' => 'form-control', 'placeholder' => '指定なし'])}}
+                                        {{ html()
+                                            ->select('category_id', $categories->toArray(), null)
+                                            ->class('form-control')
+                                            ->classIf($errors->has('category_id'), 'is-invalid')
+                                            ->placeholder('指定なし')
+                                            ->id('category_id-field') }}
+
                                         @if ($errors->has('category_id'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('category_id') }}</strong>
@@ -54,7 +60,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="keywords-field">配信キーワード<br>
-                                            (改行で区切ります。大文字小文字、ひらがなカタカナ、半角全角は区別せずなるべくマッチさせます。）
+                                            (改行で区切ります。大文字小文字、ひらがなカタカナ、半角全角は区別せずなるべくマッチさせます。)
                                         </label>
 
                                         <textarea id="keywords-field" type="text" class="form-control{{ $errors->has('keywords') ? ' is-invalid' : '' }}"  name="keywords" rows="3" required >{{ old('keywords') }}</textarea>
@@ -68,7 +74,7 @@
                                     <div class="checkbox">
                                         <label for="ad_deny_flg-field">広告拒否</label>
 
-                                        {{Form::checkbox('ad_deny_flg', '1')}}
+                                        {{ html()->checkbox('ad_deny_flg', false,"1") }}
                                         @if ($errors->has('ad_deny_flg'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('ad_deny_flg') }}</strong>
@@ -77,7 +83,7 @@
                                     </div>
                                     <div class="checkbox">
                                         <label for="deliv_flg-field">メール配信</label>
-                                        {{Form::checkbox('deliv_flg', '1')}}
+                                        {{html()->checkbox('deliv_flg', false,'1') }}
                                         @if ($errors->has('deliv_flg'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('deliv_flg') }}</strong>
@@ -88,7 +94,7 @@
                                         <label for="repeat_deliv_deny_flg-field">再配送拒否<br>
                                         有効にすると、同じタイトルの記事を一週間再送しません。
                                         </label>
-                                        {{Form::checkbox('repeat_deliv_deny_flg', '1')}}
+                                        {{html()->checkbox('repeat_deliv_deny_flg', false,'1') }}
                                         @if ($errors->has('repeat_deliv_deny_flg'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('repeat_deliv_deny_flg') }}</strong>
@@ -112,7 +118,7 @@
                                         <label for="hiddel_flg-field">非表示<br>
                                             有効にすると、RSSを表示しません。
                                         </label>
-                                        {{Form::checkbox('hidden_flg', '1')}}
+                                        {{html()->checkbox('hidden_flg',false, '1') }}
                                         @if ($errors->has('hidden_flg'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('hidden_flg') }}</strong>
