@@ -1,30 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
 
                         <h1 class="d-flex mb-3">
                             <span class="d-inline-block">RSS編集</span>
                         </h1>
                         <div class="row">
                             <div class="col-md-12">
-                                <form method="POST" action="{{route('rss_data.update',['rss_data' => $rss_data->id])}}" accept-charset="UTF-8" class="needs-validation" novalidate>
+                                <form method="POST" action="{{ route('rss_data.update', ['rss_data' => $rss_data->id]) }}"
+                                    accept-charset="UTF-8" class="needs-validation" novalidate>
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
                                         <label for="rss_url-field">RSSフィードURL</label>
 
-                                        <input id="rss_url-field" type="text" class="form-control{{ $errors->has('rss_url') ? ' is-invalid' : '' }}"  name="rss_url" value="{{ old('rss_url',$rss_data->rss_url) }}" required autofocus>
+                                        <input id="rss_url-field" type="text"
+                                            class="form-control{{ $errors->has('rss_url') ? ' is-invalid' : '' }}"
+                                            name="rss_url" value="{{ old('rss_url', $rss_data->rss_url) }}" required
+                                            autofocus>
 
                                         @if ($errors->has('rss_url'))
                                             <span class="invalid-feedback" role="alert">
@@ -35,7 +39,9 @@
                                     <div class="form-group">
                                         <label for="comment-field">コメント</label>
 
-                                        <input id="comment-field" type="text" class="form-control{{ $errors->has('comment') ? ' is-invalid' : '' }}"  name="comment" value="{{ old('comment',$rss_data->comment) }}" required >
+                                        <input id="comment-field" type="text"
+                                            class="form-control{{ $errors->has('comment') ? ' is-invalid' : '' }}"
+                                            name="comment" value="{{ old('comment', $rss_data->comment) }}" required>
 
                                         @if ($errors->has('comment'))
                                             <span class="invalid-feedback" role="alert">
@@ -45,7 +51,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="category_id-field">カテゴリ</label>
-                                        {{Form::select('category_id', $categories, $rss_data->category_id, ['id' => 'category_id-field','class' => 'form-control', 'placeholder' => '指定なし'])}}
+                                        {{ html()->select('category_id', $categories->toArray(), $rss_data->category_id)->class('form-control')->classIf($errors->has('category_id'), 'is-invalid')->placeholder('指定なし')->id('category_id-field') }}
                                         @if ($errors->has('category_id'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('category_id') }}</strong>
@@ -54,10 +60,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="keywords-field">配信キーワード<br>
-                                            (改行で区切ります。大文字小文字、ひらがなカタカナ、半角全角は区別せずなるべくマッチさせます。）
+                                            (改行で区切ります。大文字小文字、ひらがなカタカナ、半角全角は区別せずなるべくマッチさせます。)
                                         </label>
 
-                                        <textarea id="keywords-field" type="text" class="form-control{{ $errors->has('keywords') ? ' is-invalid' : '' }}"  name="keywords" rows="3" required >{{ old('keywords',$rss_data->keywords) }}</textarea>
+                                        <textarea id="keywords-field" type="text" class="form-control{{ $errors->has('keywords') ? ' is-invalid' : '' }}"
+                                            name="keywords" rows="3" required>{{ old('keywords', $rss_data->keywords) }}</textarea>
 
                                         @if ($errors->has('keywords'))
                                             <span class="invalid-feedback" role="alert">
@@ -68,7 +75,7 @@
                                     <div class="checkbox">
                                         <label for="ad_deny_flg-field">広告拒否</label>
 
-                                        {{Form::checkbox('ad_deny_flg', '1',$rss_data->ad_deny_flg)}}
+                                        {{ html()->checkbox('ad_deny_flg', $rss_data->ad_deny_flg, "1") }}
                                         @if ($errors->has('ad_deny_flg'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('ad_deny_flg') }}</strong>
@@ -77,7 +84,7 @@
                                     </div>
                                     <div class="checkbox">
                                         <label for="deliv_flg-field">メール配信</label>
-                                        {{Form::checkbox('deliv_flg', '1',$rss_data->rss_delivery_attribute->deliv_flg)}}
+                                        {{ html()->checkbox('deliv_flg',  $rss_data->rss_delivery_attribute->deliv_flg,"1") }}
                                         @if ($errors->has('deliv_flg'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('deliv_flg') }}</strong>
@@ -86,9 +93,9 @@
                                     </div>
                                     <div class="checkbox">
                                         <label for="repeat_deliv_deny_flg-field">再配送拒否<br>
-                                        有効にすると、同じタイトルの記事を一週間再送しません。
+                                            有効にすると、同じタイトルの記事を一週間再送しません。
                                         </label>
-                                        {{Form::checkbox('repeat_deliv_deny_flg', '1',$rss_data->rss_delivery_attribute->repeat_deliv_deny_flg)}}
+                                        {{ html()->checkbox('repeat_deliv_deny_flg', $rss_data->rss_delivery_attribute->repeat_deliv_deny_flg,"1") }}
                                         @if ($errors->has('repeat_deliv_deny_flg'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('repeat_deliv_deny_flg') }}</strong>
@@ -100,7 +107,11 @@
                                             記事一覧表示に表示する記事数。この数でページを分割します。空欄またはゼロで分割しません。
                                         </label>
 
-                                        <input id="rss_contents_list_cnt-field" type="text" class="form-control{{ $errors->has('rss_contents_list_cnt') ? ' is-invalid' : '' }}"  name="rss_contents_list_cnt" value="{{ old('rss_contents_list_cnt',$rss_data->rss_view_attribute->rss_contents_list_cnt) }}" size="4" >
+                                        <input id="rss_contents_list_cnt-field" type="text"
+                                            class="form-control{{ $errors->has('rss_contents_list_cnt') ? ' is-invalid' : '' }}"
+                                            name="rss_contents_list_cnt"
+                                            value="{{ old('rss_contents_list_cnt', $rss_data->rss_view_attribute->rss_contents_list_cnt) }}"
+                                            size="4">
 
                                         @if ($errors->has('rss_contents_list_cnt'))
                                             <span class="invalid-feedback" role="alert">
@@ -112,7 +123,7 @@
                                         <label for="hiddel_flg-field">非表示<br>
                                             有効にすると、RSSを表示しません。
                                         </label>
-                                        {{Form::checkbox('hidden_flg', '1',$rss_data->rss_view_attribute->hidden_flg)}}
+                                        {{ html()->checkbox('hidden_flg',  $rss_data->rss_view_attribute->hidden_flg,"1") }}
                                         @if ($errors->has('hidden_flg'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('hidden_flg') }}</strong>
@@ -120,16 +131,17 @@
                                         @endif
                                     </div>
                                     <div class="d-flex justify-content-end">
-                                        <a class="btn btn-secondary d-inline-flex mr-3" href="{{route('rss_data.index')}}">一覧へ戻る</a>
+                                        <a class="btn btn-secondary d-inline-flex mr-3"
+                                            href="{{ route('rss_data.index') }}">一覧へ戻る</a>
                                         <button type="submit" class="btn btn-primary">更新</button>
                                     </div>
 
                                 </form>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
