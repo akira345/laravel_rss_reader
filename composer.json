@@ -23,7 +23,7 @@
         "nunomaduro/collision": "^8.1",
         "nunomaduro/larastan": "3.0.2",
         "phpstan/phpstan": "2.1.2",
-        "phpunit/php-code-coverage": "^10.0",
+        "phpunit/php-code-coverage": "^11.0",
         "phpunit/phpunit": "^10.0",
         "spatie/laravel-ignition": "^2.0"
     },
