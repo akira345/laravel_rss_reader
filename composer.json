@@ -11,7 +11,7 @@
         "php": "^8.3",
         "guzzlehttp/guzzle": "7.9.2",
         "laravel/framework": "^11.0",
-        "laravel/tinker": "2.10.0",
+        "laravel/tinker": "2.10.1",
         "laravel/ui": "4.6.0",
         "spatie/laravel-html": "^3.11",
         "willvincent/feeds": "2.6.0"
