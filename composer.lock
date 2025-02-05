@@ -3440,16 +3440,16 @@
         },
         {
             "name": "spatie/laravel-html",
-            "version": "3.11.1",
+            "version": "3.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-html.git",
-                "reference": "167e5b8243103072155b562e5cc396c90a3c1055"
+                "reference": "248508f3ed50e6538707fc54a4b3b23fb53e8045"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-html/zipball/167e5b8243103072155b562e5cc396c90a3c1055",
-                "reference": "167e5b8243103072155b562e5cc396c90a3c1055",
+                "url": "https://api.github.com/repos/spatie/laravel-html/zipball/248508f3ed50e6538707fc54a4b3b23fb53e8045",
+                "reference": "248508f3ed50e6538707fc54a4b3b23fb53e8045",
                 "shasum": ""
             },
             "require": {
@@ -3465,12 +3465,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "Spatie\\Html\\HtmlServiceProvider"
-                    ],
                     "aliases": {
                         "Html": "Spatie\\Html\\Facades\\Html"
-                    }
+                    },
+                    "providers": [
+                        "Spatie\\Html\\HtmlServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -3506,7 +3506,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-html/tree/3.11.1"
+                "source": "https://github.com/spatie/laravel-html/tree/3.11.2"
             },
             "funding": [
                 {
@@ -3514,7 +3514,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2024-10-18T14:37:21+00:00"
+            "time": "2025-02-05T08:27:24+00:00"
         },
         {
             "name": "symfony/clock",
