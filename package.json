@@ -16,7 +16,7 @@
         "@babel/plugin-transform-runtime": "7.24.7",
         "@babel/preset-env": "7.24.7",
         "@popperjs/core": "2.11.8",
-        "axios": "1.7.9",
+        "axios": "1.8.1",
         "bootstrap": "5.3.3",
         "jquery": "3.7.1",
         "laravel-mix": "6.0.49",
