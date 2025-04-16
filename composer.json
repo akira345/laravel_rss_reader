@@ -22,7 +22,7 @@
         "larastan/larastan": "^3.2",
         "mockery/mockery": "1.6.12",
         "nunomaduro/collision": "^8.1",
-        "phpstan/phpstan": "2.1.11",
+        "phpstan/phpstan": "2.1.12",
         "phpunit/php-code-coverage": "^11.0",
         "phpunit/phpunit": "^11.0",
         "spatie/laravel-ignition": "^2.0"
